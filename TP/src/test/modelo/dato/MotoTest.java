@@ -1,4 +1,4 @@
-package test;
+package test.modelo.dato;
 
 import static org.junit.Assert.*;
 
@@ -9,11 +9,12 @@ import org.junit.Test;
 import modeloDatos.Cliente;
 import modeloDatos.Moto;
 import modeloDatos.Pedido;
+import modeloDatos.Vehiculo;
 import util.Constantes;
 
 public class MotoTest {
 
-	Moto moto;
+	Vehiculo moto;
 	
 	@Before
 	public void setUp() throws Exception {

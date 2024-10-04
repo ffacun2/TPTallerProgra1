@@ -1,4 +1,4 @@
-package test;
+package test.modelo.dato;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
 import modeloDatos.Auto;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
+import modeloDatos.Vehiculo;
 import util.Constantes;
 
 @RunWith(Suite.class)
@@ -26,7 +27,7 @@ public class AutoTest{
  */
 public static class  AutoConMascota {
 
-	Auto auto;
+	Vehiculo auto;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -69,6 +70,7 @@ public static class  AutoConMascota {
 		assertEquals("Error en el calculo de puntaje pedido.",auto.getPuntajePedido(pedido3),null);
 	}
 	
+	
 }
 
 /**
@@ -76,7 +78,7 @@ public static class  AutoConMascota {
  */
 public static class AutoSinMascota {
 	
-	Auto auto;
+	Vehiculo auto;
 	
 	@Before
 	public void setUp() throws Exception {

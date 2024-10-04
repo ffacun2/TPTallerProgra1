@@ -1,4 +1,4 @@
-package test;
+package test.modelo.dato;
 
 import static org.junit.Assert.*;
 
@@ -11,6 +11,7 @@ import org.junit.runners.Suite;
 import modeloDatos.Cliente;
 import modeloDatos.Combi;
 import modeloDatos.Pedido;
+import modeloDatos.Vehiculo;
 import util.Constantes;
 
 
@@ -27,7 +28,7 @@ public class CombiTest {
 	 */
 	public static class  CombiConMascota {
 
-		Combi combi;
+		Vehiculo combi;
 		
 		@Before
 		public void setUp() throws Exception {
@@ -71,7 +72,7 @@ public class CombiTest {
 	 */
 	public static class CombiSinMascota {
 		
-		Combi combi;
+		Vehiculo combi;
 		
 		@Before
 		public void setUp() throws Exception {

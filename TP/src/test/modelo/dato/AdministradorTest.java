@@ -1,4 +1,4 @@
-package test;
+package test.modelo.dato;
 
 import static org.junit.Assert.*;
 

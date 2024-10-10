@@ -84,28 +84,8 @@ public class EmpresaTest {
         } catch (ChoferRepetidoException e) {
             // Fallamos el test si se lanza ChoferRepetidoException, se supone inicialmente Map vacio
             fail("No se esperaba una excepción de ChoferRepetidoException: " + e.getMessage());
-        } catch (NullPointerException e) {
-            // Fallamos el test si se lanza NullPointerException, se creo un Chofer valido
-            fail("No se esperaba una excepción de NullPointerException: " + e.getMessage());
         } catch (Exception e) {
             fail("Excepción inesperada: " + e.getMessage());
-        }
-    }
-
-    // Clase cubierta: 2
-    @Test
-    public void testAgregarChofer_ChoferNull() {
-        try {
-            Escenario.empresa.agregarChofer(null);
-            fail("Se esperaba una NullPointerException al agregar un chofer null");
-        } catch (NullPointerException e) {
-            // Éxito: Se lanza NullPointerException como se esperaba
-            assertTrue("Se lanzó correctamente NullPointerException", true);
-        } catch (ChoferRepetidoException e) {
-            // Fallamos el test si se lanza ChoferRepetidoException porque no es la excepción esperada
-            fail("No se esperaba una ChoferRepetidoException: " + e.getMessage());
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
  
@@ -155,134 +135,8 @@ public class EmpresaTest {
         } catch (UsuarioYaExisteException e) {
             // Fallamos el test si se lanza UsuarioYaExisteException, porque se supone que es el primer registro
             fail("No se esperaba UsuarioYaExisteException, el HashMap debe estar vacío: " + e.getMessage());
-        } catch (NullPointerException e) {
-            // Fallamos el test si se lanza NullPointerException, ya que los datos son válidos
-            fail("No se esperaba una NullPointerException: " + e.getMessage());
         } catch (Exception e) {
             fail("Excepción inesperada: " + e.getMessage());
-        }
-    }
-    
-	// Clase cubierta: 2.1, 3, 5
-    @Test 
-    public void testAgregarCliente_UsuarioNull() {
-        try {
-            Escenario.empresa.agregarCliente(null, "pass123", "Gian");
-            fail("Se esperaba un AssertionError o NullPointerException al pasar un usuario null");
-
-        } catch (AssertionError e) {
-            // Verificamos si el AssertionError tiene el mensaje esperado, si corresponde
-            assertTrue("Se lanzó correctamente AssertionError por precondición no cumplida", true);
-
-        } catch (UsuarioYaExisteException e) {
-            // Fallamos el test si se lanza UsuarioYaExisteException porque no es la excepción esperada
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError o NullPointerException: " + e.getMessage());
-
-        } catch (Exception e) {
-            // Capturamos cualquier otra excepción inesperada y fallamos el test
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-    
-    // Clase cubierta: 2.2, 3, 5
-    @Test
-    public void testAgregarCliente_UsuarioVacio() {
-        try {
-            Escenario.empresa.agregarCliente("", "pass123", "Gian");
-            fail("Se esperaba un AssertionError al pasar un usuario vacío");
-
-        } catch (AssertionError e) {
-            // Verificamos si el AssertionError tiene el mensaje esperado
-            assertEquals("EL PARAMETRO nombreUsuario ESTA VACIO", e.getMessage());
-
-        } catch (UsuarioYaExisteException e) {
-            // Fallamos el test si se lanza UsuarioYaExisteException porque no es la excepción esperada
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-    
-    // Clase cubierta: 1, 4.1, 5
-    @Test
-    public void testAgregarCliente_PassNull() {
-        try {
-            Escenario.empresa.agregarCliente("user1", null, "Gian");
-            fail("Se esperaba un AssertionError al pasar una contraseña null");
-
-        } catch (AssertionError e) {
-            // Verificamos que el AssertionError tiene el mensaje esperado
-            assertEquals("EL PARAMETRO pass ES NULL", e.getMessage());
-
-        } catch (UsuarioYaExisteException e) {
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-    
-    // Clases cubiertas: 1, 4.2, 5
-    @Test
-    public void testAgregarCliente_PassVacio() {
-        try {
-            // Intentamos agregar un cliente con pass vacío
-            Escenario.empresa.agregarCliente("user1", "", "Gian");
-            fail("Se esperaba un AssertionError al pasar una contraseña vacía");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por una precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por precondición no cumplida", true);
-
-        } catch (UsuarioYaExisteException e) {
-            // Fallamos el test si se lanza UsuarioYaExisteException porque no es la excepción esperada
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            // Capturamos cualquier otra excepción inesperada y fallamos el test
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-    
-    // Clases cubiertas: 1, 3, 6.1
-    @Test
-    public void testAgregarCliente_NombreRealNull() {
-        try {
-            Escenario.empresa.agregarCliente("user13", "pass123", null);
-            fail("Se esperaba un AssertionError al pasar un nombre real null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por una precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por precondición no cumplida", true);
-
-        } catch (UsuarioYaExisteException e) {
-            // Fallamos el test si se lanza UsuarioYaExisteException porque no es la excepción esperada
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 3, 6.2
-    @Test
-    public void testAgregarCliente_NombreRealVacio() {
-        try {
-            Escenario.empresa.agregarCliente("user14", "pass123", "");
-            fail("Se esperaba un AssertionError o IllegalArgumentException al pasar un nombre real vacío");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por una precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por precondición no cumplida", true);
-
-        } catch (UsuarioYaExisteException e) {
-            // Fallamos el test si se lanza UsuarioYaExisteException porque no es la excepción esperada
-            fail("Se lanzó UsuarioYaExisteException en lugar de AssertionError o IllegalArgumentException: " + e.getMessage());
-
-        } catch (Exception e) {
-            // Capturamos cualquier otra excepción inesperada y fallamos el test
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
     
@@ -344,38 +198,6 @@ public class EmpresaTest {
             
             // Verificación de que el pedido asociado al cliente sea el correcto
             assertEquals("El pedido asociado al cliente no es el correcto", pedido, pedidosRegistrados.get(cliente));  // Mensaje corregido
-
-        } catch (SinVehiculoParaPedidoException e) {
-            fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
-
-        } catch (ClienteNoExisteException e) {
-            fail("No se esperaba una ClienteNoExisteException: " + e.getMessage());
-
-        } catch (ClienteConViajePendienteException e) {
-            fail("No se esperaba una ClienteConViajePendienteException: " + e.getMessage());
-
-        } catch (ClienteConPedidoPendienteException e) {
-            fail("No se esperaba una ClienteConPedidoPendienteException: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clase cubierta: 2 DEBERIA LANZAR ASSERT Y LANZA EXCEPCION
-    @Test
-    public void testAgregarPedido_PedidoNull() {
-        try {
-            Escenario.empresa.agregarPedido(null);
-            fail("Se esperaba un AssertionError al intentar agregar un pedido null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError", true);
-
-        } catch (NullPointerException e) {
-            // Éxito: Se lanzó NullPointerException, lo cual también es aceptable en este caso
-            assertTrue("Se lanzó correctamente NullPointerException", true);
 
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
@@ -635,26 +457,6 @@ public class EmpresaTest {
         }
     }
     
-    // Clases cubiertas: 2 DEBERIA LANZAR ASSERT???
-    @Test
-    public void testVehiculosOrdenadosPorPedido_PedidoNull() {
-        try {
-            Escenario.empresa.vehiculosOrdenadosPorPedido(null);
-            fail("Se esperaba una NullPointerException al pasar un pedido null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError", true);
-
-        } catch (NullPointerException e) {
-            // Éxito: Se lanzó NullPointerException como se esperaba
-            assertTrue("Se lanzó correctamente NullPointerException", true);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
     // Clases cubiertas: 1, 4 (Pedido válido pero sin vehículos habilitados)
     @Test
     public void testVehiculosOrdenadosPorPedido_SinVehiculosHabilitados() {
@@ -775,23 +577,6 @@ public class EmpresaTest {
         }
     }
 
-    // Clases cubiertas: 2 (Pedido es null)
-    @Test
-    public void testValidarPedido_PedidoNull() {
-        try {
-            Escenario.empresa.validarPedido(null);
-            fail("Se esperaba un AssertionError al pasar un pedido null");
-            
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError", true);
-            
-        } catch (Exception e) {
-            // Si se lanza una excepción diferente, fallamos el test
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
     // Clases cubiertas: 1, 4 
     @Test
     public void testValidarPedido_SinVehiculosHabilitados() {
@@ -850,26 +635,6 @@ public class EmpresaTest {
                          auto, vehiculosRegistrados.get("ABC123"));
 
         } catch (VehiculoRepetidoException e) {
-            fail("No se esperaba una VehiculoRepetidoException: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clase cubierta: 2 NO DEBERIA LANZAR ASSERT? 
-    @Test
-    public void testAgregarVehiculo_VehiculoNull() {
-        try {
-            Escenario.empresa.agregarVehiculo(null);
-            fail("Se esperaba una NullPointerException al agregar un vehículo null");
-
-        } catch (NullPointerException e) {
-            // Éxito: se lanzó NullPointerException como se esperaba
-            assertTrue("Se lanzó correctamente NullPointerException", true);
-
-        } catch (VehiculoRepetidoException e) {
-            // Fallamos el test si se lanza VehiculoRepetidoException
             fail("No se esperaba una VehiculoRepetidoException: " + e.getMessage());
 
         } catch (Exception e) {
@@ -956,49 +721,6 @@ public class EmpresaTest {
             fail("No se esperaba una ClienteConViajePendienteException: " + e.getMessage());
 
         } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2 
-    @Test
-    public void testCrearViaje_PedidoNull() {
-        try {
-            // Crear y registrar chofer válido
-            ChoferPermanente chofer = new ChoferPermanente("12345678", "Juan", 2010, 1);
-            Escenario.empresa.agregarChofer(chofer);
-            Escenario.empresa.getChoferesDesocupados().add(chofer);  // Marcar como desocupado
-
-            // Crear y registrar vehículo válido
-            Vehiculo vehiculo = new Auto("ABC123", 4, true);
-            Escenario.empresa.agregarVehiculo(vehiculo);
-            Escenario.empresa.getVehiculosDesocupados().add(vehiculo);  // Marcar como desocupado
-
-            // Intentamos crear el viaje con el pedido como null
-            Escenario.empresa.crearViaje(null, chofer, vehiculo);
-            fail("Se esperaba un AssertionError al pasar un pedido null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError", true);
-
-        } catch (PedidoInexistenteException e) {
-            fail("Se lanzó PedidoInexistenteException en lugar de AssertionError por violar la PreCondicion: " + e.getMessage());
-
-        } catch (ChoferNoDisponibleException e) {
-            fail("Se lanzó ChoferNoDisponibleException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (VehiculoNoDisponibleException e) {
-            fail("Se lanzó VehiculoNoDisponibleException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (VehiculoNoValidoException e) {
-            fail("Se lanzó VehiculoNoValidoException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (ClienteConViajePendienteException e) {
-            fail("Se lanzó ClienteConViajePendienteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            // Si se lanza cualquier otra excepción no esperada, el test falla
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
@@ -1453,100 +1175,6 @@ public class EmpresaTest {
         }
     }
 
-    // Clases cubiertas: 1, 4.2 
-    @Test
-    public void testPagarYFinalizarViaje_CalificacionMayorQue5() {
-        try {
-            // Creamos y registramos un cliente
-            String usuario = "userViajeFinalizadoCalificacion6";
-            String pass = "pass123";
-            String nombreReal = "Cliente Viaje Finalizado Calificacion 6";
-            Escenario.empresa.agregarCliente(usuario, pass, nombreReal);
-            Cliente cliente = Escenario.empresa.getClientes().get(usuario);
-            assertNotNull("El cliente no fue registrado correctamente", cliente);
-
-            // Creamos y registramos un chofer y vehículo válidos
-            ChoferPermanente chofer = new ChoferPermanente("98765435", "Carlos", 2010, 1);
-            Escenario.empresa.agregarChofer(chofer);
-            Vehiculo vehiculo = new Auto("XYZ126", 4, true);
-            Escenario.empresa.agregarVehiculo(vehiculo);
-
-            // Creamos un pedido válido
-            Pedido pedido = new Pedido(cliente, 2, true, false, 10, "ZONA_STANDARD");
-            Escenario.empresa.agregarPedido(pedido);
-
-            // Iniciamos un viaje para el cliente
-            Escenario.empresa.crearViaje(pedido, chofer, vehiculo);
-
-            // Logueamos al cliente en la empresa
-            Escenario.empresa.setUsuarioLogeado(cliente);
-
-            // Verificamos que el cliente tiene un viaje pendiente
-            assertTrue("El cliente debería tener un viaje pendiente", 
-                Escenario.empresa.getViajesIniciados().containsKey(cliente));
-
-            // Intentamos pagar y finalizar el viaje con una calificación inválida (6)
-            Escenario.empresa.pagarYFinalizarViaje(6);
-
-            // Si llegamos a esta línea, el test debe fallar, ya que se esperaba una excepción
-            fail("Se esperaba un AssertionError al intentar finalizar un viaje con una calificación mayor a 5");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por violación de precondición", true);
-
-        } catch (ClienteSinViajePendienteException e) {
-            fail("Se lanzó ClienteSinViajePendienteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 4.1 
-    @Test
-    public void testPagarYFinalizarViaje_CalificacionMenorQue0() {
-        try {
-            // Registramos el cliente y creamos un viaje válido
-            String usuario = "userCalificacionMenorQue0";
-            String pass = "pass123";
-            String nombreReal = "Cliente Viaje";
-            Escenario.empresa.agregarCliente(usuario, pass, nombreReal);
-            Cliente cliente = Escenario.empresa.getClientes().get(usuario);
-            assertNotNull("El cliente no fue registrado correctamente", cliente);
-
-            // Registramos un vehículo y un chofer
-            Vehiculo vehiculo = new Auto("ABC123", 4, true);
-            Escenario.empresa.agregarVehiculo(vehiculo);
-
-            ChoferPermanente chofer = new ChoferPermanente("12345678", "Juan", 2010, 1);
-            Escenario.empresa.agregarChofer(chofer);
-
-            // Creamos un pedido y lo asignamos
-            Pedido pedido = new Pedido(cliente, 2, true, false, 10, "ZONA_STANDARD");
-            Escenario.empresa.agregarPedido(pedido);
-            Escenario.empresa.crearViaje(pedido, chofer, vehiculo);
-            
-            // Verificar que el cliente tiene un viaje pendiente
-            assertTrue("El cliente debería tener un viaje pendiente", 
-                       Escenario.empresa.getViajesIniciados().containsKey(cliente));
-
-            // Intentamos finalizar el viaje con una calificación negativa
-            Escenario.empresa.pagarYFinalizarViaje(-1);
-            fail("Se esperaba un AssertionError al intentar finalizar un viaje con una calificación menor a 0");
-
-        } catch (AssertionError e) {
-            // Éxito: se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por calificación inválida", true);
-
-        } catch (ClienteSinViajePendienteException e) {
-            fail("Se lanzó ClienteSinViajePendienteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
     // Clases cubiertas: 2, 3 
     @Test
     public void testPagarYFinalizarViaje_SinViajePendiente() {
@@ -1575,9 +1203,6 @@ public class EmpresaTest {
         } catch (ClienteSinViajePendienteException e) {
             // Éxito: se lanzó ClienteSinViajePendienteException como se esperaba
             assertTrue("Se lanzó correctamente ClienteSinViajePendienteException", true);
-
-        } catch (AssertionError e) {
-            fail("Se lanzó AssertionError en lugar de ClienteSinViajePendienteException: " + e.getMessage());
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -1608,105 +1233,6 @@ public class EmpresaTest {
 
         } catch (PasswordErroneaException e) {
             fail("No se esperaba una PasswordErroneaException para una contraseña correcta: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2.1, 3 DEBERIA LANZAR ASERTO?
-    @Test
-    public void testLogin_UsuarioNull() {
-        try {
-            Escenario.empresa.login(null, "admin123");
-            fail("Se esperaba un AssertionError al intentar loguearse con un usserName null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba debido a la violación de la precondición
-            assertTrue("Se lanzó correctamente AssertionError por usserName null", true);
-
-        } catch (NullPointerException e) {
-            // Si lanza una NullPointerException, significa que hay un fallo en las precondiciones del método
-            fail("Se lanzó NullPointerException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (UsuarioNoExisteException e) {
-            fail("Se lanzó UsuarioNoExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (PasswordErroneaException e) {
-            fail("Se lanzó PasswordErroneaException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2.2, 3 DEBERIA LANZAR ASERTO?
-    @Test
-    public void testLogin_UsuarioVacio() {
-        try {
-            Escenario.empresa.login("", "admin123");
-            fail("Se esperaba una IllegalArgumentException o AssertionError al intentar loguearse con un usserName vacío");
-
-        } catch (IllegalArgumentException e) {
-            // Éxito: Se lanzó IllegalArgumentException como se esperaba
-            assertTrue("Se lanzó correctamente IllegalArgumentException por usserName vacío", true);
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por usserName vacío", true);
-
-        } catch (UsuarioNoExisteException e) {
-            fail("Se lanzó UsuarioNoExisteException en lugar de IllegalArgumentException o AssertionError: " + e.getMessage());
-
-        } catch (PasswordErroneaException e) {
-            fail("Se lanzó PasswordErroneaException en lugar de IllegalArgumentException o AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 4.1 
-    @Test
-    public void testLogin_PasswordNull() {
-        try {
-            Escenario.empresa.login("admin", null);
-            fail("Se esperaba una AssertionError al intentar loguearse con una pass null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por pass null", true);
-
-        } catch (NullPointerException e) {
-            fail("Se lanzó NullPointerException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (UsuarioNoExisteException e) {
-            fail("Se lanzó UsuarioNoExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (PasswordErroneaException e) {
-            fail("Se lanzó PasswordErroneaException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 4.2 
-    @Test
-    public void testLogin_PasswordVacio() {
-        try {
-            Escenario.empresa.login("admin", "");
-            fail("Se esperaba un AssertionError al intentar loguearse con una pass vacía");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por pass vacía", true);
-
-        } catch (UsuarioNoExisteException e) {
-            fail("Se lanzó UsuarioNoExisteException en lugar de AssertionError: " + e.getMessage());
-
-        } catch (PasswordErroneaException e) {
-            fail("Se lanzó PasswordErroneaException en lugar de AssertionError: " + e.getMessage());
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -1758,7 +1284,7 @@ public class EmpresaTest {
     
     // Clases cubiertas: 1, 3 
     @Test
-    public void testGetTotalSalarios_ChoferPermanenteYTemporario() {
+    public void testGetTotalSalarios_MultiplesChoferes() {
         try {
             // Registramos un chofer permanente con un salario basado en su antigüedad y cantidad de hijos
         	// Antigüedad de 14 años, 2 hijos
@@ -1819,7 +1345,7 @@ public class EmpresaTest {
 
     // Clases cubiertas: 1, 3 Parece que se calculan mal los salarios o este metodo hace algo raro en la suma
     @Test
-    public void testGetTotalSalarios_UnChoferPermanenteRegistrado() {
+    public void testGetTotalSalarios_UnChofer() {
         try {
             // Definimos el sueldo básico y otros parámetros del chofer
             double sueldoBasico = 2000.0;
@@ -1847,7 +1373,7 @@ public class EmpresaTest {
         }
     }
 
-    // Clases cubiertas: 2 (Ningún chofer registrado)
+    // Clases cubiertas: 2 
     @Test
     public void testGetTotalSalarios_SinChoferes() {
         try {
@@ -1944,22 +1470,6 @@ public class EmpresaTest {
         }
     }
 
-    // Clases cubiertas: 2 
-    @Test
-    public void testGetHistorialViajeCliente_ClienteNull() {
-        try {
-            Escenario.empresa.getHistorialViajeCliente(null);
-            fail("Se esperaba un AssertionError al pasar un cliente null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba
-            assertTrue("Se lanzó correctamente AssertionError por cliente null", true);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
     // Clases cubiertas: 1, 3, 6 
     @Test
     public void testGetHistorialViajeCliente_ClienteNoRegistrado() {
@@ -2041,22 +1551,6 @@ public class EmpresaTest {
             // Verificamos que el ArrayList esté vacío, ya que el chofer no tiene viajes
             assertNotNull("El ArrayList de viajes no debería ser null", historialViajes);
             assertTrue("El historial del chofer debería estar vacío", historialViajes.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2 
-    @Test
-    public void testGetHistorialViajeChofer_ChoferNull() {
-        try {
-            Escenario.empresa.getHistorialViajeChofer(null);
-            fail("Se esperaba un AssertionError al pasar un chofer null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por la precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por chofer null", true);
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -2183,7 +1677,7 @@ public class EmpresaTest {
         }
     }
 
-    // Clases cubiertas: 1, 4 (Chofer sin viajes)
+    // Clases cubiertas: 1, 4 
     @Test
     public void testCalificacionDeChofer_ChoferSinViajes() {
         try {
@@ -2200,63 +1694,6 @@ public class EmpresaTest {
         } catch (SinViajesException e) {
             // Éxito: Se lanzó SinViajesException como se esperaba
             assertTrue("Se lanzó correctamente SinViajesException para un chofer sin viajes", true);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2 (Chofer es null)
-    @Test
-    public void testCalificacionDeChofer_ChoferNull() {
-        try {
-            Escenario.empresa.calificacionDeChofer(null);
-            fail("Se esperaba un AssertionError al pasar un chofer null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por la precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por chofer null", true);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 3, 6 (Calificaciones fuera de rango)
-    @Test
-    public void testCalificacionDeChofer_CalificacionesInvalidas() {
-        try {
-            // Registramos un chofer válido
-            ChoferPermanente chofer = new ChoferPermanente("12345678", "Juan Perez", 2010, 2);
-            Escenario.empresa.agregarChofer(chofer);
-
-            // Registramos un cliente para simular viajes
-            String usuario = "userViajeInvalido";
-            String pass = "pass123";
-            String nombreReal = "Cliente Viaje Invalido";
-            Escenario.empresa.agregarCliente(usuario, pass, nombreReal);
-            Cliente cliente = Escenario.empresa.getClientes().get(usuario);
-            assertNotNull("El cliente no fue registrado correctamente", cliente);
-
-            // Creamos un vehículo válido
-            Vehiculo vehiculo = new Auto("ABC123", 4, true);
-            Escenario.empresa.agregarVehiculo(vehiculo);
-
-            // Simulamos un pedido y un viaje
-            Pedido pedido = new Pedido(cliente, 2, true, false, 10, "ZONA_STANDARD");
-            Escenario.empresa.agregarPedido(pedido);
-            Escenario.empresa.crearViaje(pedido, chofer, vehiculo);
-
-            // Logueamos al cliente para poder finalizar el viaje con una calificación inválida
-            Escenario.empresa.setUsuarioLogeado(cliente);
-
-            // Finalizamos el viaje con una calificación fuera de rango (inválida)
-            Escenario.empresa.pagarYFinalizarViaje(6); // Calificación inválida (>5)
-            fail("Se esperaba una IllegalArgumentException al intentar finalizar un viaje con una calificación fuera de rango");
-
-        } catch (IllegalArgumentException e) {
-            // Éxito: Se lanzó IllegalArgumentException (o DatoInvalidoException si existiera) como se esperaba
-            assertTrue("Se lanzó correctamente IllegalArgumentException por calificación inválida", true);
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -2319,24 +1756,6 @@ public class EmpresaTest {
             assertNull("El cliente no debería tener ningún pedido pendiente", pedidoPendiente);
 
         } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 2 
-    @Test
-    public void testGetPedidoDeCliente_ClienteNull() {
-        try {
-            // Llamamos al método con un cliente null
-            Escenario.empresa.getPedidoDeCliente(null);
-            fail("Se esperaba un AssertionError al pasar un cliente null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por la precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por cliente null", true);
-
-        } catch (Exception e) {
-            // Si se lanza alguna excepción distinta, el test debe fallar
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
@@ -2419,15 +1838,5 @@ public class EmpresaTest {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }

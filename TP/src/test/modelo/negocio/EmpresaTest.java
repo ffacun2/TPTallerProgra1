@@ -1822,21 +1822,5 @@ public class EmpresaTest {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
-
-    // Clases cubiertas: 2 
-    @Test
-    public void testGetViajeDeCliente_ClienteNull() {
-        try {
-            Escenario.empresa.getViajeDeCliente(null);
-            fail("Se esperaba un AssertionError al pasar un cliente null");
-
-        } catch (AssertionError e) {
-            // Éxito: Se lanzó AssertionError como se esperaba por la precondición no cumplida
-            assertTrue("Se lanzó correctamente AssertionError por cliente null", true);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
     
 }

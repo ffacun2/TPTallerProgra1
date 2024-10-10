@@ -17,6 +17,13 @@ public class Escenarios {
 
     public void tearDown() 
     {
-        empresa = null;
+    	empresa.getChoferes().clear();     
+        empresa.getChoferesDesocupados().clear();   
+        empresa.getClientes().clear();           
+        empresa.getVehiculos().clear();        
+        empresa.getVehiculosDesocupados().clear();  
+        empresa.getPedidos().clear();           
+        empresa.getViajesIniciados().clear();       
+        empresa.getViajesTerminados().clear(); 
     }
 }

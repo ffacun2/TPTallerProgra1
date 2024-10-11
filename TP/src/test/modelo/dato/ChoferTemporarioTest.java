@@ -9,6 +9,9 @@ import org.junit.Test;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferTemporario;
 
+/**
+ * Testeo Clase ChoferTemporario donde el escenario el chofer valido.
+ */
 public class ChoferTemporarioTest {
 
 	Chofer chofer;

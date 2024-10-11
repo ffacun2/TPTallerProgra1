@@ -10,6 +10,9 @@ import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import util.Constantes;
 
+/**
+ * Testeo clase Pedido con usuario valido.
+ */
 public class PedidoTest {
 	
 	Pedido pedido;

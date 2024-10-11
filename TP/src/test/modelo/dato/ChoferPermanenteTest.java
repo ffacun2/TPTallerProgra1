@@ -9,6 +9,9 @@ import org.junit.Test;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 
+/**
+ * Testeo de la clase ChoferPermanente en el escenario donde chofer es valido.
+ */
 public class ChoferPermanenteTest {
 
 	Chofer chofer;

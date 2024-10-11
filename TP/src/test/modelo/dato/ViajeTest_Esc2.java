@@ -1,19 +1,15 @@
 package test.modelo.dato;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-import modeloDatos.Auto;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
 import modeloDatos.Combi;
-import modeloDatos.Moto;
 import modeloDatos.Pedido;
 import modeloDatos.Usuario;
 import modeloDatos.Vehiculo;
@@ -22,15 +18,15 @@ import util.Constantes;
 
 /**
  * Escenario donde pedido es:
- * 						Zona sin asfaltar
+ * 						Zona peligrosa
  * 						con mascota
- * 						con baul
- * 						3 pasajeros
- * 						en auto
+ * 						sin baul
+ * 						6 pasajeros
+ * 						en combi
  * (caracteristicas que modifican el valor del viaje)
  */
-public class ViajeTest_Esc3 {
-	
+public class ViajeTest_Esc2 {
+
 		Viaje viaje;
 		Pedido pedido;
 		Usuario cliente;
@@ -40,18 +36,18 @@ public class ViajeTest_Esc3 {
 		@Before
 		public void setUp() throws Exception {
 			cliente = new Cliente("usuario1","password","mi nombre");
-			pedido = new Pedido((Cliente)cliente,3, true, true, 10, Constantes.ZONA_SIN_ASFALTAR);
+			pedido = new Pedido((Cliente)cliente,6, true, false, 10, Constantes.ZONA_PELIGROSA);
 			chofer = new ChoferPermanente("123","mi nombre",2000,2);
-			vehiculo = new Auto("asd 123",4,true);
+			vehiculo = new Combi("asd 123",10,true);
 			viaje = new Viaje(pedido,chofer, vehiculo);
 		}
 
 		@After
 		public void tearDown() throws Exception {
 			cliente = new Cliente("usuario1","password","mi nombre");
-			pedido = new Pedido((Cliente)cliente,3, true, true, 10, Constantes.ZONA_SIN_ASFALTAR);
+			pedido = new Pedido((Cliente)cliente,6, true, false, 10, Constantes.ZONA_PELIGROSA);
 			chofer = new ChoferPermanente("123","mi nombre",2000,2);
-			vehiculo = new Auto("asd 123",4,true);
+			vehiculo = new Combi("asd 123",10,true);
 			viaje = new Viaje(pedido,chofer, vehiculo);
 		}
 		
@@ -64,12 +60,11 @@ public class ViajeTest_Esc3 {
 			int cant_km = viaje.getPedido().getKm();
 			
 			//por zona
-			valor += base*(cant_pasajeros*0.2 + cant_km*0.15);
+			valor += base*(cant_pasajeros*0.1 + cant_km*0.2);
 			//por mascota
-			valor += base*(cant_pasajeros*0.1+cant_km*0.2);
-			//por baul
-			valor += base*(cant_pasajeros*0.1 + cant_km*0.05);
+			valor += (base*(cant_pasajeros*0.1 + cant_km*0.2));
 			assertEquals(valor,viaje.getValor(),1.0);
 		}
 		
+	
 }

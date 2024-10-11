@@ -8,6 +8,9 @@ import org.junit.Test;
 
 import modeloDatos.Cliente;
 
+/**'
+ * Testeo clase Cliente, verifico si el constructor.
+ */
 public class ClienteTest {
 	
 	Cliente cliente;

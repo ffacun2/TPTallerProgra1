@@ -1,18 +1,14 @@
 package test.modelo.dato;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
-import modeloDatos.Auto;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
-import modeloDatos.Combi;
 import modeloDatos.Moto;
 import modeloDatos.Pedido;
 import modeloDatos.Usuario;
@@ -22,14 +18,15 @@ import util.Constantes;
 
 /**
  * Escenario donde pedido es:
- * 						Zona sin asfaltar
- * 						con mascota
- * 						con baul
- * 						3 pasajeros
- * 						en auto
+ * 						Zona estandar
+ * 						sin mascota
+ * 						sin baul
+ * 						2 pasajeros
+ * 						en moto
  * (caracteristicas que modifican el valor del viaje)
  */
-public class ViajeTest_Esc3 {
+public class ViajeTest_Esc1 {
+
 	
 		Viaje viaje;
 		Pedido pedido;
@@ -40,19 +37,40 @@ public class ViajeTest_Esc3 {
 		@Before
 		public void setUp() throws Exception {
 			cliente = new Cliente("usuario1","password","mi nombre");
-			pedido = new Pedido((Cliente)cliente,3, true, true, 10, Constantes.ZONA_SIN_ASFALTAR);
+			pedido = new Pedido((Cliente)cliente,3, false, false, 10, Constantes.ZONA_STANDARD);
 			chofer = new ChoferPermanente("123","mi nombre",2000,2);
-			vehiculo = new Auto("asd 123",4,true);
+			vehiculo = new Moto("asd 123");
 			viaje = new Viaje(pedido,chofer, vehiculo);
 		}
 
 		@After
 		public void tearDown() throws Exception {
 			cliente = new Cliente("usuario1","password","mi nombre");
-			pedido = new Pedido((Cliente)cliente,3, true, true, 10, Constantes.ZONA_SIN_ASFALTAR);
+			pedido = new Pedido((Cliente)cliente,3, false, false, 10, Constantes.ZONA_STANDARD);
 			chofer = new ChoferPermanente("123","mi nombre",2000,2);
-			vehiculo = new Auto("asd 123",4,true);
+			vehiculo = new Moto("asd 123");
 			viaje = new Viaje(pedido,chofer, vehiculo);
+		}
+
+		@Test
+		public void testConstructorViaje() {
+			assertEquals("Error al asignar el pedido.",pedido,viaje.getPedido());
+			assertEquals("Error al asignar el chofer.",chofer,viaje.getChofer());
+			assertEquals("Error al asignar el vehiculo.",vehiculo,viaje.getVehiculo());
+		}
+
+		
+		@Test
+		public void testSetValorBase() {
+			Viaje.setValorBase(1000.0);
+			assertEquals(1000.0,Viaje.getValorBase(),1.0);
+		}
+		
+		@Test
+		public void testFinalizarViaje() {
+			viaje.finalizarViaje(5);
+			assertEquals("Error al asignar la clasificacion del viaje.",5,viaje.getCalificacion());
+			assertEquals("Error al preguntar si el viaje esta finalizado.",true,viaje.isFinalizado());
 		}
 		
 		@Test
@@ -64,11 +82,7 @@ public class ViajeTest_Esc3 {
 			int cant_km = viaje.getPedido().getKm();
 			
 			//por zona
-			valor += base*(cant_pasajeros*0.2 + cant_km*0.15);
-			//por mascota
-			valor += base*(cant_pasajeros*0.1+cant_km*0.2);
-			//por baul
-			valor += base*(cant_pasajeros*0.1 + cant_km*0.05);
+			valor += base*(cant_pasajeros+cant_km)*0.1;
 			assertEquals(valor,viaje.getValor(),1.0);
 		}
 		

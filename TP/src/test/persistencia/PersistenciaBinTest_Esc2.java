@@ -9,6 +9,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 
 
@@ -17,7 +18,7 @@ import persistencia.PersistenciaBIN;
  */
 public class PersistenciaBinTest_Esc2 {
 	
-	PersistenciaBIN persistencia = new PersistenciaBIN();
+	IPersistencia persistencia = new PersistenciaBIN();
 	String nombreArchivo = "datos.xml";
 	File archivo = new File(nombreArchivo);
 

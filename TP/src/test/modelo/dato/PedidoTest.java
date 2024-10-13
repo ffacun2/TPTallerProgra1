@@ -31,11 +31,23 @@ public class PedidoTest {
 	}
 
 	@Test
-	public void testConstructorPedido() {
+	public void testConstructorCliente() {
 		assertEquals("Error en la asignacion de cliente.",cliente,pedido.getCliente());
+	}
+	@Test
+	public void testConstructorCantPasajeros() {
 		assertEquals("Error en la asignacion de cantidad de pasajeros.",2,pedido.getCantidadPasajeros());
+	}
+	@Test
+	public void testConstructorMascota() {
 		assertEquals("Error en la asignacion de mascota.",true,pedido.isMascota());
+	}
+	@Test
+	public void testConstructorBaul() {
 		assertEquals("Error en la asignacion de baul.",false,pedido.isBaul());
+	}
+	@Test
+	public void testConstructorZona() {
 		assertEquals("Error en la asignacion de zona.",Constantes.ZONA_SIN_ASFALTAR,pedido.getZona());
 	}
 

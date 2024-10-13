@@ -28,8 +28,11 @@ public class AdministradorTest {
 	}
 	
 	@Test
-	public void testAtributosAdministrador() {
+	public void testNombreAdministrador() {
 		assertEquals("NOMBRE USUARIO ADMINISTRADOR DISTINTO DE admin","admin",admin.getNombreUsuario());
+	}
+	@Test
+	public void testPasswordAdministrador() {
 		assertEquals("CONTRASEÑA ADMINISTRADOR DISTINTO DE admin","admin",admin.getPass());
 	}
 

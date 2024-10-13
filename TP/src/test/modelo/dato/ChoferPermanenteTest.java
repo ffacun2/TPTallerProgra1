@@ -21,20 +21,24 @@ public class ChoferPermanenteTest {
 		chofer = new ChoferPermanente("123","mi nombre",2000,2);
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		chofer = new ChoferPermanente("123","mi nombre",2000,2);
-	}
-
 	/**
 	 * Verifico que el constructor ChoferPermanenete asigne 
 	 * correctamente los parametros.
 	 */
 	@Test
-	public void testConstructorChoferPermanente() {
+	public void testConstructorDNI() {
 		assertEquals("Error en el constructor.No se asigna correctamente el dni.","123",chofer.getDni());
+	}
+	@Test
+	public void testConstructorNombre() {
 		assertEquals("Error en el constructor.No se asigna correctamente el nombre.","mi nombre",chofer.getNombre());
+	}
+	@Test
+	public void testConstructorCantHijos() {
 		assertEquals("Error en el constructor.No se asigna correctamente la cantidad de hijos.",Integer.valueOf(2),((ChoferPermanente)chofer).getCantidadHijos(),2);
+	}
+	@Test
+	public void testConstructorAnioIngreso() {
 		assertEquals("Error en el constructor.No se asigna correctamente el anio de ingreso.",2000,((ChoferPermanente)chofer).getAnioIngreso());
 	}
 	

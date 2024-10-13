@@ -31,26 +31,43 @@ public class MotoTest {
 	 * asignen correctamente.
 	 */
 	@Test
-	public void testConstructorMoto() {
+	public void testConstructorPatente() {
 		assertEquals("Error en el constructor. Patente no se asigna correctamente.","asd 123",moto.getPatente());
+	}
+	@Test
+	public void testConstructorCantPlazas() {
 		assertEquals("Error en el constructor. Cantidad Plazas distinta de 1.",1,moto.getCantidadPlazas());
+	}
+	@Test
+	public void testConstructorMascota() {
 		assertEquals("Error en el constructor. Mascota distinto de false.",false,moto.isMascota());
 	}
 
 	/**
-	 * 
+	 * Verifico que el puntaje calculado sea el correcto para distintos tipso de pedidos.
 	 */
 	@Test
-	public void testGetPuntajePedido() {
+	public void testGetPuntajePedidoValido() {
 		Pedido pedido = new Pedido(new Cliente("usuario1","password","mi nombre"),1,false,false,10,Constantes.ZONA_SIN_ASFALTAR);
-		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,false,false,10,Constantes.ZONA_SIN_ASFALTAR);
-		Pedido pedido3 = new Pedido(new Cliente("usuario1","password","mi nombre"),1,true,false,10,Constantes.ZONA_SIN_ASFALTAR);
-		Pedido pedido4 = new Pedido(new Cliente("usuario1","password","mi nombre"),1,false,true,10,Constantes.ZONA_SIN_ASFALTAR);
 		
 		assertEquals("Error obtener puntaje para un pedido valido.",Integer.valueOf(1000),moto.getPuntajePedido(pedido));
-		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido2));
-		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido3));
-		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido4));
+	}
+	@Test
+	public void testGetPuntajePedidoValidoInsastisfecho() {
+		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,false,false,10,Constantes.ZONA_SIN_ASFALTAR);
 		
+		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido2));
+	}
+	@Test
+	public void testGetPuntajePedidoValidoInsastisfecho2() {
+		Pedido pedido3 = new Pedido(new Cliente("usuario1","password","mi nombre"),1,true,false,10,Constantes.ZONA_SIN_ASFALTAR);
+		
+		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido3));
+	}
+	@Test
+	public void testGetPuntajePedidoValidoInsastisfecho3() {
+		Pedido pedido4 = new Pedido(new Cliente("usuario1","password","mi nombre"),1,false,true,10,Constantes.ZONA_SIN_ASFALTAR);
+		
+		assertEquals("Error obtener puntaje para un pedido invalido.",null,moto.getPuntajePedido(pedido4));
 	}
 }

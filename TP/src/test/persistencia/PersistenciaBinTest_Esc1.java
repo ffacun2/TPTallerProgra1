@@ -10,6 +10,9 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import modeloNegocio.Empresa;
+import persistencia.EmpresaDTO;
+import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 
 /**
@@ -17,8 +20,8 @@ import persistencia.PersistenciaBIN;
  */
 public class PersistenciaBinTest_Esc1 {
 	
-	PersistenciaBIN persistencia = new PersistenciaBIN();
-	String nombreArchivo = "datos.txt";
+	IPersistencia persistencia = new PersistenciaBIN();
+	String nombreArchivo = "datos.bin";
 	File arch = new File(nombreArchivo);
 
 	@Before
@@ -29,8 +32,6 @@ public class PersistenciaBinTest_Esc1 {
 	
 	@After
 	public void tearDown() throws Exception{
-		if(arch.exists())
-			arch.delete();
 	}
 	
 	
@@ -68,7 +69,7 @@ public class PersistenciaBinTest_Esc1 {
 	@Test
 	public void leerTest() {
 		try {
-			Serializable lectura = persistencia.leer();
+			Serializable lectura = (Serializable) persistencia.leer();
 			fail("DEBERIA LANZAR EXCEPCION. ARCHIVO NO ABIERTO.");
 		} 
 		catch (ClassNotFoundException e)

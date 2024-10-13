@@ -30,9 +30,15 @@ public class ClienteTest {
 	 * correctamente
 	 */
 	@Test
-	public void testConstructorCliente() {
+	public void testConstructorUsuario() {
 		assertEquals("EL NOMBRE DE USUARIO NO SE ASIGNA CORRECTAMENTE","usuario1",cliente.getNombreUsuario());
+	}
+	@Test
+	public void testConstructorPassword() {
 		assertEquals("LA CONTRASEÑA NO SE ASIGNA CORRECTAMENTE.","password",cliente.getPass());
+	}
+	@Test
+	public void testConstructorNombre() {
 		assertEquals("EL NOMBRE REAL NO SE ASIGNA CORRECTAMENTE.","mi nombre",cliente.getNombreReal());
 	}
 	

@@ -26,11 +26,6 @@ public class CombiTest_SinMascota {
 			combi = new Combi("asd 123",6,false);
 		}
 		
-		@After
-		public void tearDown() throws Exception {
-			combi = new Combi("asd 123",6,false);
-		}
-		
 		@Test
 		public void testGetPuntajePedido() {
 			Pedido pedido = new Pedido(new Cliente("usuario1","password","mi nombre"),3,true,true,10,Constantes.ZONA_STANDARD);

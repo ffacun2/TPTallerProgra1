@@ -53,9 +53,15 @@ public class ViajeTest_Esc1 {
 		}
 
 		@Test
-		public void testConstructorViaje() {
+		public void testConstructorPedido() {
 			assertEquals("Error al asignar el pedido.",pedido,viaje.getPedido());
+		}
+		@Test
+		public void testConstructorChofer() {
 			assertEquals("Error al asignar el chofer.",chofer,viaje.getChofer());
+		}
+		@Test
+		public void testConstructorVehiculo() {
 			assertEquals("Error al asignar el vehiculo.",vehiculo,viaje.getVehiculo());
 		}
 

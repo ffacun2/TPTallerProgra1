@@ -21,17 +21,16 @@ public class ChoferTemporarioTest {
 		chofer = new ChoferTemporario("123", "mi nombre");
 	}
 
-	@After
-	public void tearDown() throws Exception {
-		chofer = new ChoferTemporario("123", "mi nombre");
-	}
 
 	/**
 	 * Verifico que el constructor asigne correctamente los parametros
 	 */
 	@Test
-	public void testConstructorChoferTemporario() {
+	public void testConstructorDNI() {
 		assertEquals("Error en el constructor.No se asigna correctamente el dni.","123",chofer.getDni());
+	}
+	@Test
+	public void testConstructorNombre() {
 		assertEquals("Error en el constructor.No se asigna correctamente el nombre.","mi nombre",chofer.getNombre());
 	}
 

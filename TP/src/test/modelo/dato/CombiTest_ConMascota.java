@@ -21,18 +21,19 @@ public class CombiTest_ConMascota {
 		combi = new Combi("asd 123",6,true);
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-		combi = new Combi("asd 123",6,true);
-	}
-	
 	/**
 	 * Verifico que el constructor asigne correctamente los atributos validos en la clase Combi
 	 */
 	@Test
-	public void testConstructorCombi1() {
+	public void testConstructorPatente() {
 		assertEquals("Error en el constructor. Patente distantas","asd 123",combi.getPatente());
+	}
+	@Test
+	public void testConstructorCantPlazas() {
 		assertEquals("Error en el constructor. Plazas distantas",6,combi.getCantidadPlazas());
+	}
+	@Test
+	public void testConstructorMascota() {
 		assertEquals("Error en el constructor. Estado mascota distantas",true,combi.isMascota());
 	}
 	

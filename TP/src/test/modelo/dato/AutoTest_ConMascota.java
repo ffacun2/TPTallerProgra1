@@ -21,19 +21,20 @@ public class AutoTest_ConMascota {
 		auto = new Auto("asd 123",3,true);
 	}
 	
-	@After
-	public void tearDown() throws Exception {
-		auto = new Auto("asd 123",3,true);
-	}
-	
 	/**
 	 * Verifico que el constructor asigne correctamente los atributos validos en la clase Auto
 	 */
 	@Test
-	public void testConstructorAuto1() {
-		assertEquals("Error en el constructor. Patente distantas",auto.getPatente(),"asd 123");
-		assertEquals("Error en el constructor. Plazas distantas",auto.getCantidadPlazas(),3);
-		assertEquals("Error en el constructor. Estado mascota distantas",auto.isMascota(),true);
+	public void testConstructorPatente() {
+		assertEquals("ERROR EN EL CONSTRUCTOR. PATENTE DISTINTA.",auto.getPatente(),"asd 123");
+	}
+	@Test
+	public void testConstructorMascota() {
+		assertEquals("ERROR EN EL CONSTRUCTOR. ESTADO MASCOTA DISTINTO.",auto.isMascota(),true);
+	}
+	@Test
+	public void testConstructorCantPlazas() {
+		assertEquals("ERROR EN EL CONSTRUCTOR. PLAZAS DISTINTAS",auto.getCantidadPlazas(),3);
 	}
 	
 	
@@ -52,9 +53,9 @@ public class AutoTest_ConMascota {
 		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,false,false,10,Constantes.ZONA_PELIGROSA);
 		Pedido pedido3 = new Pedido(new Cliente("usuario1","password","mi nombre"),5,true,true,10,Constantes.ZONA_PELIGROSA);
 		
-		assertEquals("Error en el calculo de puntaje pedido con baul.",auto.getPuntajePedido(pedido1),Integer.valueOf(80));
-		assertEquals("Error en el calculo de puntajet pedido sin baul.",auto.getPuntajePedido(pedido2),Integer.valueOf(60));
-		assertEquals("Error en el calculo de puntaje pedido.",auto.getPuntajePedido(pedido3),null);
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO CON BAUL",auto.getPuntajePedido(pedido1),Integer.valueOf(80));
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO SIN BAUL.",auto.getPuntajePedido(pedido2),Integer.valueOf(60));
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO.",auto.getPuntajePedido(pedido3),null);
 	}
 	
 }

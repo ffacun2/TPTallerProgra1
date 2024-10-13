@@ -35,7 +35,7 @@ public class AutoTest_SinMascota{
 	public void testGetPuntajePedido() {
 		Pedido pedido = new Pedido(new Cliente("usuario1","password","mi nombre"),3,true,true,10,Constantes.ZONA_STANDARD);
 		
-		assertEquals("Error en el calculo de Pedido.Deberia retornar null.",auto.getPuntajePedido(pedido),null);
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE.DEBERIA RETORNAR NULL.",auto.getPuntajePedido(pedido),null);
 	}
 
 }

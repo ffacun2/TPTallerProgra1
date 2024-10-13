@@ -5,15 +5,11 @@ import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
 
 import modeloDatos.Auto;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
-import modeloDatos.Combi;
-import modeloDatos.Moto;
 import modeloDatos.Pedido;
 import modeloDatos.Usuario;
 import modeloDatos.Vehiculo;

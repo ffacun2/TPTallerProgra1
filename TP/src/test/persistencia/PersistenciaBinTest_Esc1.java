@@ -83,6 +83,22 @@ public class PersistenciaBinTest_Esc1 {
 	}
 	
 	
+	@Test
+	public void testAbrirOutput() {
+		try
+		{
+			persistencia.abrirOutput(nombreArchivo);
+			fail("DEBERIA LANZAR EXCEPCION. EL ARCHIVO NO EXISTE");
+//			assertTrue("DEBERIA EXISTEIR EL ARHCIVO.",arch.exists());
+		}
+		catch(IOException e)
+		{
+		}
+		catch(Exception e)
+		{
+		}
+	}
+	
 	
 	
 }

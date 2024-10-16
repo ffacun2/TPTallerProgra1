@@ -23,98 +23,57 @@ import util.Constantes;
 public class EmpresaDTOTest {
 	
 	EmpresaDTO empresa;
-	
-	HashMap<String,Chofer> choferes = new HashMap<String, Chofer>();
-	ArrayList<Chofer> choferDisponible = new ArrayList<Chofer>();
-	HashMap<String,Cliente> clientes = new HashMap<String, Cliente>();
-	HashMap<Cliente,Pedido> pedidos = new HashMap<Cliente, Pedido>();
-	Usuario usuarioLogueado;
-	HashMap<String,Vehiculo> vehiculos = new HashMap<String, Vehiculo>();
-	ArrayList<Vehiculo> vehiculosDesocupados = new ArrayList<Vehiculo>();
-	HashMap<Cliente,Viaje> viajesIniciados = new HashMap<Cliente, Viaje>();
-	ArrayList<Viaje> viajesTerminados = new ArrayList<Viaje>();
-	
-	Chofer chofer1 = new ChoferTemporario("1234","primer chofer");
-	Cliente cliente1 = new Cliente("primer usuario","1234","nombre real");
-	Vehiculo auto1 = new Auto("asd 123",4,true);
-	Pedido pedido1 = new Pedido(cliente1,3,false,true,10,Constantes.ZONA_SIN_ASFALTAR);
-	Viaje viaje1 = new Viaje(pedido1, chofer1, auto1);
+	Escenario escenario;
 
 	@Before
 	public void setUp() throws Exception {
 		
 		empresa = new EmpresaDTO();
-		
-		choferes.put(chofer1.getDni(),chofer1);
-		choferDisponible.add(chofer1);
-		clientes.put(cliente1.getNombreUsuario(), cliente1);
-		vehiculos.put(auto1.getPatente(),auto1);
-		vehiculosDesocupados.add(auto1);
-		usuarioLogueado = cliente1;
-		pedidos.put(cliente1, pedido1);
-		viajesIniciados.put(cliente1,viaje1);
-		viajesTerminados.add(viaje1);
-
-		empresa.setChoferes(choferes);
-		empresa.setChoferesDesocupados(choferDisponible);
-		empresa.setClientes(clientes);
-		empresa.setVehiculos(vehiculos);
-		empresa.setVehiculosDesocupados(vehiculosDesocupados);
-		empresa.setUsuarioLogeado(cliente1);
-		empresa.setPedidos(pedidos);
-		empresa.setViajesIniciados(viajesIniciados);
-		empresa.setViajesTerminados(viajesTerminados);
+		escenario = new Escenario();
+		escenario.getEscenario(empresa);
 		
 	}
 
 	@After
 	public void tearDown() throws Exception {
-		empresa.getChoferes().clear();
-		empresa.getChoferesDesocupados().clear();
-		empresa.getClientes().clear();
-		empresa.getVehiculos().clear();
-		empresa.getVehiculosDesocupados().clear();
-		usuarioLogueado = null;
-		pedidos.clear();
-		viajesIniciados.clear();
-		viajesTerminados.clear();
+			
 	}
 
 	@Test
 	public void testGetChofer() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE CHOFERES.",empresa.getChoferes(),choferes);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE CHOFERES.",empresa.getChoferes(),escenario.choferes);
 	}
 	@Test
 	public void testGetChoferDisponible() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE CHOFERES DISPONIBLES", empresa.getChoferesDesocupados(), choferDisponible);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE CHOFERES DISPONIBLES", empresa.getChoferesDesocupados(), escenario.choferDisponible);
 	}
 	@Test
 	public void testGetVehiculos() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE VEHICULOS", empresa.getVehiculos(), vehiculos);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE VEHICULOS", empresa.getVehiculos(), escenario.vehiculos);
 	}
 	@Test
 	public void testGetVehiculosDesocupados() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE VEHICULOS DESOCUPADOS", empresa.getVehiculosDesocupados(), vehiculosDesocupados);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE VEHICULOS DESOCUPADOS", empresa.getVehiculosDesocupados(), escenario.vehiculosDesocupados);
 	}
 	@Test
 	public void testGetCliente() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE CLIENTES", empresa.getClientes(), clientes);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE CLIENTES", empresa.getClientes(), escenario.clientes);
 	}
 	@Test
 	public void testGetUsuarioLogueado() {
-		assertEquals("NO SE ASIGNA EL MISMO USUARIO LOGUEADO", empresa.getUsuarioLogeado(), usuarioLogueado);
+		assertEquals("NO SE ASIGNA EL MISMO USUARIO LOGUEADO", empresa.getUsuarioLogeado(), escenario.usuarioLogueado);
 	}
 	@Test
 	public void testGetPedidos() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE PEDIDOS", empresa.getPedidos(), pedidos);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE PEDIDOS", empresa.getPedidos(), escenario.pedidos);
 	}
 	@Test
 	public void testGetViajesTerminados() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE VIAJES INICIADOS", empresa.getViajesIniciados(), viajesIniciados);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE VIAJES INICIADOS", empresa.getViajesIniciados(), escenario.viajesIniciados);
 	}
 	@Test
 	public void testGetViajesIniciados() {
-		assertEquals("NO SE ASIGNA LA MISMA LIST DE VIAJES TERMINADOS", empresa.getViajesTerminados(), viajesTerminados);
+		assertEquals("NO SE ASIGNA LA MISMA LIST DE VIAJES TERMINADOS", empresa.getViajesTerminados(), escenario.viajesTerminados);
 	}
 
 }

@@ -20,12 +20,8 @@ import excepciones.PedidoInexistenteException;
 import excepciones.SinVehiculoParaPedidoException;
 import excepciones.VehiculoNoDisponibleException;
 import excepciones.VehiculoNoValidoException;
-import modeloDatos.Auto;
 import modeloDatos.Chofer;
-import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
-import modeloDatos.Combi;
-import modeloDatos.Moto;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 

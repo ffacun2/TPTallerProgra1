@@ -1,18 +1,16 @@
 package test.modelo.negocio;
 
-import modeloNegocio.Empresa;
 
 //  Este escenario configura varios clientes en el sistema sin pedidos ni viajes
 public class Escenario1 extends EscenarioBase{
     
-    Empresa empresa;
     
     public Escenario1() {
+    	super();
     }
 
     public void setUp() 
     {
-    	empresa = Empresa.getInstance();
 
         // Agregamos varios clientes
         try {

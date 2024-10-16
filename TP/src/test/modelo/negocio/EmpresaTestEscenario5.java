@@ -12,12 +12,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import excepciones.SinViajesException;
-import modeloDatos.Auto;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
 import modeloDatos.Viaje;
 
 public class EmpresaTestEscenario5 {

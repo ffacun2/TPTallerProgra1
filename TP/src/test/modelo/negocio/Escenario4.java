@@ -11,7 +11,6 @@ import modeloNegocio.Empresa;
 
 public class Escenario4 extends EscenarioBase {
 
-    Empresa empresa;
     
     public Escenario4() {
         

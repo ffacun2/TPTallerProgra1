@@ -10,7 +10,6 @@ import modeloNegocio.Empresa;
 //  y realiza viajes completos para cada cliente
 public class Escenario5 extends EscenarioBase {
 
-    Empresa empresa;
     
     public Escenario5() {
     }

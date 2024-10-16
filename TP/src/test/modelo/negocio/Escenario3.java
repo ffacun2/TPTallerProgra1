@@ -7,7 +7,6 @@ import modeloNegocio.Empresa;
 //  Este escenario configura clientes con pedidos que aún no han sido asignados a choferes o vehículos
 public class Escenario3 extends EscenarioBase {
     
-    Empresa empresa;
     
     public Escenario3() {
     }

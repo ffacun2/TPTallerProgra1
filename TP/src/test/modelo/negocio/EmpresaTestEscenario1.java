@@ -21,6 +21,7 @@ public class EmpresaTestEscenario1 {
     @Before
     public void setUp() throws Exception {
     	escenario.setUp();
+    	
     }
 
     @After

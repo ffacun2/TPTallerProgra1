@@ -1,10 +1,8 @@
 package test.modelo.negocio;
 
 import modeloDatos.Auto;
-import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
 import modeloDatos.Combi;
 import modeloDatos.Moto;
 import modeloNegocio.Empresa;
@@ -16,6 +14,7 @@ public class EscenarioBase {
     
     public EscenarioBase() 
     {
+    	empresa = Empresa.getInstance();
     }
 
     public void addChoferPermanente(String dni, String nombre, int anioIngreso, int cantidadHijos) {

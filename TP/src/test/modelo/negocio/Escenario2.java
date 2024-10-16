@@ -5,7 +5,6 @@ import modeloNegocio.Empresa;
 //  Este escenario configura varios clientes, choferes y vehículos en el sistema, sin pedidos ni viajes
 public class Escenario2 extends EscenarioBase {
 
-	Empresa empresa;
     
     public Escenario2() {
     }

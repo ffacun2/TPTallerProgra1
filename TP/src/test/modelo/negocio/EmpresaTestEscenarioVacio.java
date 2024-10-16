@@ -1,8 +1,8 @@
 package test.modelo.negocio;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -14,32 +14,23 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.ChoferNoDisponibleException;
 import excepciones.ChoferRepetidoException;
 import excepciones.ClienteConPedidoPendienteException;
 import excepciones.ClienteConViajePendienteException;
 import excepciones.ClienteNoExisteException;
-import excepciones.ClienteSinViajePendienteException;
 import excepciones.PasswordErroneaException;
-import excepciones.PedidoInexistenteException;
 import excepciones.SinVehiculoParaPedidoException;
-import excepciones.SinViajesException;
 import excepciones.UsuarioNoExisteException;
 import excepciones.UsuarioYaExisteException;
-import excepciones.VehiculoNoDisponibleException;
-import excepciones.VehiculoNoValidoException;
 import excepciones.VehiculoRepetidoException;
 import modeloDatos.Auto;
 import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.ChoferTemporario;
 import modeloDatos.Cliente;
-import modeloDatos.Combi;
 import modeloDatos.Moto;
 import modeloDatos.Pedido;
-import modeloDatos.Usuario;
 import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
 
 public class EmpresaTestEscenarioVacio {
 

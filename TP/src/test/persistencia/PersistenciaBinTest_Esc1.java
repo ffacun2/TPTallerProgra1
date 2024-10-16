@@ -10,6 +10,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import persistencia.EmpresaDTO;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 
@@ -47,6 +48,7 @@ public class PersistenciaBinTest_Esc1 {
 			}
 			catch(IOException error)
 			{
+				
 			}
 	}
 	
@@ -62,6 +64,7 @@ public class PersistenciaBinTest_Esc1 {
 		}
 		catch(IOException error)
 		{
+			
 		}
 	}
 

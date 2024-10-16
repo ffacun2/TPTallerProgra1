@@ -19,6 +19,6 @@ import org.junit.runners.Suite;
 	ViajeTest_Esc2.class,
 	ViajeTest_Esc3.class
 })
-public class AllTest {
+public class AllTestDatos {
 
 }

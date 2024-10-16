@@ -26,6 +26,7 @@ import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 import modeloDatos.Viaje;
+import util.Mensajes;
 
 public class EmpresaTestEscenario3 {
 	
@@ -43,7 +44,7 @@ public class EmpresaTestEscenario3 {
 	
 //----- Metodo void agregarPedido(Pedido pedido)
 	
-	// Clases cubiertas: 1, 3, 5, 8 
+	// Clases cubiertas: 1, 2, 4, 7
     @Test
     public void testAgregarPedido_ClienteConPedidoPendiente() {
         try {
@@ -63,8 +64,9 @@ public class EmpresaTestEscenario3 {
 
         } catch (ClienteConPedidoPendienteException e) {
             // Éxito: Se lanzó ClienteConPedidoPendienteException como se esperaba
-            assertTrue("Se lanzó correctamente ClienteConPedidoPendienteException", true);
-
+            //assertTrue("Se lanzó correctamente ClienteConPedidoPendienteException", true);
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", e.getMessage(), Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE);
+            
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
 

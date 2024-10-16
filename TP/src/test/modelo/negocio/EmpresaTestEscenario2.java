@@ -117,7 +117,6 @@ public class EmpresaTestEscenario2 {
     // Clases cubiertas: 1, 3, 5 (Pedido válido con vehículos habilitados y puntajes distintos)
     @Test
     public void testVehiculosOrdenadosPorPedido_ClaseCorrecta() {
-        try {
             // Obtenemos el cliente registrado
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
@@ -144,17 +143,12 @@ public class EmpresaTestEscenario2 {
                 Integer puntaje = vehiculo.getPuntajePedido(pedido);
                 assertEquals("El puntaje del vehículo en la posición " + i + " no es el esperado",
                              (Integer) puntajesEsperados[i], puntaje);
-            }
-            
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
+            }    
     }
 
     // Clases cubiertas: 1, 4 
     @Test
     public void testVehiculosOrdenadosPorPedido_SinVehiculosHabilitados() {
-        try {
         	// Obtenemos el cliente registrado
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
@@ -167,10 +161,6 @@ public class EmpresaTestEscenario2 {
             // Verificamos que el ArrayList esté vacío, ya que ningún vehículo puede satisfacer el pedido
             assertNotNull("El ArrayList de vehículos no debería ser null", vehiculosOrdenados);
             assertTrue("El ArrayList debería estar vacío ya que ningún vehículo está habilitado", vehiculosOrdenados.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
 
 //----- Metodo boolean validarPedido(Pedido pedido)				
@@ -178,7 +168,6 @@ public class EmpresaTestEscenario2 {
     // Clases cubiertas: 1, 3 
     @Test
     public void testValidarPedido_ClaseCorrecta() {
-        try {
         	// Obtenemos el cliente registrado
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
@@ -191,9 +180,6 @@ public class EmpresaTestEscenario2 {
             // Verificamos que el pedido sea válido
             assertTrue("El pedido debería ser válido ya que hay vehículos habilitados", resultado);
 
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
 
 //----- Metodo void crearViaje(Pedido pedido, Chofer chofer, Vehiculo vehiculo)		
@@ -203,7 +189,6 @@ public class EmpresaTestEscenario2 {
     public void testCrearViaje_PedidoNoRegistrado() {
         try {
         	Cliente cliente = escenario.empresa.getClientes().get("user1");
-    		Pedido pedido = escenario.empresa.getPedidoDeCliente(cliente);
     		
     		ArrayList<Chofer> choferes = escenario.empresa.getChoferesDesocupados();
     		Chofer chofer = choferes.get(0);

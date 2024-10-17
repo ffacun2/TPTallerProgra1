@@ -65,7 +65,7 @@ public class EmpresaTestEscenario3 {
         } catch (ClienteConPedidoPendienteException e) {
             // Éxito: Se lanzó ClienteConPedidoPendienteException como se esperaba
             //assertTrue("Se lanzó correctamente ClienteConPedidoPendienteException", true);
-            assertEquals("El mensaje no corresponde con la excepcion adecuada.", e.getMessage(), Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE);
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE, e.getMessage());
             
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
@@ -84,7 +84,7 @@ public class EmpresaTestEscenario3 {
 
 //----- Metodo void crearViaje(Pedido pedido, Chofer chofer, Vehiculo vehiculo)					    
     
-    // Clases cubiertas: 1, 3, 5, 7, 9, 11, 13, 15
+    // Clases cubiertas: 1, 2, 4, 5, 7, 8, 10, 12
     @Test
     public void testCrearViaje_ClaseCorrecta() {
         try {
@@ -124,7 +124,7 @@ public class EmpresaTestEscenario3 {
         }
     }
 
-    // Clases cubiertas: 1, 3, 6, 9
+    // Clases cubiertas: 1, 2, 4, 5
     @Test
     public void testCrearViaje_ChoferNoDisponible() {
         try {
@@ -149,7 +149,8 @@ public class EmpresaTestEscenario3 {
 
         } catch (ChoferNoDisponibleException e) {
             // Éxito: Se lanzó ChoferNoDisponibleException como se esperaba
-            assertTrue("Se lanzó correctamente ChoferNoDisponibleException", true);
+            //assertTrue("Se lanzó correctamente ChoferNoDisponibleException", true);
+            assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.CHOFER_NO_DISPONIBLE, e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de ChoferNoDisponibleException: " + e.getMessage());
@@ -168,7 +169,7 @@ public class EmpresaTestEscenario3 {
         }
     }
 
-    // Clases cubiertas: 1, 3, 5, 7, 10
+    // Clases cubiertas: 1, 2, 4, 5, 7, 9
     @Test
     public void testCrearViaje_VehiculoNoDisponible() {
         try {
@@ -193,7 +194,8 @@ public class EmpresaTestEscenario3 {
 
         } catch (VehiculoNoDisponibleException e) {
             // Éxito: Se lanzó VehiculoNoDisponibleException como se esperaba
-            assertTrue("Se lanzó correctamente VehiculoNoDisponibleException", true);
+            //assertTrue("Se lanzó correctamente VehiculoNoDisponibleException", true);
+        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_DISPONIBLE, e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de VehiculoNoDisponibleException: " + e.getMessage());
@@ -212,7 +214,7 @@ public class EmpresaTestEscenario3 {
         }
     }
 
-    // Clases cubiertas: 1, 3, 5, 7, 9, 13, 14
+    // Clases cubiertas: 1, 2, 4, 5, 7, 8, 11
     @Test
     public void testCrearViaje_VehiculoNoValido() {
         try {
@@ -235,7 +237,8 @@ public class EmpresaTestEscenario3 {
 
         } catch (VehiculoNoValidoException e) {
             // Éxito: Se lanzó VehiculoNoValidoException como se esperaba
-            assertTrue("Se lanzó correctamente VehiculoNoValidoException", true);
+            //assertTrue("Se lanzó correctamente VehiculoNoValidoException", true);
+        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_VALIDO, e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de VehiculoNoValidoException: " + e.getMessage());
@@ -254,9 +257,9 @@ public class EmpresaTestEscenario3 {
         }
     }
 
-//----- Metodo Metodo Pedido getPedidoDeCliente(Cliente cliente)
+//----- Metodo Pedido getPedidoDeCliente(Cliente cliente)
     
-    // Clases cubiertas: 1, 3 
+    // Clases cubiertas: 1, 2
     @Test
     public void testGetPedidoDeCliente_ClienteConPedidoEnCurso() {
         try {
@@ -271,15 +274,14 @@ public class EmpresaTestEscenario3 {
             assertNotNull("El cliente debería tener un pedido en curso", pedidoEnCurso);
             assertEquals("El pedido en curso debería coincidir con el pedido realizado", pedido, pedidoEnCurso);
 
-        } catch (Exception e) {
+        } catch (Exception e) { //por la excepcion que se puede generar a la hora de agregar el pedido
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
     
-    // Clases cubiertas: 1, 4 
+    // Clases cubiertas: 1, 3
     @Test
     public void testGetPedidoDeCliente_ClienteSinPedidoPendiente() {
-        try {
         	// El cliente no tiene ningún pedido pendiente, no agregamos ningún pedido
             Cliente cliente = escenario.empresa.getClientes().get("user5");
 
@@ -288,10 +290,6 @@ public class EmpresaTestEscenario3 {
 
             // Verificamos que el método retorne null, ya que no tiene pedidos pendientes
             assertNull("El cliente no debería tener ningún pedido pendiente", pedidoPendiente);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
 
     

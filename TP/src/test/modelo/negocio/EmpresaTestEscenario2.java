@@ -2,6 +2,7 @@ package test.modelo.negocio;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -24,6 +25,7 @@ import modeloDatos.Chofer;
 import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
+import util.Mensajes;
 
 public class EmpresaTestEscenario2 {
 
@@ -41,7 +43,7 @@ public class EmpresaTestEscenario2 {
     
 //----- Metodo void agregarPedido(Pedido pedido)				   
     
-    // Clases cubiertas: 1, 3, 5, 7, 9
+    // Clases cubiertas: 1, 2, 4, 6, 8
     @Test
     public void testPedido_ClaseCorrecta() {
         try {
@@ -58,8 +60,8 @@ public class EmpresaTestEscenario2 {
             assertTrue("El cliente no tiene un pedido registrado", pedidosRegistrados.containsKey(cliente));  
             
             // Verificación de que el pedido asociado al cliente sea el correcto
-            assertEquals("El pedido asociado al cliente no es el correcto", pedido, pedidosRegistrados.get(cliente));  
-
+            //assertEquals("El pedido asociado al cliente no es el correcto", pedido, pedidosRegistrados.get(cliente));
+            assertSame("El pedido asociado al cliente no es el correcto", pedido, pedidosRegistrados.get(cliente));
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
 
@@ -77,7 +79,7 @@ public class EmpresaTestEscenario2 {
         }
     }
 
- // Clases cubiertas: 1, 3, 5, 7, 10 
+ // Clases cubiertas: 1, 2, 4, 6, 9
     @Test
     public void testAgregarPedido_SinVehiculoDisponible() {
         try {
@@ -95,7 +97,7 @@ public class EmpresaTestEscenario2 {
 
         } catch (SinVehiculoParaPedidoException e) {
             // Éxito: Se lanzó SinVehiculoParaPedidoException como se esperaba
-            assertTrue("Se lanzó correctamente SinVehiculoParaPedidoException", true);
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(), e.getMessage());
 
         } catch (ClienteNoExisteException e) {
             fail("No se esperaba una ClienteNoExisteException: " + e.getMessage());
@@ -114,7 +116,7 @@ public class EmpresaTestEscenario2 {
     
 //----- Metodo Metodo ArrayList<Vehiculo> vehiculosOrdenadosPorPedido(Pedido pedido)	 
     
-    // Clases cubiertas: 1, 3, 5 (Pedido válido con vehículos habilitados y puntajes distintos)
+    // Clases cubiertas: 1, 2, 4 (Pedido válido con vehículos habilitados y puntajes distintos)
     @Test
     public void testVehiculosOrdenadosPorPedido_ClaseCorrecta() {
             // Obtenemos el cliente registrado
@@ -146,9 +148,9 @@ public class EmpresaTestEscenario2 {
             }    
     }
 
-    // Clases cubiertas: 1, 4 
+    // Clases cubiertas: 1, 3
     @Test
-    public void testVehiculosOrdenadosPorPedido_SinVehiculosHabilitados() {
+    public void testVehiculosOrdenadosPorPedido_SinVehiculosHabilitados() {  //esta bien asumir que el metodo se comporta asi en este caso????
         	// Obtenemos el cliente registrado
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
@@ -165,7 +167,7 @@ public class EmpresaTestEscenario2 {
 
 //----- Metodo boolean validarPedido(Pedido pedido)				
     
-    // Clases cubiertas: 1, 3 
+    // Clases cubiertas: 1, 2
     @Test
     public void testValidarPedido_ClaseCorrecta() {
         	// Obtenemos el cliente registrado
@@ -204,7 +206,7 @@ public class EmpresaTestEscenario2 {
 
         } catch (PedidoInexistenteException e) {
             // Éxito: Se lanzó PedidoInexistenteException como se esperaba
-            assertTrue("Se lanzó correctamente PedidoInexistenteException", true);
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.PEDIDO_INEXISTENTE.getValor(), e.getMessage());
 
         } catch (ChoferNoDisponibleException e) {
             fail("Se lanzó ChoferNoDisponibleException en lugar de PedidoInexistenteException: " + e.getMessage());

@@ -64,8 +64,7 @@ public class EmpresaTestEscenario3 {
 
         } catch (ClienteConPedidoPendienteException e) {
             // Éxito: Se lanzó ClienteConPedidoPendienteException como se esperaba
-            //assertTrue("Se lanzó correctamente ClienteConPedidoPendienteException", true);
-            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE, e.getMessage());
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE.getValor(), e.getMessage());
             
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
@@ -149,8 +148,7 @@ public class EmpresaTestEscenario3 {
 
         } catch (ChoferNoDisponibleException e) {
             // Éxito: Se lanzó ChoferNoDisponibleException como se esperaba
-            //assertTrue("Se lanzó correctamente ChoferNoDisponibleException", true);
-            assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.CHOFER_NO_DISPONIBLE, e.getMessage());
+            assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.CHOFER_NO_DISPONIBLE.getValor(), e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de ChoferNoDisponibleException: " + e.getMessage());
@@ -194,8 +192,7 @@ public class EmpresaTestEscenario3 {
 
         } catch (VehiculoNoDisponibleException e) {
             // Éxito: Se lanzó VehiculoNoDisponibleException como se esperaba
-            //assertTrue("Se lanzó correctamente VehiculoNoDisponibleException", true);
-        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_DISPONIBLE, e.getMessage());
+        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_DISPONIBLE.getValor(), e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de VehiculoNoDisponibleException: " + e.getMessage());
@@ -237,8 +234,7 @@ public class EmpresaTestEscenario3 {
 
         } catch (VehiculoNoValidoException e) {
             // Éxito: Se lanzó VehiculoNoValidoException como se esperaba
-            //assertTrue("Se lanzó correctamente VehiculoNoValidoException", true);
-        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_VALIDO, e.getMessage());
+        	assertEquals("El mensaje no corresponde a la excepcion adecuada.", Mensajes.VEHICULO_NO_VALIDO.getValor(), e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de VehiculoNoValidoException: " + e.getMessage());

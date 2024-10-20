@@ -1,5 +1,6 @@
 package test.modelo.negocio;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -26,6 +27,7 @@ import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 import modeloDatos.Viaje;
+import util.Mensajes;
 
 public class EmpresaTestEscenario4 {
 	
@@ -43,7 +45,7 @@ public class EmpresaTestEscenario4 {
     
 //----- Metodo void agregarPedido(Pedido pedido)
     
-    // Clases cubiertas: 1, 3, 6 
+    // Clases cubiertas: 1, 2, 5
     @Test
     public void testAgregarPedido_ClienteConViajePendiente() {
         try {
@@ -63,7 +65,7 @@ public class EmpresaTestEscenario4 {
 
         } catch (ClienteConViajePendienteException e) {
             // Éxito: Se lanzó ClienteConViajePendienteException como se esperaba
-            assertTrue("Se lanzó correctamente ClienteConViajePendienteException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(), e.getMessage());
 
         } catch (SinVehiculoParaPedidoException e) {
             fail("No se esperaba una SinVehiculoParaPedidoException: " + e.getMessage());
@@ -81,14 +83,14 @@ public class EmpresaTestEscenario4 {
     
 //----- Metodo void crearViaje(Pedido pedido, Chofer chofer, Vehiculo vehiculo)		
     
-    // Clases cubiertas: 1, 3, 5, 7, 9, 13, 15, 16
+    // Clases cubiertas: 1, 2, 4, 5, 7, 8, 10, 13
     @Test
     public void testCrearViaje_ClienteConViajePendiente() {
         try {
         	// Este cliente ya se encuentra en un viaje iniciado
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
-            // Verificamos que el cliente tiene un viaje iniciado
+            // Verificamos que el cliente tiene un viaje iniciado  //esta bien verificar esto aca????
             assertTrue("El cliente debería tener un viaje pendiente", escenario.empresa.getViajesIniciados().containsKey(cliente));
 
             // Creamos un segundo pedido para el mismo cliente
@@ -109,7 +111,7 @@ public class EmpresaTestEscenario4 {
 
         } catch (ClienteConViajePendienteException e) {
             // Éxito: Se lanzó ClienteConViajePendienteException como se esperaba
-            assertTrue("Se lanzó correctamente ClienteConViajePendienteException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(), e.getMessage());
 
         } catch (PedidoInexistenteException e) {
             fail("Se lanzó PedidoInexistenteException en lugar de ClienteConViajePendienteException: " + e.getMessage());
@@ -128,9 +130,9 @@ public class EmpresaTestEscenario4 {
         }
     }
     
-//----- Metodo void pagarYFinalizarViaje(int calificacion)	
+//----- Metodo void pagarYFinalizarViaje(int calificacion)	//son necesarios tantos test de este método con distinttas calificaciones???
     
- // Clases cubiertas: 1, 3 
+ // Clases cubiertas: 1, 2, 4
     @Test
     public void testPagarYFinalizarViaje_Calificacion5() {
         try {
@@ -147,8 +149,8 @@ public class EmpresaTestEscenario4 {
             assertFalse("El cliente ya no debería tener un viaje pendiente", 
             		escenario.empresa.getViajesIniciados().containsKey(cliente));
             assertTrue("El viaje debería estar en la lista de viajes terminados", 
-            		escenario.empresa.getViajesTerminados().size() > 0);
-
+            		escenario.empresa.getViajesTerminados().size() > 0); //esta bien que lo verifique asi o deberia verificar que el viaje del cliente esté en el ArrayList???
+            		//o tambien se podria verificar si aumento en uno el tamaño del ArrayList
         } catch (ClienteSinViajePendienteException e) {
             // Fallamos si se lanza ClienteSinViajePendienteException, ya que el cliente tiene un viaje pendiente
             fail("No se esperaba una ClienteSinViajePendienteException: " + e.getMessage());
@@ -158,7 +160,7 @@ public class EmpresaTestEscenario4 {
         }
     }
     
-    // Clases cubiertas: 1, 3 
+    // Clases cubiertas: 1, 2, 4
     @Test
     public void testPagarYFinalizarViaje_Calificacion0() {
         try {
@@ -186,7 +188,7 @@ public class EmpresaTestEscenario4 {
         }
     }
 
-    // Clases cubiertas: 1, 3 
+    // Clases cubiertas: 1, 2, 4
     @Test
     public void testPagarYFinalizarViaje_Calificacion3() {
         try {
@@ -214,7 +216,7 @@ public class EmpresaTestEscenario4 {
         }
     }
     
-    // Clases cubiertas: 2, 3 
+    // Clases cubiertas: 1, 3 
     @Test
     public void testPagarYFinalizarViaje_SinViajePendiente() {
         try {
@@ -235,7 +237,7 @@ public class EmpresaTestEscenario4 {
 
         } catch (ClienteSinViajePendienteException e) {
             // Éxito: se lanzó ClienteSinViajePendienteException como se esperaba
-            assertTrue("Se lanzó correctamente ClienteSinViajePendienteException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_SIN_VIAJE_PENDIENTE.getValor(), e.getMessage());
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -244,10 +246,9 @@ public class EmpresaTestEscenario4 {
     
 //----- Metodo  Viaje getViajeDeCliente(Cliente cliente)					
     
-    // Clases cubiertas: 1, 3 
+    // Clases cubiertas: 1, 2
     @Test
     public void testGetViajeDeCliente_ClienteConViajeEnCurso() {
-        try {
         	// Este cliente tiene un viaje en curso
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
@@ -255,15 +256,11 @@ public class EmpresaTestEscenario4 {
             Viaje viaje = escenario.empresa.getViajeDeCliente(cliente);
             assertNotNull("El cliente debería tener un viaje en curso", viaje);
 
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
  
-    // Clases cubiertas: 1, 4 
+    // Clases cubiertas: 1, 3
     @Test
     public void testGetViajeDeCliente_ClienteSinViajeEnCurso() {
-        try {
         	// Este cliente NO tiene un viaje en curso
             Cliente cliente = escenario.empresa.getClientes().get("user5");
 
@@ -273,9 +270,6 @@ public class EmpresaTestEscenario4 {
             // Verificamos que el resultado es null, ya que el cliente no tiene un viaje en curso
             assertNull("El cliente no debería tener un viaje en curso", viaje);
 
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
   
     

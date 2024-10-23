@@ -10,7 +10,6 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import persistencia.EmpresaDTO;
 import persistencia.IPersistencia;
 import persistencia.PersistenciaBIN;
 

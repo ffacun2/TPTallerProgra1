@@ -2,25 +2,13 @@ package test.persistencia;
 
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import modeloDatos.Auto;
-import modeloDatos.Chofer;
-import modeloDatos.ChoferTemporario;
-import modeloDatos.Cliente;
-import modeloDatos.Pedido;
-import modeloDatos.Usuario;
-import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
 import modeloNegocio.Empresa;
 import persistencia.EmpresaDTO;
 import persistencia.UtilPersistencia;
-import util.Constantes;
 
 public class UtilPersistenciaTest {
 	

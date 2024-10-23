@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="311dc20d-a41d-4bdd-83f6-0320f1ee5c31" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/Comportamiento_Vistas.docx" beforeDir="false" afterPath="$PROJECT_DIR$/Comportamiento_Vistas.docx" afterDir="false" />
-    </list>
+    <list default="true" id="311dc20d-a41d-4bdd-83f6-0320f1ee5c31" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +26,7 @@
   }
 }</component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 7
@@ -47,8 +45,8 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/Facu-/Escritorio/TPTallerProgra1",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/Users/Facu-/Escritorio/TPTallerProgra1/TP/SubiQueTeLlevo.jar",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",

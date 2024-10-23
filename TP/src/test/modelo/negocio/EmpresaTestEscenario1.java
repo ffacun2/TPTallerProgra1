@@ -13,6 +13,7 @@ import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
 import modeloDatos.Cliente;
 import modeloDatos.Usuario;
+import util.Mensajes;
 
 public class EmpresaTestEscenario1 {
 
@@ -31,7 +32,7 @@ public class EmpresaTestEscenario1 {
 	
 //----- Metodo Usuario login(String usserName, String pass)				
     
-    // Clases cubiertas: 1, 3, 5, 7 
+    // Clases cubiertas: 1, 2, 3, 5 
     @Test
     public void testLogin_ClaseCorrecta() {
         try {
@@ -56,12 +57,12 @@ public class EmpresaTestEscenario1 {
         }
     }
     
-    // Clases cubiertas: 1, 3, 5, 8 
+    // Clases cubiertas: 1, 2, 3, 6 
     @Test
     public void testLogin_PasswordIncorrecta() {
         try {
         	Cliente usuario = escenario.empresa.getClientes().get("user1");
-
+        	
             // Intentamos realizar el login con una contraseña incorrecta
         	Usuario usuarioLogueado = escenario.empresa.login(usuario.getNombreUsuario(), "wrongpass");
         	
@@ -69,7 +70,10 @@ public class EmpresaTestEscenario1 {
 
         } catch (PasswordErroneaException e) {
             // Éxito: Se lanzó PasswordErroneaException como se esperaba
-            assertTrue("Se lanzó correctamente PasswordErroneaException por contraseña incorrecta", true);
+        	Cliente usuarioPret = escenario.empresa.getClientes().get("user1");
+        	assertEquals("El nombre del usuario pretendido dado por la excepcion no es el correcto.", usuarioPret.getNombreUsuario(), e.getUsuarioPretendido());
+        	assertEquals("La contrasenia pretendida dada por la excepcion no es la correcta.", usuarioPret.getPass(), e.getPasswordPretendida());
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.PASS_ERRONEO.getValor(), e.getMessage());
 
         } catch (UsuarioNoExisteException e) {
             fail("Se lanzó UsuarioNoExisteException en lugar de PasswordErroneaException: " + e.getMessage());

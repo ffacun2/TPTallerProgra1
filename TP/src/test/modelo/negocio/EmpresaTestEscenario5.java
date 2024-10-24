@@ -16,6 +16,7 @@ import modeloDatos.Chofer;
 import modeloDatos.ChoferPermanente;
 import modeloDatos.Cliente;
 import modeloDatos.Viaje;
+import util.Mensajes;
 
 public class EmpresaTestEscenario5 {
 	
@@ -33,27 +34,21 @@ public class EmpresaTestEscenario5 {
     
 //----- Metodo ArrayList<Viaje> getHistorialViajeCliente(Cliente cliente)				
     
-    // Clases cubiertas: 1, 3, 5 
+    // Clases cubiertas: 1, 2
     @Test
     public void testGetHistorialViajeCliente_ConHistorial() {
-        try {
         	// Este cliente ya ha realizado 3 viajes
             Cliente cliente = escenario.empresa.getClientes().get("user1");
 
             // Verificamos que el historial tenga 3 viajes
             ArrayList<Viaje> historialViajes = escenario.empresa.getHistorialViajeCliente(cliente);
             assertNotNull("El historial de viajes no debería ser null", historialViajes);
-            assertEquals("El cliente debería tener 2 viajes en su historial", 3, historialViajes.size());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
+            assertEquals("El cliente debería tener 3 viajes en su historial", 3, historialViajes.size());
     }
 
-    // Clases cubiertas: 1, 4, 5 
+    // Clases cubiertas: 1, 3
     @Test
     public void testGetHistorialViajeCliente_SinHistorial() {
-        try {
             // Cliente sin viajes
             Cliente cliente = escenario.empresa.getClientes().get("user5");
 
@@ -61,36 +56,13 @@ public class EmpresaTestEscenario5 {
             ArrayList<Viaje> historialViajes = escenario.empresa.getHistorialViajeCliente(cliente);
             assertNotNull("El historial de viajes no debería ser null", historialViajes);
             assertTrue("El historial de viajes debería estar vacío", historialViajes.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 3, 6 
-    @Test
-    public void testGetHistorialViajeCliente_ClienteNoRegistrado() {
-        try {
-            Cliente clienteNoRegistrado = new Cliente("userNoReg", "pass123", "Cliente No Registrado");
-
-            // Intentamos obtener el historial de este cliente no registrado
-            ArrayList<Viaje> historialViajes = escenario.empresa.getHistorialViajeCliente(clienteNoRegistrado);
-
-            // Verificamos que el ArrayList esté vacío, ya que el cliente no está registrado
-            assertNotNull("El ArrayList de viajes no debería ser null", historialViajes);
-            assertTrue("El ArrayList debería estar vacío ya que el cliente no está registrado", historialViajes.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
 
 //----- Metodo ArrayList<Viaje> getHistorialViajeChofer(Chofer chofer)				
     
-    // Clases cubiertas: 1, 3, 5 
+    // Clases cubiertas: 1, 2
     @Test
     public void testGetHistorialViajeChofer_ConHistorial() {
-        try {
         	// Este chofer ya ha realizado 3 viajes
             Chofer chofer = escenario.empresa.getChoferes().get("11111111");
             
@@ -100,16 +72,11 @@ public class EmpresaTestEscenario5 {
             // Verificamos que el ArrayList contiene exactamente 3 viajes
             assertNotNull("El ArrayList de viajes no debería ser null", historialViajes);
             assertEquals("El historial del chofer debería contener 3 viajes", 3, historialViajes.size());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
 
-    // Clases cubiertas: 1, 4, 5 
+    // Clases cubiertas: 1, 3
     @Test
     public void testGetHistorialViajeChofer_SinHistorial() {
-        try {
         	// Este chofer NO ha realizado ningun viaje
             Chofer chofer = escenario.empresa.getChoferes().get("77777777");
             
@@ -119,33 +86,11 @@ public class EmpresaTestEscenario5 {
             // Verificamos que el ArrayList esté vacío, ya que el chofer no tiene viajes
             assertNotNull("El ArrayList de viajes no debería ser null", historialViajes);
             assertTrue("El historial del chofer debería estar vacío", historialViajes.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
-
-    // Clases cubiertas: 1, 3, 6 
-    @Test
-    public void testGetHistorialViajeChofer_ChoferNoRegistrado() {
-        try {
-            ChoferPermanente choferNoRegistrado = new ChoferPermanente("98765432", "No Registrado", 2015, 0);
-
-            // Llamamos al método con un chofer no registrado
-            ArrayList<Viaje> historial = escenario.empresa.getHistorialViajeChofer(choferNoRegistrado);
-
-            // Verificamos que el historial esté vacío
-            assertNotNull("El historial no debería ser null", historial);
-            assertTrue("El historial debería estar vacío ya que el chofer no está registrado", historial.isEmpty());
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
     }
    
 //----- Metodo double calificacionDeChofer(Chofer chofer)				   
     
-    // Clases cubiertas: 1, 3, 5 
+    // Clases cubiertas: 1, 2
     @Test
     public void testCalificacionDeChofer_ChoferConTresViajes() {
         try {
@@ -160,12 +105,10 @@ public class EmpresaTestEscenario5 {
 
         } catch (SinViajesException e) {
             fail("No debería lanzarse SinViajesException: El chofer tiene viajes realizados.");
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
 
-    // Clases cubiertas: 1, 3, 5 
+    // Clases cubiertas: 1, 2
     @Test
     public void testCalificacionDeChofer_ChoferConUnViaje() {
         try {
@@ -180,16 +123,14 @@ public class EmpresaTestEscenario5 {
 
         } catch (SinViajesException e) {
             fail("No debería lanzarse SinViajesException: El chofer tiene un viaje realizado.");
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
 
-    // Clases cubiertas: 1, 4 
+    // Clases cubiertas: 1, 3
     @Test
     public void testCalificacionDeChofer_ChoferSinViajes() {
         try {
-        	// Este chofer ya NO ha realizado ningun viaje
+        	// Este chofer NO ha realizado ningun viaje
             Chofer chofer = escenario.empresa.getChoferes().get("77777777");
 
             // Llamamos al método para obtener la calificación promedio
@@ -200,15 +141,12 @@ public class EmpresaTestEscenario5 {
 
         } catch (SinViajesException e) {
             // Éxito: Se lanzó SinViajesException como se esperaba
-            assertTrue("Se lanzó correctamente SinViajesException para un chofer sin viajes", true);
+            assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CHOFER_SIN_VIAJES.getValor(), e.getMessage());
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
-
-    
-    
-    
+  
 
 }

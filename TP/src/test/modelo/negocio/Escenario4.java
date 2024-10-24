@@ -41,7 +41,7 @@ public class Escenario4 extends EscenarioBase {
             realizarViaje(cliente1, choferP1, auto1, 3, true, false, 10, "ZONA_PELIGROSA");
             realizarViaje(cliente2, choferP2, combi1, 5, false, true, 20, "ZONA_SIN_ASFALTAR");
             realizarViaje(cliente3, choferT1, moto1, 1, false, false, 15, "ZONA_STANDARD");
-            realizarViaje(cliente4, choferT2, auto2, 4, false, false, 15, "ZONA_STANDARD");
+            realizarViaje(cliente4, choferT2, auto2, 3, false, false, 15, "ZONA_STANDARD");
         
         } catch (Exception e) {
             System.out.println("Ocurrió un error al configurar el escenario: " + e.getMessage());

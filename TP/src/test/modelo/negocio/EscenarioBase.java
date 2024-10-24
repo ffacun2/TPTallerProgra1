@@ -92,17 +92,10 @@ public class EscenarioBase {
     public void setUp() 
     {
     	empresa = Empresa.getInstance();
-    	if (empresa == null) {
-            System.out.println("Empresa es null en SUPER setUp()");
-    	}
-    	
     }
 
     public void tearDown() 
     {
-    	if (empresa == null) {
-            System.out.println("Empresa es null en SUPER tearDown()");
-        }
     	
     	empresa.getChoferes().clear();     
         empresa.getChoferesDesocupados().clear();   

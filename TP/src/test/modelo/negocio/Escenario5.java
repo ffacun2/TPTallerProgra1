@@ -49,9 +49,9 @@ public class Escenario5 extends EscenarioBase {
             realizarViajeCompleto(cliente1, choferP2, combi1, 5, false, true, 20, "ZONA_SIN_ASFALTAR", 4);
             realizarViajeCompleto(cliente1, choferT1, moto1, 1, false, false, 15, "ZONA_STANDARD", 3);
         
-            realizarViajeCompleto(cliente2, choferP2, auto2, 4, true, false, 25, "ZONA_PELIGROSA", 5);
+            realizarViajeCompleto(cliente2, choferP2, auto2, 3, false, false, 25, "ZONA_PELIGROSA", 5);
             realizarViajeCompleto(cliente2, choferP3, combi2, 6, false, true, 30, "ZONA_SIN_ASFALTAR", 4);
-            realizarViajeCompleto(cliente2, choferT2, moto2, 2, true, false, 18, "ZONA_STANDARD", 5);
+            realizarViajeCompleto(cliente2, choferT2, moto2, 1, false, false, 18, "ZONA_STANDARD", 5);
         
             realizarViajeCompleto(cliente3, choferP3, auto3, 2, true, true, 8, "ZONA_PELIGROSA", 3);
             realizarViajeCompleto(cliente3, choferP1, combi3, 7, false, false, 22, "ZONA_SIN_ASFALTAR", 4);
@@ -60,7 +60,6 @@ public class Escenario5 extends EscenarioBase {
             realizarViajeCompleto(cliente4, choferP1, auto1, 3, false, true, 20, "ZONA_PELIGROSA", 5);
             realizarViajeCompleto(cliente4, choferP2, combi1, 5, true, false, 28, "ZONA_SIN_ASFALTAR", 4);
             realizarViajeCompleto(cliente4, choferT1, moto1, 1, false, false, 14, "ZONA_STANDARD", 5);
-        
         } catch (Exception e) {
             System.out.println("Ocurrió un error al configurar el escenario: " + e.getMessage());
         }
@@ -81,7 +80,7 @@ public class Escenario5 extends EscenarioBase {
             // Pagar y finalizar el viaje con la calificación
             empresa.pagarYFinalizarViaje(calificacion);
         } catch (Exception e) {
-            System.out.println("Ocurrió un error al realizar el viaje completo: " + e.getMessage());
+            System.out.println("Ocurrió un error al realizar el viaje completo: " + e.getMessage() + cliente.toString() + vehiculo.toString() + chofer.toString());
         }
     }
     

@@ -2,7 +2,8 @@ package modelo.negocio;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
 import static org.junit.Assert.fail;
 
 import org.junit.After;
@@ -13,6 +14,7 @@ import excepciones.PasswordErroneaException;
 import excepciones.UsuarioNoExisteException;
 import modeloDatos.Cliente;
 import modeloDatos.Usuario;
+import modeloNegocio.Empresa;
 import util.Mensajes;
 
 public class EmpresaTestEscenario1 {
@@ -30,6 +32,26 @@ public class EmpresaTestEscenario1 {
     	escenario.tearDown();
     }
 	
+//----- Metodo static Empresa getInstance()
+    
+    // Clases cubiertas: 1
+    @Test
+    public void testgetInstance_PrimeraLlamada() {
+        Empresa primeraInstancia = Empresa.getInstance();
+        assertNotNull("La primera llamada a getInstance() debe retornar una instancia de Empresa",primeraInstancia);
+    }
+
+    // Clases cubiertas: 2
+    @Test
+    public void testgetInstance_LlamadasSucesivas() {
+        Empresa primeraInstancia = Empresa.getInstance();
+        Empresa segundaInstancia = Empresa.getInstance();
+        Empresa terceraInstancia = Empresa.getInstance();
+
+        assertSame("Las llamadas sucesivas deben devolver la misma instancia",primeraInstancia, segundaInstancia);
+        assertSame("Las llamadas sucesivas deben devolver la misma instancia",primeraInstancia, terceraInstancia);
+    }
+    
 //----- Metodo Usuario login(String usserName, String pass)				
     
     // Clases cubiertas: 1, 2, 3, 5 
@@ -72,7 +94,7 @@ public class EmpresaTestEscenario1 {
             // Éxito: Se lanzó PasswordErroneaException como se esperaba
         	Cliente usuarioPret = escenario.empresa.getClientes().get("user1");
         	assertEquals("El nombre del usuario pretendido dado por la excepcion no es el correcto.", usuarioPret.getNombreUsuario(), e.getUsuarioPretendido());
-        	assertEquals("La contrasenia pretendida dada por la excepcion no es la correcta.", usuarioPret.getPass(), e.getPasswordPretendida());
+        	assertEquals("La contrasenia pretendida dada por la excepcion no es la correcta.", "wrongpass", e.getPasswordPretendida());
             assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.PASS_ERRONEO.getValor(), e.getMessage());
 
         } catch (UsuarioNoExisteException e) {
@@ -82,4 +104,39 @@ public class EmpresaTestEscenario1 {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
     }
+
+//----- Metodo logout()
+
+    // Clases cubiertas: 1
+    @Test
+    public void testLogout_ClaseCorrecta() {
+    	Cliente usuario = escenario.empresa.getClientes().get("user1");
+		
+    	try {
+    		escenario.empresa.login(usuario.getNombreUsuario(), usuario.getPass());
+    		escenario.empresa.logout();
+    		Usuario usuarioLogueado = escenario.empresa.getUsuarioLogeado();
+
+        	// Verificamos que el logout fue exitoso y que retorna null
+        	assertNull("El usuario continua logueado despues del Logout", usuarioLogueado);
+		} catch (UsuarioNoExisteException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (PasswordErroneaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+    
+ // Clases cubiertas: 2
+    @Test
+    public void testLogout_SinLogin() {
+    		escenario.empresa.logout();
+    		Usuario usuarioLogueado = escenario.empresa.getUsuarioLogeado();
+
+        	// Verificamos que el logout fue exitoso y que retorna null
+        	assertNull("Figura usuario logueado a pesar de no hacer Login", usuarioLogueado);
+    }
+
+
 }

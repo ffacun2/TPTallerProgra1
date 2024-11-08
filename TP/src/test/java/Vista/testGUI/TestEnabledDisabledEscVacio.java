@@ -46,7 +46,7 @@ public class TestEnabledDisabledEscVacio {
     	escenario.tearDown();
     }
 
-// TEST APARTADO LOGIN
+// TEST PANEL LOGIN
     
     @Test
     public void testLogin_Completo()
@@ -112,7 +112,7 @@ public class TestEnabledDisabledEscVacio {
         Assert.assertFalse("El boton de login deberia estar deshablitado", botonLogin.isEnabled());
     }
     
-//TEST APARTADO REGISTRO
+//TEST PANEL REGISTRO
 
 	@Test
 	public void testRegistro_Completo()
@@ -278,4 +278,5 @@ public class TestEnabledDisabledEscVacio {
 		Assert.assertFalse("El boton de registro deberia estar deshablitado", botonRegistrar.isEnabled());
 		Assert.assertTrue("El boton de Cancelar registro deberia estar hablitado", botonCancelar.isEnabled());
 	}
+
 }

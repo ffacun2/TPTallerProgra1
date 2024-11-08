@@ -7,6 +7,7 @@ import java.awt.Robot;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.junit.After;
@@ -18,6 +19,7 @@ import controlador.Controlador;
 import junit.framework.Assert;
 import modelo.negocio.Escenario2;
 import util.Constantes;
+import util.Mensajes;
 import vista.Ventana;
 
 //ESCENARIO 2 SOLO TIENE ELEMENTOS BASE
@@ -83,10 +85,12 @@ public class TestEnabledDisabledEsc2 {
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
         
         Assert.assertFalse("El campo de Calificar Viaje deberia estar deshablitado", campoCalificacion.isEnabled());
         Assert.assertTrue("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
         Assert.assertFalse("El boton de Pagar deberia estar deshablitado", botonCalificarPagar.isEnabled());
+        Assert.assertTrue("El TextArea Pedido Pendiente o Viaje Actual deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
     }
     
 // TEST PANEL CLIENTE : NUEVO PEDIDO
@@ -113,6 +117,12 @@ public class TestEnabledDisabledEsc2 {
         TestUtils.clickComponent(checkBoxMascota, robot);
         
         Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
+        
+        TestUtils.clickComponent(botonNuevoPedido, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertTrue("El campo CantPax deberia estar vacio", campoCantPax.getText().isEmpty());
+        Assert.assertTrue("El campo KM deberia estar vacio", campoKM.getText().isEmpty());
     }
     
     @Test
@@ -243,7 +253,6 @@ public class TestEnabledDisabledEsc2 {
         
         Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
     }
-
 
 
 }

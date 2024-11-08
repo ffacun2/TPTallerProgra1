@@ -10,7 +10,7 @@ import modeloNegocio.Empresa;
 //ESTE SERIA EL ESCENARIO VACIO
 public class EscenarioBase {
     
-    protected Empresa empresa;
+    public Empresa empresa;
     
     public EscenarioBase() 
     {

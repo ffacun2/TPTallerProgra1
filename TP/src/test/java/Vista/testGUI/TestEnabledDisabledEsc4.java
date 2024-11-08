@@ -7,6 +7,7 @@ import java.awt.Robot;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JRadioButton;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import org.junit.After;
@@ -77,6 +78,7 @@ public class TestEnabledDisabledEsc4 {
         JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
         JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
         JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
 
         Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
         Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
@@ -86,6 +88,7 @@ public class TestEnabledDisabledEsc4 {
         Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
         Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
         Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
+        Assert.assertFalse("El TextArea Pedido Pendiente o Viaje Actual no deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
         
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
@@ -108,6 +111,7 @@ public class TestEnabledDisabledEsc4 {
         JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
         JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
         JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
 
         Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
         Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
@@ -117,6 +121,8 @@ public class TestEnabledDisabledEsc4 {
         Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
         Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
         Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
+        Assert.assertFalse("El TextArea Pedido Pendiente o Viaje Actual no deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
+        
         
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);

@@ -14,14 +14,16 @@ import org.junit.Test;
 import Vista.TestUtils;
 import controlador.Controlador;
 import junit.framework.Assert;
+import modelo.negocio.EscenarioBase;
 import util.Constantes;
 import vista.Ventana;
 
-public class TestEnabledDisabled {
+public class TestEnabledDisabledEscVacio {
 	Robot robot;
     Controlador controlador;
+    private EscenarioBase escenario = new EscenarioBase(); 
 
-    public TestEnabledDisabled()
+    public TestEnabledDisabledEscVacio()
     {
         try{
             robot = new Robot();
@@ -33,6 +35,7 @@ public class TestEnabledDisabled {
     public void setUp() throws Exception
     {
         controlador = new Controlador();
+        escenario.setUp();
     }
 
     @After
@@ -40,6 +43,7 @@ public class TestEnabledDisabled {
     {
         Ventana ventana = (Ventana) controlador.getVista();
     	ventana.setVisible(false);
+    	escenario.tearDown();
     }
 
 // TEST APARTADO LOGIN

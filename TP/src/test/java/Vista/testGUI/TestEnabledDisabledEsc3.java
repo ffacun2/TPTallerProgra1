@@ -20,6 +20,7 @@ import modelo.negocio.Escenario3;
 import util.Constantes;
 import vista.Ventana;
 
+//ESCENARIO 3 TIENE PEDIDOS
 public class TestEnabledDisabledEsc3 {
 	Robot robot;
     Controlador controlador;

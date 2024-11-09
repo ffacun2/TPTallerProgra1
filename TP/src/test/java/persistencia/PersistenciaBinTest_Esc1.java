@@ -10,15 +10,13 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
 
 /**
  * Escenario donde se intenta abrir el archivo datos.xml el cual no existe.
  */
 public class PersistenciaBinTest_Esc1 {
 	
-	IPersistencia persistencia = new PersistenciaBIN();
+	IPersistencia<Serializable> persistencia = new PersistenciaBIN();
 	String nombreArchivo = "datos.bin";
 	File arch = new File(nombreArchivo);
 
@@ -67,6 +65,7 @@ public class PersistenciaBinTest_Esc1 {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	@Test
 	public void leerTest() {
 		try {

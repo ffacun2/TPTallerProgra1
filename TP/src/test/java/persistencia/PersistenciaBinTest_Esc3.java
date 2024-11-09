@@ -3,28 +3,18 @@ package persistencia;
 import static org.junit.Assert.*;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.HashMap;
+import java.io.Serializable;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import modeloDatos.Chofer;
-import modeloDatos.Cliente;
-import modeloDatos.Pedido;
-import modeloDatos.Vehiculo;
-import modeloDatos.Viaje;
-import persistencia.EmpresaDTO;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
-
 /**
- * Escenario donde se persiste colleciones null
+ * Escenario donde se persiste todas las colleciones de empresa con null
  */
 public class PersistenciaBinTest_Esc3 {
 
-	IPersistencia persistencia = new PersistenciaBIN();
+	IPersistencia<Serializable> persistencia = new PersistenciaBIN();
 	String nombreArchivo = "datos.xml";
 	File archivo = new File(nombreArchivo);
 	EmpresaDTO empresa, serializado;

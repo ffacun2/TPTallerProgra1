@@ -80,11 +80,11 @@ public class ControladorTest2 {
 		empresa.agregarVehiculo(a2);
 		empresa.agregarVehiculo(a3);
 		
-		empresa.agregarCliente("usuario", "password","Raul Perez");
+		empresa.agregarCliente("usuario1", "password","Raul Perez");
 		empresa.agregarCliente("usuario2", "password","Maria Fernandez");
 		empresa.agregarCliente("usuario3", "password", "Eustacio Gomez");
 		
-		c1 = empresa.getClientes().get("usuario");
+		c1 = empresa.getClientes().get("usuario1");
 		c2 = empresa.getClientes().get("usuario2");
 		c3 = empresa.getClientes().get("usuario3");
 		empresa.setUsuarioLogeado(c1);
@@ -116,7 +116,7 @@ public class ControladorTest2 {
 	 */
 	@Test
 	public void testLogin() {
-		when(control.getVista().getUsserName()).thenReturn("usuario");
+		when(control.getVista().getUsserName()).thenReturn("usuario1");
 		when(control.getVista().getPassword()).thenReturn("1234");
 		
 		control.login();
@@ -129,7 +129,7 @@ public class ControladorTest2 {
 	 */
 	@Test
 	public void testLogin2() {
-		when(control.getVista().getUsserName()).thenReturn("usuario");
+		when(control.getVista().getUsserName()).thenReturn("usuario1");
 		when(control.getVista().getPassword()).thenReturn("password");
 		
 		control.login();
@@ -151,7 +151,7 @@ public class ControladorTest2 {
 	 */
 	@Test
 	public void testRegistrar() {
-		when(control.getVista().getRegUsserName()).thenReturn("usuario");
+		when(control.getVista().getRegUsserName()).thenReturn("usuario1");
 		when(control.getVista().getRegNombreReal()).thenReturn("Raul Peres");
 		when(control.getVista().getRegPassword()).thenReturn("password");
 		when(control.getVista().getRegConfirmPassword()).thenReturn("password");
@@ -227,6 +227,34 @@ public class ControladorTest2 {
 		assertEquals(Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),((OptionPane)panel).getMsj());
 	}
 	
+	@Test
+	public void testNuevoPedido3() {
+		empresa.setUsuarioLogeado(c3);
+		when(control.getVista().getCantidadPax()).thenReturn(3);
+		when(control.getVista().isPedidoConMascota()).thenReturn(false);
+		when(control.getVista().isPedidoConBaul()).thenReturn(true);
+		when(control.getVista().getCantKm()).thenReturn(10);
+		when(control.getVista().getTipoZona()).thenReturn(Constantes.ZONA_PELIGROSA);
+		
+		control.nuevoPedido();
+		assertEquals(Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(),((OptionPane)panel).getMsj());
+		assertEquals(2,empresa.getPedidos().size());
+	}
+	
+	@Test
+	public void testNuevoPedido4() {
+		empresa.setUsuarioLogeado(c1);
+		when(control.getVista().getCantidadPax()).thenReturn(3);
+		when(control.getVista().isPedidoConMascota()).thenReturn(false);
+		when(control.getVista().isPedidoConBaul()).thenReturn(true);
+		when(control.getVista().getCantKm()).thenReturn(10);
+		when(control.getVista().getTipoZona()).thenReturn(Constantes.ZONA_PELIGROSA);
+		
+		control.nuevoPedido();
+		assertEquals(Mensajes.CLIENTE_CON_PEDIDO_PENDIENTE.getValor(),((OptionPane)panel).getMsj());
+		assertEquals(2,empresa.getPedidos().size());
+	}
+	
 	/**
 	 * Test metodo nuevoViaje donde el pedido no existe en la lista pedido de empresa.
 	 * se espera excepcion PedidoInexistenteException
@@ -288,20 +316,6 @@ public class ControladorTest2 {
 		assertNull(empresa.getViajesIniciados().get(c1));
 	}
 	
-	/**
-	 * Test metodo nuevoViaje() donde el cliente logueado tiene un viaje pendiente
-	 * se espera excepcion ClienteConViajePendienteException
-	 */
-	@Test
-	public void testNuevoViaje5() {
-		empresa.setUsuarioLogeado(c3);
-		when(control.getVista().getPedidoSeleccionado()).thenReturn(p);
-		when(control.getVista().getChoferDisponibleSeleccionado()).thenReturn(ch1);
-		when(control.getVista().getVehiculoDisponibleSeleccionado()).thenReturn(a1);
-		
-		control.nuevoViaje();
-		assertEquals(Mensajes.CLIENTE_CON_VIAJE_PENDIENTE.getValor(),((OptionPane)panel).getMsj());
-	}
 	
 	/**
 	 * Test motodo nuevoViaje() donde el cliente logueado tiene un viaje pendiente
@@ -462,15 +476,6 @@ public class ControladorTest2 {
 		assertNotNull(empresa.getViajesIniciados().get(c1));
 	}
 	
-	@Test
-	public void testEscribir() {
-		
-	}
-	
-	@Test
-	public void testLeer() {
-		
-	}
 	
 }
 

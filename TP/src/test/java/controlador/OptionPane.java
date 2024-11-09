@@ -2,6 +2,10 @@ package controlador;
 
 import vista.IOptionPane;
 
+/**
+ * Clase para almacenar el mensaje lanzado por la excepcion
+ * y poder obtenerlo con el metodo getMsj()
+ */
 public class OptionPane implements IOptionPane {
 
 	private String msj = null;

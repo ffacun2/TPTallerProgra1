@@ -84,7 +84,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferTemporario_Completo()
+    public void testPanelAdm_AltaChofer_TemporarioCompleto()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -110,7 +110,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_Completo()
+    public void testPanelAdm_AltaChofer_PermanenteCompleto()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -230,7 +230,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_AnioValorLimite3000()
+    public void testPanelAdm_AltaChofer_AnioValorLimite3000()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -260,7 +260,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloDNI()
+    public void testPanelAdm_AltaChofer_SoloDNI()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -274,7 +274,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloNombre()
+    public void testPanelAdm_AltaChofer_SoloNombre()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoNombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_CHOFER);
@@ -288,7 +288,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
 
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanente()
+    public void testPanelAdm_AltaChofer_SoloRadioPermanente()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -301,7 +301,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanenteYHijos()
+    public void testPanelAdm_AltaChofer_SoloRadioPermanenteYHijos()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -319,7 +319,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanenteYAnio()
+    public void testPanelAdm_AltaChofer_SoloRadioPermanenteYAnio()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -337,7 +337,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAdm_AltaChoferPermanente_SoloRadioTemporario()
+    public void testPanelAdm_AltaChofer_SoloRadioTemporario()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioTemporario = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.TEMPORARIO);

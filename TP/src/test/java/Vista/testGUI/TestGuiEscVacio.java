@@ -293,4 +293,10 @@ public class TestGuiEscVacio {
         Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(), Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),op.getMensaje());
         
     }
+
+
+
+
+
+
 }

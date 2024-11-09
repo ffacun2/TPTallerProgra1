@@ -135,6 +135,7 @@ public class TestEnabledDisabledAdmEsc3 {
         Assert.assertFalse("El boton de Nuevo Viaje deberia estar deshablitado", nuevoViaje.isEnabled());
     }
 
+    //CHEQUEAR
     @Test
     public void testPanelGestionDePedidos_NuevoViaje()
     {

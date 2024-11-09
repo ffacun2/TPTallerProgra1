@@ -21,12 +21,14 @@ public class Escenario3 extends EscenarioBase {
     		Cliente cliente2 = empresa.getClientes().get("user2");
     		Cliente cliente3 = empresa.getClientes().get("user3");
     		Cliente cliente4 = empresa.getClientes().get("user4");
+    		Cliente cliente5 = empresa.getClientes().get("user5");
         
     		// Crear y realizar viajes completos para cada cliente
             realizarPedido(cliente1, 3, true, false, 10, "ZONA_PELIGROSA");
             realizarPedido(cliente2, 5, false, true, 20, "ZONA_SIN_ASFALTAR");
             realizarPedido(cliente3, 1, false, false, 15, "ZONA_STANDARD");
             realizarPedido(cliente4, 4, false, false, 15, "ZONA_STANDARD");
+            realizarPedido(cliente5, 10, false, false, 15, "ZONA_STANDARD"); //Este pedido no se puede satisfacer
         
         } catch (Exception e) {
             System.out.println("Ocurrió un error al configurar el escenario: " + e.getMessage());

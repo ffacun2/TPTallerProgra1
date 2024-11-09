@@ -252,13 +252,14 @@ public class TestGuiEscVacio {
         TestUtils.clickComponent(campoCantPax, robot);
         TestUtils.tipeaTexto("10", robot);
         TestUtils.clickComponent(campoKM, robot);
-        TestUtils.tipeaTexto("10", robot);
+        TestUtils.tipeaTexto("5", robot);
         TestUtils.clickComponent(radioStandard, robot);
         TestUtils.clickComponent(checkBoxMascota, robot);
         TestUtils.clickComponent(checkBoxBaul, robot);
+        
         TestUtils.clickComponent(botonNuevoPedido, robot);
         
-        robot.delay(10000);
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo CantPax deberia estar vacio", campoCantPax.getText().isEmpty());
         Assert.assertTrue("El campo KM deberia estar vacio", campoKM.getText().isEmpty());
         

@@ -140,28 +140,13 @@ public class TestGuiEsc2 {
         TestUtils.clickComponent(radioStandard, robot);
         TestUtils.clickComponent(checkBoxMascota, robot);
         TestUtils.clickComponent(checkBoxBaul, robot);
-        TestUtils.clickComponent(botonNuevoPedido, robot);
         
         robot.delay(TestUtils.getDelay());
+        TestUtils.clickComponent(botonNuevoPedido, robot);
+        
+        robot.delay(60000);
         Assert.assertTrue("El campo CantPax deberia estar vacio", campoCantPax.getText().isEmpty());
         Assert.assertTrue("El campo KM deberia estar vacio", campoKM.getText().isEmpty());
-        
-        JButton cerrarSesion = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CERRAR_SESION_CLIENTE);
-    	TestUtils.clickComponent(cerrarSesion, robot);
-    	
-    	robot.delay(TestUtils.getDelay());
-        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
-        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
-        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
-
-        TestUtils.clickComponent(nombre, robot);
-        TestUtils.tipeaTexto("admin", robot);
-        
-        TestUtils.clickComponent(password, robot);
-        TestUtils.tipeaTexto("admin", robot);
-
-        TestUtils.clickComponent(botonLogin, robot);
-        
         
         Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(), Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),op.getMensaje());
         

@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
 
 import javax.swing.JOptionPane;
 
@@ -25,6 +26,14 @@ import vista.Ventana;
 
 /**
  * Controlador con escenario empresa vacia
+ * lista choferes vacio
+ * lista choferes disponible vacio
+ * lista vehiculos vacio
+ * lista vehiculos disponibles vacio
+ * lista clientes vacio
+ * lista pedidos vacio
+ * lista viajes iniciados vacio
+ * lista viajes terminados vacio
  */
 public class ControladorTest {
 	
@@ -63,7 +72,7 @@ public class ControladorTest {
 	
 	
 	/**
-	 * TEst registrar contrasena no coinciden
+	 * Test registrar. los campos de contrasena no coinciden
 	 */
 	@Test
 	public void testRegistrar() {
@@ -77,7 +86,8 @@ public class ControladorTest {
 	}
 	
 	/**
-	 * Agrega un nuevo usuario no repetido
+	 * Agrega un nuevo usuario. Se agrega un usuario no existente
+	 * a lista de empresa vacia.
 	 */
 	@Test
 	public void testRegistrar2() {
@@ -88,11 +98,12 @@ public class ControladorTest {
 		
 		control.registrar();
 		assertTrue(empresa.getClientes().containsKey(control.getVista().getRegUsserName()));
+		
 	}
 	
 	
 	/**
-	 * Agrega nuevo chofer Temporario no repetido
+	 * Agrega nuevo chofer Temporario no existente a la lista de empresa vacia.
 	 */
 	@Test
 	public void testNuevoChofer() {
@@ -105,7 +116,7 @@ public class ControladorTest {
 	}
 
 	/**
-	 * Agrega nuevo chofer Permanente no repetido
+	 * Agrega nuevo chofer Permanente no existente a la lista de empresa vacia.
 	 */
 	@Test
 	public void testNuevoChofer2() {
@@ -120,7 +131,7 @@ public class ControladorTest {
 	}
 	
 	/**
-	 * Agrega un nuevo vehiculo no repetido
+	 * Agrega un nuevo vehiculo no existente a la lista de empresa vacia.
 	 */
 	@Test
 	public void testNuevoVehiculo() {
@@ -132,4 +143,24 @@ public class ControladorTest {
 		assertNull(((OptionPane)(control.getVista().getOptionPane())).getMsj());
 	}
 		
+	
+	@Test
+	public void testEscribir() {
+		File arch = new File(control.getFileName());
+		if(arch.exists())
+			arch.delete();
+		
+		control.escribir();
+		
+		assertNotNull(arch.exists());
+	}
+	
+	@Test
+	public void testLeer() {
+		File arch = new File(control.getFileName());
+		
+		assertNotNull(arch.exists());
+		control.leer();
+		
+	}
 }

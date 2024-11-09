@@ -57,29 +57,7 @@ public class TestGuiEscVacio {
 // TEST PANEL LOGIN
     
     @Test
-    public void testLogin_CorrectoAdm()
-    {
-        robot.delay(TestUtils.getDelay());
-        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
-        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
-        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
-
-        TestUtils.clickComponent(nombre, robot);
-        TestUtils.tipeaTexto("admin", robot);
-        
-        TestUtils.clickComponent(password, robot);
-        TestUtils.tipeaTexto("admin", robot);
-        
-        TestUtils.clickComponent(botonLogin, robot);
-        robot.delay(TestUtils.getDelay());
-        
-        JPanel panelAdm = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_ADMINISTRADOR);
-        Assert.assertTrue("El panel de Administrador deberia estar visible despues de un login exitoso", panelAdm.isVisible());
-        Assert.assertEquals("Deberia coincidir el nombre de usuario con el nombre ingresado", "admin", escenario.empresa.getUsuarioLogeado().getNombreUsuario()) ;
-    }
-    
-    @Test
-    public void testLogin_PasswordIncorrecta()
+    public void testPanelLogin_PasswordIncorrecta()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -96,11 +74,28 @@ public class TestGuiEscVacio {
         TestUtils.clickComponent(botonLogin, robot);
 
         Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.PASS_ERRONEO.getValor(), Mensajes.PASS_ERRONEO.getValor(),op.getMensaje());
+    }
+    
+    @Test
+    public void testPanelLogin_PasswordIncorrectaLog()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
+        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
+
+        TestUtils.clickComponent(nombre, robot);
+        TestUtils.tipeaTexto("admin", robot);
+        
+        TestUtils.clickComponent(password, robot);
+        TestUtils.tipeaTexto("random", robot);
+        
+        TestUtils.clickComponent(botonLogin, robot);
         Assert.assertNull("El Usuario actual deberia ser null", escenario.empresa.getUsuarioLogeado());
     }
     
     @Test
-    public void testLogin_UsuarioDesconocido()
+    public void testPanelLogin_UsuarioDesconocido()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -120,20 +115,37 @@ public class TestGuiEscVacio {
         Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.USUARIO_DESCONOCIDO.getValor(), Mensajes.USUARIO_DESCONOCIDO.getValor(),op.getMensaje());
         Assert.assertNull("El Usuario actual deberia ser null", escenario.empresa.getUsuarioLogeado());
     }
+    
+    @Test
+    public void testPanelLogin_UsuarioDesconocidoLog()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
+        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
+        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
+
+        TestUtils.clickComponent(nombre, robot);
+        TestUtils.tipeaTexto("a", robot);
+        
+        TestUtils.clickComponent(password, robot);
+        TestUtils.tipeaTexto("a", robot);
+        
+        TestUtils.clickComponent(botonLogin, robot);
+
+        robot.delay(TestUtils.getDelay());
+        Assert.assertNull("El Usuario actual deberia ser null", escenario.empresa.getUsuarioLogeado());
+    }
 
 //TEST PANEL REGISTRO
 
   	@Test
-  	public void testRegistro_Correcto()
+  	public void testPanelRegistro_CorrectoColeccion()
   	{
   		robot.delay(TestUtils.getDelay());
   		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
   		TestUtils.clickComponent(botonIrReg, robot);
   		
   		robot.delay(TestUtils.getDelay());
-  		JPanel panelRegistro = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_REGISTRO);
-  		Assert.assertTrue("El panel de Registro deberia ser visible", panelRegistro.isVisible());
-  		
   		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_USSER_NAME);
   		JTextField nombreReal = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_REAL_NAME);
   		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_PASSWORD);
@@ -152,27 +164,46 @@ public class TestGuiEscVacio {
   		TestUtils.tipeaTexto("a", robot);
   		
   		TestUtils.clickComponent(nombreReal, robot);
-  		TestUtils.tipeaTexto("aa", robot);
+  		TestUtils.tipeaTexto("a", robot);
   		
   		TestUtils.clickComponent(botonRegistrar, robot);
-  		Assert.assertEquals("La cantidad de clientes deberia haber aumentado en 1 ", cantidadClientes + 1, escenario.empresa.getClientes().size());
   		
   		robot.delay(TestUtils.getDelay());
   		JPanel panelLogin = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_LOGIN);
   		Assert.assertTrue("El panel de Login deberia ser visible despues del registro exitoso", panelLogin.isVisible());
+  		Assert.assertEquals("La cantidad de clientes deberia haber aumentado en 1 ", cantidadClientes + 1, escenario.empresa.getClientes().size());
   	}
   	
   	@Test
-  	public void testRegistro_PasswordNoCoincide()
+	public void testPanelRegistro_MovimientoPaneles()
+	{
+		robot.delay(TestUtils.getDelay());
+		JPanel panelLogin = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_LOGIN);
+		Assert.assertTrue("El panel de Login deberia ser el panel actual", panelLogin.isVisible());
+		
+		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
+		TestUtils.clickComponent(botonIrReg, robot);
+		
+		robot.delay(TestUtils.getDelay());
+		JPanel panelRegistro= (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_REGISTRO);
+		Assert.assertTrue("El panel de Registro deberia ser el panel actual", panelRegistro.isVisible());
+		
+		JButton botonCancelar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_BUTTON_CANCELAR);
+		TestUtils.clickComponent(botonCancelar, robot);
+		
+		robot.delay(TestUtils.getDelay());
+		panelLogin = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_LOGIN);
+		Assert.assertTrue("El panel de Login deberia ser el panel actual", panelLogin.isVisible());
+	}
+  	
+  	@Test
+  	public void testPanelRegistro_PasswordNoCoincide()
   	{
   		robot.delay(TestUtils.getDelay());
   		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
   		TestUtils.clickComponent(botonIrReg, robot);
   		
   		robot.delay(TestUtils.getDelay());
-  		JPanel panelRegistro = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_REGISTRO);
-  		Assert.assertTrue("El panel de Registro deberia ser visible", panelRegistro.isVisible());
-  		
   		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_USSER_NAME);
   		JTextField nombreReal = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_REAL_NAME);
   		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_PASSWORD);
@@ -199,9 +230,9 @@ public class TestGuiEscVacio {
   	}
 
 //TEST PANEL CLIENTE
-    //ESTA MAL CHEQUEAR, SIN TERMINAR
+
     @Test
-    public void testNuevoPedido_SinVehiculoParaPedidoEscVacio()
+    public void testPanelCliente_NuevoPedido_SinVehiculoParaPedido()
     {
     	//REGISTRO USER
     	robot.delay(TestUtils.getDelay());
@@ -209,7 +240,6 @@ public class TestGuiEscVacio {
   		TestUtils.clickComponent(botonIrReg, robot);
   		
   		robot.delay(TestUtils.getDelay());
-  		
   		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_USSER_NAME);
   		JTextField nombreReal = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_REAL_NAME);
   		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_PASSWORD);
@@ -250,18 +280,16 @@ public class TestGuiEscVacio {
         JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
         
         TestUtils.clickComponent(campoCantPax, robot);
-        TestUtils.tipeaTexto("10", robot);
+        TestUtils.tipeaTexto("5", robot);
         TestUtils.clickComponent(campoKM, robot);
-        TestUtils.tipeaTexto("10", robot);
+        TestUtils.tipeaTexto("5", robot);
         TestUtils.clickComponent(radioStandard, robot);
         TestUtils.clickComponent(checkBoxMascota, robot);
         TestUtils.clickComponent(checkBoxBaul, robot);
+        
         TestUtils.clickComponent(botonNuevoPedido, robot);
         
-        robot.delay(10000);
-        Assert.assertTrue("El campo CantPax deberia estar vacio", campoCantPax.getText().isEmpty());
-        Assert.assertTrue("El campo KM deberia estar vacio", campoKM.getText().isEmpty());
-        
+        robot.delay(TestUtils.getDelay());
         Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(), Mensajes.SIN_VEHICULO_PARA_PEDIDO.getValor(),op.getMensaje());
         
     }

@@ -65,7 +65,7 @@ public class TestEnabledDisabledAdmEscVacio {
 //PANEL ADMINISTRADOR: Altas Nuevo Chofer
 
     @Test
-    public void testPanelAltas_ChoferCamposVacios()
+    public void testPanelAdm_AltaChofer_CamposVacios()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -84,7 +84,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferTemporarioCompleto()
+    public void testPanelAdm_AltaChoferTemporario_Completo()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -104,13 +104,13 @@ public class TestEnabledDisabledAdmEscVacio {
         
         robot.delay(TestUtils.getDelay());
         
-        Assert.assertFalse("La opcion de Cantidad de Hijos deberia estar hablitado", campoCantHijos.isEnabled());
-        Assert.assertFalse("La opcion de Año de Ingreso deberia estar hablitado", campoAnio.isEnabled());
+        Assert.assertFalse("La opcion de Cantidad de Hijos deberia estar deshablitado", campoCantHijos.isEnabled());
+        Assert.assertFalse("La opcion de Año de Ingreso deberia estar deshablitado", campoAnio.isEnabled());
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteCompleto()
+    public void testPanelAdm_AltaChoferPermanente_Completo()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -140,7 +140,7 @@ public class TestEnabledDisabledAdmEscVacio {
     } 
     
     @Test
-    public void testPanelAltas_ChoferPermanenteCantHijosValorLimite0()
+    public void testPanelAdm_AltaChoferPermanente_CantHijosValorLimite0()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -170,7 +170,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteCantHijosValorLimite2000()
+    public void testPanelAdm_AltaChoferPermanente_CantHijosValorLimite2000()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -200,7 +200,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteAnioValorLimite1900()
+    public void testPanelAdm_AltaChoferPermanente_AnioValorLimite1900()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -230,7 +230,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteAnioValorLimite3000()
+    public void testPanelAdm_AltaChoferPermanente_AnioValorLimite3000()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -256,11 +256,11 @@ public class TestEnabledDisabledAdmEscVacio {
         
         robot.delay(TestUtils.getDelay());
         
-        Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
+        Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloDNI()
+    public void testPanelAdm_AltaChoferPermanente_SoloDNI()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -274,7 +274,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloNombre()
+    public void testPanelAdm_AltaChoferPermanente_SoloNombre()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoNombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_CHOFER);
@@ -288,7 +288,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
 
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloRadioPermanente()
+    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanente()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -301,7 +301,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloRadioPermanenteYHijos()
+    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanenteYHijos()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -319,7 +319,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloRadioPermanenteYAnio()
+    public void testPanelAdm_AltaChoferPermanente_SoloRadioPermanenteYAnio()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
@@ -337,7 +337,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_ChoferPermanenteSoloRadioTemporario()
+    public void testPanelAdm_AltaChoferPermanente_SoloRadioTemporario()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioTemporario = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.TEMPORARIO);
@@ -352,7 +352,7 @@ public class TestEnabledDisabledAdmEscVacio {
   //PANEL ADMINISTRADOR: Altas Nuevo Vehiculo
 
     @Test
-    public void testPanelAltas_VehiculoCamposVacios()
+    public void testPanelAdm_AltaVehiculo_CamposVacios()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -370,7 +370,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_VehiculoSoloPatente()
+    public void testPanelAdm_AltaVehiculo_SoloPatente()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -392,7 +392,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_VehiculoSoloCantPlazas()
+    public void testPanelAdm_AltaVehiculo_SoloCantPlazas()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -414,7 +414,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_VehiculoSoloMascota()
+    public void testPanelAdm_AltaVehiculo_SoloMascota()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -435,7 +435,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegMoto()
+    public void testPanelAdm_AltaVehiculo_Moto()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -458,7 +458,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegAuto()
+    public void testPanelAdm_AltaVehiculo_Auto()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -482,7 +482,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegAutoCantPlazasValorLimite1()
+    public void testPanelAdm_AltaVehiculo_AutoCantPlazasValorLimite1()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -507,7 +507,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegAutoCantPlazasValorLimite4()
+    public void testPanelAdm_AltaVehiculo_AutoCantPlazasValorLimite4()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -532,7 +532,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegAutoCantPlazasFueraDeRango()
+    public void testPanelAdm_AltaVehiculo_AutoCantPlazasFueraDeRango()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -555,7 +555,7 @@ public class TestEnabledDisabledAdmEscVacio {
     }
     
     @Test
-    public void testPanelAltas_RegCombi()
+    public void testPanelAdm_AltaVehiculo_Combi()
     {
     	robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -575,13 +575,13 @@ public class TestEnabledDisabledAdmEscVacio {
         robot.delay(TestUtils.getDelay());
         
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
     
     @Test
-    public void testPanelAltas_RegCombiCantPlazasValorLimite5()
+    public void testPanelAdm_AltaVehiculo_CombiCantPlazasValorLimite5()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -601,13 +601,13 @@ public class TestEnabledDisabledAdmEscVacio {
         robot.delay(TestUtils.getDelay());
         
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
     
     @Test
-    public void testPanelAltas_RegCombiCantPlazasValorLimite10()
+    public void testPanelAdm_AltaVehiculo_CombiCantPlazasValorLimite10()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -627,13 +627,13 @@ public class TestEnabledDisabledAdmEscVacio {
         robot.delay(TestUtils.getDelay());
         
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
     
     @Test
-    public void testPanelAltas_RegCombiCantPlazasFueraDeRango()
+    public void testPanelAdm_AltaVehiculo_CombiCantPlazasFueraDeRango()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -653,7 +653,7 @@ public class TestEnabledDisabledAdmEscVacio {
         robot.delay(TestUtils.getDelay());
         
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }

@@ -67,69 +67,25 @@ public class TestEnabledDisabledEsc4 {
 // TEST PANEL CLIENTE : Pendiente Actual
     
     @Test
-    public void testPanelCliente_ViajePendiente()
+    public void testPanelCliente_PendienteActual_ViajePendiente()
     {
-        robot.delay(TestUtils.getDelay());
-        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
-        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
-        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
-        JRadioButton radioSinAsfaltar = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
-        JRadioButton radioPeligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_PELIGROSA);
-        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
-        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
-        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
-        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
-
-        Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
-        Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Standard deberia estar deshablitado", radioStandard.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Sin Asfaltar deberia estar deshablitado", radioSinAsfaltar.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Peligrosa deberia estar deshablitado", radioPeligrosa.isEnabled());
-        Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
-        Assert.assertFalse("El TextArea Pedido Pendiente o Viaje Actual no deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
-        
+    	robot.delay(TestUtils.getDelay());
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
 
         Assert.assertTrue("El campo de Calificar Viaje deberia estar hablitado", campoCalificacion.isEnabled());
-        Assert.assertFalse("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
+        Assert.assertFalse("El campo de Valor del Viaje no deberia estar vacio", campoValor.getText().isEmpty());
         Assert.assertFalse("El boton de Pagar deberia estar deshablitado", botonCalificarPagar.isEnabled());
     }
     
     @Test
-    public void testPanelCliente_PagarViaje()  
+    public void testPanelCliente_PendienteActual_PagarViaje()  
     {
         robot.delay(TestUtils.getDelay());
-        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
-        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
-        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
-        JRadioButton radioSinAsfaltar = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
-        JRadioButton radioPeligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_PELIGROSA);
-        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
-        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
-        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
-        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
-
-        Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
-        Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Standard deberia estar deshablitado", radioStandard.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Sin Asfaltar deberia estar deshablitado", radioSinAsfaltar.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Peligrosa deberia estar deshablitado", radioPeligrosa.isEnabled());
-        Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
-        Assert.assertFalse("El TextArea Pedido Pendiente o Viaje Actual no deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
-        
-        
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
-
-        Assert.assertTrue("El campo de Calificar Viaje deberia estar hablitado", campoCalificacion.isEnabled());
-        Assert.assertFalse("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
         
         TestUtils.clickComponent(campoCalificacion, robot);
         TestUtils.tipeaTexto("3", robot);
@@ -139,33 +95,12 @@ public class TestEnabledDisabledEsc4 {
     }
     
     @Test
-    public void testPanelCliente_CalificarValorLimite0()  
+    public void testPanelCliente_PendienteActual_CalificarValorLimite0()  
     {
         robot.delay(TestUtils.getDelay());
-        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
-        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
-        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
-        JRadioButton radioSinAsfaltar = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
-        JRadioButton radioPeligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_PELIGROSA);
-        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
-        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
-        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
-
-        Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
-        Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Standard deberia estar deshablitado", radioStandard.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Sin Asfaltar deberia estar deshablitado", radioSinAsfaltar.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Peligrosa deberia estar deshablitado", radioPeligrosa.isEnabled());
-        Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
-        
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
-
-        Assert.assertTrue("El campo de Calificar Viaje deberia estar hablitado", campoCalificacion.isEnabled());
-        Assert.assertFalse("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
         
         TestUtils.clickComponent(campoCalificacion, robot);
         TestUtils.tipeaTexto("0", robot);
@@ -175,33 +110,12 @@ public class TestEnabledDisabledEsc4 {
     }
     
     @Test
-    public void testPanelCliente_CalificarValorLimite5()  
+    public void testPanelCliente_PendienteActual_CalificarValorLimite5()  
     {
         robot.delay(TestUtils.getDelay());
-        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
-        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
-        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
-        JRadioButton radioSinAsfaltar = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
-        JRadioButton radioPeligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_PELIGROSA);
-        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
-        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
-        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
-
-        Assert.assertFalse("El campo de Cantidad de Pasajeros deberia estar deshablitado", campoCantPax.isEnabled());
-        Assert.assertFalse("El campo de Cantidad de Kilometros deberia estar deshablitado", campoKM.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Standard deberia estar deshablitado", radioStandard.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Sin Asfaltar deberia estar deshablitado", radioSinAsfaltar.isEnabled());
-        Assert.assertFalse("La opcion de Topo de Zona Peligrosa deberia estar deshablitado", radioPeligrosa.isEnabled());
-        Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
-        
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
-
-        Assert.assertTrue("El campo de Calificar Viaje deberia estar hablitado", campoCalificacion.isEnabled());
-        Assert.assertFalse("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
         
         TestUtils.clickComponent(campoCalificacion, robot);
         TestUtils.tipeaTexto("5", robot);
@@ -211,9 +125,25 @@ public class TestEnabledDisabledEsc4 {
     }
     
     @Test
-    public void testPanelCliente_CalificarFueraDeRango()  
+    public void testPanelCliente_PendienteActual_CalificarFueraDeRango()  
     {
         robot.delay(TestUtils.getDelay());
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("10", robot);
+        robot.delay(TestUtils.getDelay());
+        
+        Assert.assertFalse("El boton de Pagar deberia estar deshablitado", botonCalificarPagar.isEnabled());
+    }
+
+ // TEST PANEL CLIENTE : NUEVO PEDIDO
+
+    public void testPanelCliente_NuevoPedido_ViajePendiente()
+    {
+    	robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
         JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
         JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
@@ -231,18 +161,7 @@ public class TestEnabledDisabledEsc4 {
         Assert.assertFalse("El checkBox de Baul deberia estar deshablitado", checkBoxBaul.isEnabled());
         Assert.assertFalse("El checkBox de Mascota Pedido deberia estar deshablitado", checkBoxMascota.isEnabled());
         Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
-        
-        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
-        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
-        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
-
-        Assert.assertTrue("El campo de Calificar Viaje deberia estar hablitado", campoCalificacion.isEnabled());
-        Assert.assertFalse("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
-        
-        TestUtils.clickComponent(campoCalificacion, robot);
-        TestUtils.tipeaTexto("10", robot);
-        robot.delay(TestUtils.getDelay());
-        
-        Assert.assertFalse("El boton de Pagar deberia estar deshablitado", botonCalificarPagar.isEnabled());
     }
+    
+
 }

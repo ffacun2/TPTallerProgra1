@@ -69,13 +69,10 @@ public class TestGuiEsc4 {
 // TEST PANEL CLIENTE : Pendiente Actual
     
 	@Test
-    public void testPanelCliente_PagarViajeListadoYCampo()  
+    public void testPanelCliente_PagarViaje_TextAreaPedidosViajes()  
     {
         robot.delay(TestUtils.getDelay());
         JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
-        JList<?> textAreaHistorialViajes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_CLIENTE);
-        
-        int cantiListaViajesCliente = escenario.empresa.getHistorialViajeCliente((Cliente) escenario.empresa.getUsuarioLogeado()).size(); 
         
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
@@ -83,11 +80,44 @@ public class TestGuiEsc4 {
         
         TestUtils.clickComponent(campoCalificacion, robot);
         TestUtils.tipeaTexto("3", robot);
-        robot.delay(TestUtils.getDelay());
         TestUtils.clickComponent(botonCalificarPagar, robot);
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El TextArea Pedido Pendiente o Viaje Actual deberia estar vacio", textAreaPedidosViajes.getText().isEmpty());
-        Assert.assertEquals("El Viaje Actual finalizado no se visualiza en la lista de historicos",cantiListaViajesCliente + 1, escenario.empresa.getHistorialViajeCliente((Cliente) escenario.empresa.getUsuarioLogeado()).size());
+    }
+	
+	@Test
+    public void testPanelCliente_PagarViaje_TextAreaHistorialViajes()  
+    {
+        robot.delay(TestUtils.getDelay());
+        JList<?> textAreaHistorialViajes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_CLIENTE);
+        int cantListaViajesCliente = escenario.empresa.getHistorialViajeCliente((Cliente) escenario.empresa.getUsuarioLogeado()).size(); 
+        
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("3", robot);
+        TestUtils.clickComponent(botonCalificarPagar, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertEquals("El Viaje Actual finalizado no se visualiza en la lista de historicos",cantListaViajesCliente + 1, escenario.empresa.getHistorialViajeCliente((Cliente) escenario.empresa.getUsuarioLogeado()).size());
+    }
+	
+	@Test
+    public void testPanelCliente_PagarViaje_BorradoCalificacion()  
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("3", robot);
+        TestUtils.clickComponent(botonCalificarPagar, robot);
+
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo Calificacion deberia estar vacio", campoCalificacion.getText().isEmpty());
     }
 }

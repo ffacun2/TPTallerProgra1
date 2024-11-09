@@ -68,7 +68,7 @@ public class TestEnabledDisabledEsc2 {
 // TEST PANEL CLIENTE
     
     @Test
-    public void testPanelCliente_CerrarSesionCliente()
+    public void testPanelCliente_BotonCerrarSesionCliente()
     {
         robot.delay(TestUtils.getDelay());
         JButton botonLogout = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CERRAR_SESION_CLIENTE);
@@ -79,24 +79,44 @@ public class TestEnabledDisabledEsc2 {
 // TEST PANEL CLIENTE : Pendiente Actual
     
     @Test
-    public void testPanelCliente_SinPendientes()
+    public void testPanelCliente_PendienteActual_SinPendientes()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
         JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
-        JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
         
         Assert.assertFalse("El campo de Calificar Viaje deberia estar deshablitado", campoCalificacion.isEnabled());
         Assert.assertTrue("El campo de Valor del Viaje deberia estar vacio", campoValor.getText().isEmpty());
         Assert.assertFalse("El boton de Pagar deberia estar deshablitado", botonCalificarPagar.isEnabled());
-        Assert.assertTrue("El TextArea Pedido Pendiente o Viaje Actual deberio estar vacio", textAreaPedidosViajes.getText().isEmpty());
     }
     
 // TEST PANEL CLIENTE : NUEVO PEDIDO
     
     @Test
-    public void testNuevoPedido_CamposCompletos()
+    public void testPanelCliente_NuevoPedido_SinPendientes()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
+        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
+        JRadioButton radioSinAsfaltar = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_SIN_ASFALTAR);
+        JRadioButton radioPeligrosa = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_PELIGROSA);
+        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
+        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        
+        Assert.assertTrue("El campo de Cantidad de Pasajeros deberia estar hablitado", campoCantPax.isEnabled());
+        Assert.assertTrue("El campo de Cantidad de Kilometros deberia estar hablitado", campoKM.isEnabled());
+        Assert.assertTrue("La opcion de Zona Standard deberia estar hablitado", radioStandard.isEnabled());
+        Assert.assertTrue("La opcion de Topo de Zona Sin Asfaltar deberia estar hablitado", radioSinAsfaltar.isEnabled());
+        Assert.assertTrue("La opcion de Topo de Zona Peligrosa deberia estar hablitado", radioPeligrosa.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxBaul.isEnabled());
+        Assert.assertTrue("El checkBox de Baul deberia estar habilitado", checkBoxMascota.isEnabled());
+    }
+    
+    @Test
+    public void testPanelCliente_NuevoPedido_CamposCompletos()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
@@ -117,16 +137,10 @@ public class TestEnabledDisabledEsc2 {
         TestUtils.clickComponent(checkBoxMascota, robot);
         
         Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
-        
-        TestUtils.clickComponent(botonNuevoPedido, robot);
-        
-        robot.delay(TestUtils.getDelay());
-        Assert.assertTrue("El campo CantPax deberia estar vacio", campoCantPax.getText().isEmpty());
-        Assert.assertTrue("El campo KM deberia estar vacio", campoKM.getText().isEmpty());
     }
     
     @Test
-    public void testNuevoPedido_CamposVacios()
+    public void testPanelCliente_NuevoPedido_CamposVacios()
     {
         robot.delay(TestUtils.getDelay());
         JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
@@ -135,7 +149,7 @@ public class TestEnabledDisabledEsc2 {
     }
     
     @Test
-    public void testNuevoPedido_SoloCantPax()
+    public void testPanelCliente_NuevoPedido_SoloCantPax()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
@@ -148,7 +162,7 @@ public class TestEnabledDisabledEsc2 {
     }
     
     @Test
-    public void testNuevoPedido_SoloCantKM()
+    public void testPanelCliente_NuevoPedido_SoloCantKM()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
@@ -161,7 +175,7 @@ public class TestEnabledDisabledEsc2 {
     }
     
     @Test
-    public void testNuevoPedido_SoloZona()
+    public void testPanelCliente_NuevoPedido_SoloZona()
     {
         robot.delay(TestUtils.getDelay());
         JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
@@ -173,7 +187,7 @@ public class TestEnabledDisabledEsc2 {
     }
     
     @Test
-    public void testNuevoPedido_SoloMascota()
+    public void testPanelCliente_NuevoPedido_SoloMascota()
     {
         robot.delay(TestUtils.getDelay());
         JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
@@ -185,7 +199,7 @@ public class TestEnabledDisabledEsc2 {
     }
 
     @Test
-    public void testNuevoPedido_CantPaxValorLimite1()
+    public void testPanelCliente_NuevoPedido_CantPaxValorLimite1()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
@@ -208,7 +222,8 @@ public class TestEnabledDisabledEsc2 {
         Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
     }
     
-    public void testNuevoPedido_CantPaxValorLimite10()
+    @Test
+    public void testPanelCliente_NuevoPedido_CantPaxValorLimite10()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
@@ -231,7 +246,8 @@ public class TestEnabledDisabledEsc2 {
         Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
     }
     
-    public void testNuevoPedido_CantPaxFueraDeRango()
+    @Test
+    public void testPanelCliente_NuevoPedido_CantPaxFueraDeRango150()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
@@ -242,7 +258,31 @@ public class TestEnabledDisabledEsc2 {
         JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
         
         TestUtils.clickComponent(campoCantPax, robot);
-        TestUtils.tipeaTexto("15", robot);
+        TestUtils.tipeaTexto("150", robot);
+        
+        TestUtils.clickComponent(campoKM, robot);
+        TestUtils.tipeaTexto("10", robot);
+        
+        TestUtils.clickComponent(radioStandard, robot);
+        TestUtils.clickComponent(checkBoxBaul, robot);
+        TestUtils.clickComponent(checkBoxMascota, robot);
+        
+        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
+    }
+    
+    @Test
+    public void testPanelCliente_NuevoPedido_CantPaxFueraDeRango0()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
+        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
+        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
+        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        
+        TestUtils.clickComponent(campoCantPax, robot);
+        TestUtils.tipeaTexto("0", robot);
         
         TestUtils.clickComponent(campoKM, robot);
         TestUtils.tipeaTexto("10", robot);
@@ -254,5 +294,76 @@ public class TestEnabledDisabledEsc2 {
         Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
     }
 
+    @Test
+    public void testPanelCliente_NuevoPedido_CantKMValorLimite0()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
+        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
+        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
+        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        
+        TestUtils.clickComponent(campoCantPax, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoKM, robot);
+        TestUtils.tipeaTexto("0", robot);
+        
+        TestUtils.clickComponent(radioStandard, robot);
+        TestUtils.clickComponent(checkBoxBaul, robot);
+        TestUtils.clickComponent(checkBoxMascota, robot);
+        
+        Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
+    }
+
+    @Test
+    public void testPanelCliente_NuevoPedido_CantKMValorLimite3000()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
+        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
+        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
+        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        
+        TestUtils.clickComponent(campoCantPax, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoKM, robot);
+        TestUtils.tipeaTexto("3000", robot);
+        
+        TestUtils.clickComponent(radioStandard, robot);
+        TestUtils.clickComponent(checkBoxBaul, robot);
+        TestUtils.clickComponent(checkBoxMascota, robot);
+        
+        Assert.assertTrue("El boton de Nuevo Pedido deberia estar hablitado", botonNuevoPedido.isEnabled());
+    }
+    
+    @Test
+    public void testPanelCliente_NuevoPedido_CantKMFueraDeRango()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCantPax = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_PAX);
+        JTextField campoKM = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANT_KM);
+        JRadioButton radioStandard = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.ZONA_STANDARD);
+        JCheckBox checkBoxBaul = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_BAUL);
+        JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_MASCOTA);
+        JButton botonNuevoPedido = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_PEDIDO);
+        
+        TestUtils.clickComponent(campoCantPax, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoKM, robot);
+        TestUtils.tipeaTexto("-10", robot);
+        
+        TestUtils.clickComponent(radioStandard, robot);
+        TestUtils.clickComponent(checkBoxBaul, robot);
+        TestUtils.clickComponent(checkBoxMascota, robot);
+        
+        Assert.assertFalse("El boton de Nuevo Pedido deberia estar deshablitado", botonNuevoPedido.isEnabled());
+    }
 
 }

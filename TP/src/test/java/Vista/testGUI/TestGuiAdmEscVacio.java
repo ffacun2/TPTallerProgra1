@@ -7,6 +7,7 @@ import java.awt.Robot;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JList;
+import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
@@ -68,6 +69,29 @@ public class TestGuiAdmEscVacio {
     	escenario.empresa.logout();
     }
 
+//TEST PANEL LOGIN:
+    
+    @Test
+    public void testPanelLogin_CorrectoAdm()
+    {
+        robot.delay(TestUtils.getDelay());
+        JPanel panelAdm = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_ADMINISTRADOR);
+        Assert.assertTrue("El panel de Administrador deberia estar visible despues de un login exitoso", panelAdm.isVisible());
+        Assert.assertEquals("Deberia coincidir el nombre de usuario con el nombre ingresado", "admin", escenario.empresa.getUsuarioLogeado().getNombreUsuario()) ;
+    }
+    
+    @Test
+    public void testPanelLogin_CerrarSesionAdm()
+    {
+    	robot.delay(TestUtils.getDelay());
+    	JButton cerrarSesion = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CERRAR_SESION_ADMIN);
+    	TestUtils.clickComponent(cerrarSesion, robot);
+    	
+    	JPanel panelLogin = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_LOGIN);
+        Assert.assertTrue("El panel de Login deberia estar visible despues de cerrar sesion", panelLogin.isVisible());
+        Assert.assertEquals("Nodeberia haber ningun usuario logueado", null, escenario.empresa.getUsuarioLogeado().getNombreUsuario()) ;
+    }
+    
   //TEST PANEL ADMINISTRADOR: Alta Chofer
 
     @Test

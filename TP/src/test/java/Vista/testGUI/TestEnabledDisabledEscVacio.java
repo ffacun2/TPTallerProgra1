@@ -5,6 +5,7 @@ import java.awt.Component;
 import java.awt.Robot;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import org.junit.After;
@@ -49,7 +50,7 @@ public class TestEnabledDisabledEscVacio {
 // TEST PANEL LOGIN
     
     @Test
-    public void testLogin_Completo()
+    public void testPanelLogin_Completo()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -69,7 +70,7 @@ public class TestEnabledDisabledEscVacio {
     }
     
     @Test
-    public void testLogin_CamposVacios()
+    public void testPanelLogin_CamposVacios()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -81,7 +82,7 @@ public class TestEnabledDisabledEscVacio {
     }
     
     @Test
-    public void testLogin_SoloNombre()
+    public void testPanelLogin_SoloNombre()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -97,7 +98,7 @@ public class TestEnabledDisabledEscVacio {
     }
     
     @Test
-    public void testLogin_SoloPassword()
+    public void testPanelLogin_SoloPassword()
     {
         robot.delay(TestUtils.getDelay());
 
@@ -115,7 +116,7 @@ public class TestEnabledDisabledEscVacio {
 //TEST PANEL REGISTRO
 
 	@Test
-	public void testRegistro_Completo()
+	public void testPanelRegistro_Completo()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -130,23 +131,23 @@ public class TestEnabledDisabledEscVacio {
 		JButton botonCancelar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_BUTTON_CANCELAR);
 	
 		TestUtils.clickComponent(nombreUsuario, robot);
-		TestUtils.tipeaTexto("randomNombreReal", robot);
+		TestUtils.tipeaTexto("qq", robot);
 	
 		TestUtils.clickComponent(password, robot);
-		TestUtils.tipeaTexto("randomContrasenia", robot);
+		TestUtils.tipeaTexto("qq", robot);
 		
 		TestUtils.clickComponent(confirmarPassword, robot);
-		TestUtils.tipeaTexto("randomContrasenia", robot);
+		TestUtils.tipeaTexto("qq", robot);
 		
 		TestUtils.clickComponent(nombreReal, robot);
-		TestUtils.tipeaTexto("randomNombreReal", robot);
+		TestUtils.tipeaTexto("qq", robot);
 	
-		Assert.assertTrue("El boton de registro deberia estar deshablitado", botonRegistrar.isEnabled());
+		Assert.assertTrue("El boton de registro deberia estar hablitado", botonRegistrar.isEnabled());
 		Assert.assertTrue("El boton de Cancelar registro deberia estar hablitado", botonCancelar.isEnabled());
 	}
 	
 	@Test
-	public void testRegistro_CamposVacios()
+	public void testPanelRegistro_CamposVacios()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -160,7 +161,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 	
 	@Test
-	public void testRegistro_SoloNombreUsuario()
+	public void testPanelRegistro_SoloNombreUsuario()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -178,7 +179,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 	
 	@Test
-	public void testRegistro_SoloPassword()
+	public void testPanelRegistro_SoloPassword()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -196,7 +197,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 	
 	@Test
-	public void testRegistro_SoloConfirmarPassword()
+	public void testPanelRegistro_SoloConfirmarPassword()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -214,7 +215,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 	
 	@Test
-	public void testRegistro_SoloNombreReal()
+	public void testPanelRegistro_SoloNombreReal()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -232,7 +233,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 
 	@Test
-	public void testRegistro_CompletoDosCampos()
+	public void testPanelRegistro_CompletoDosCampos()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
@@ -254,7 +255,7 @@ public class TestEnabledDisabledEscVacio {
 	}
 	
 	@Test
-	public void testRegistro_CompletoTresCampos()
+	public void testPanelRegistro_CompletoTresCampos()
 	{
 		robot.delay(TestUtils.getDelay());
 		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);

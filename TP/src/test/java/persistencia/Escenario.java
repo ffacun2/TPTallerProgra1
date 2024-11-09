@@ -12,9 +12,17 @@ import modeloDatos.Usuario;
 import modeloDatos.Vehiculo;
 import modeloDatos.Viaje;
 import modeloNegocio.Empresa;
-import persistencia.EmpresaDTO;
 import util.Constantes;
 
+/**
+ * Clase escenario donde se iniciliza la Empresa y EmpresaDTO con:
+ * 	1 chofer Temporario
+ * 	1 Cliente
+ * 	1 Vehiculo de tipo Auto
+ * 	1 Pedido del cliente 1
+ * 	1 Viaje del pedido realizado por cliente 1
+ * el unico cliente es el usuario logueado
+ */
 public class Escenario {
 
 	HashMap<String,Chofer> choferes = new HashMap<String, Chofer>();

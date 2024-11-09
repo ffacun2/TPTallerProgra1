@@ -2,12 +2,9 @@ package persistencia;
 
 import static org.junit.Assert.*;
 
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-
-import persistencia.EmpresaDTO;
 
 public class EmpresaDTOTest {
 	
@@ -16,17 +13,16 @@ public class EmpresaDTOTest {
 
 	@Before
 	public void setUp() throws Exception {
-		
 		empresa = new EmpresaDTO();
 		escenario = new Escenario();
 		escenario.getEscenario(empresa);
-		
+	}
+	
+	@After
+	public void tearDown() throws Exception{
+		escenario.limpiarEscenario();
 	}
 
-	@After
-	public void tearDown() throws Exception {
-			
-	}
 
 	@Test
 	public void testGetChofer() {

@@ -4,9 +4,8 @@ import static org.junit.Assert.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 import org.junit.After;
 import org.junit.Before;
@@ -17,17 +16,21 @@ import modeloDatos.Cliente;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
 import modeloDatos.Viaje;
-import persistencia.EmpresaDTO;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
 
 
 /**
  * Escenario donde se escribe un archivo  y se corrobora que la lectura sea la misma.
+ * La empresa contiene los siguientes datos:
+ * 		1 chofer Temporario
+ * 		1 Cliente
+ * 		1 Vehiculo de tipo Auto
+ * 		1 Pedido del cliente 1
+ * 		1 Viaje del pedido realizado por cliente 1
+ * 		el unico cliente es el usuario logueado
  */
 public class PersistenciaBinTest_Esc2 {
 	
-	IPersistencia persistencia = new PersistenciaBIN();
+	IPersistencia<Serializable> persistencia = new PersistenciaBIN();
 	String nombreArchivo = "datos.xml";
 	File archivo = new File(nombreArchivo);
 	EmpresaDTO empresa;
@@ -43,10 +46,16 @@ public class PersistenciaBinTest_Esc2 {
 
 	@After
 	public void tearDown() {
+		escenario.limpiarEscenario();
 		if(archivo.exists())
 			archivo.delete();
 	}
 
+	
+	/**
+	 * Testeo que la lectura y escritura se haga correctamente
+	 * comparo si los dni y la cantidad de choferes almacenados es la misma
+	 */
 	@Test
 	public void testEscrituraLecturaChoferes() {
 		EmpresaDTO serializado;
@@ -77,6 +86,10 @@ public class PersistenciaBinTest_Esc2 {
 		}
 	}
 	
+	/**
+	 * Testeo que la lectura y escritura se haga correctamente
+	 * comparo si los dni y la cantidad de choferes desocupados son la misma
+	 */
 	@Test
 	public void testEscrituraLecturaChoferesDesocupados() {
 		EmpresaDTO serializado;
@@ -107,6 +120,10 @@ public class PersistenciaBinTest_Esc2 {
 		}
 	}
 	
+	/**
+	 * Testeo que la lectura y escritura se haga correctamente
+	 * comparo si la patente y cantidad de vehiculos son las mismas
+	 */
 	@Test
 	public void testEscrituraLecturaVehiculos() {
 		EmpresaDTO serializado;
@@ -138,6 +155,11 @@ public class PersistenciaBinTest_Esc2 {
 		}
 	}
 	
+	
+	/**
+	 * Testeo que la lectura y escritura se haga correctamente
+	 * comparo si las patentes y cantidad de vehiculos desocupados es la misma
+	 */
 	@Test
 	public void testEscrituraLecturaVehiculosDesocupados() {
 		EmpresaDTO serializado;

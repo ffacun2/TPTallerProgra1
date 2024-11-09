@@ -6,19 +6,13 @@ import static org.mockito.Mockito.when;
 
 import java.io.File;
 
-import javax.swing.JOptionPane;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import excepciones.UsuarioYaExisteException;
-import modeloDatos.Cliente;
 import modeloNegocio.Empresa;
-import persistencia.IPersistencia;
-import persistencia.PersistenciaBIN;
 import util.Constantes;
 import util.Mensajes;
-import vista.DefaultOptionPane;
 import vista.IOptionPane;
 import vista.IVista;
 import vista.Ventana;

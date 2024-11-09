@@ -7,22 +7,18 @@ import org.junit.Before;
 import org.junit.Test;
 
 import modeloNegocio.Empresa;
-import persistencia.EmpresaDTO;
-import persistencia.UtilPersistencia;
 
 public class UtilPersistenciaTest {
 	
 	EmpresaDTO empresaDTO;
 	Escenario escenario;
 	
-
 	@Before
 	public void setUp()throws Exception{
 		empresaDTO = new EmpresaDTO();
 		escenario = new Escenario();
 
 		escenario.getEscenario(empresaDTO);
-
 	}
 	
 	@After

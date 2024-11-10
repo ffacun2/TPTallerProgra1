@@ -116,7 +116,7 @@ public class EmpresaTestEscenario2 {
     
 //----- Metodo Metodo ArrayList<Vehiculo> vehiculosOrdenadosPorPedido(Pedido pedido)	 
     
-    // Clases cubiertas: 1, 2, 4 (Pedido válido con vehículos habilitados y puntajes distintos)
+    // Clases cubiertas: 1, 2, 4 (Pedido valido con vehiculos habilitados y puntajes distintos)
     @Test
     public void testVehiculosOrdenadosPorPedido_ClaseCorrecta() {
             // Obtenemos el cliente registrado

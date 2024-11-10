@@ -135,6 +135,41 @@ public class TestGuiEscVacio {
   	}
   	
   	@Test
+  	public void testPanelRegistro_SegundoAdm()
+  	{
+  		robot.delay(TestUtils.getDelay());
+  		JButton botonIrReg = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REGISTRAR);
+  		TestUtils.clickComponent(botonIrReg, robot);
+  		
+  		robot.delay(TestUtils.getDelay());
+  		JTextField nombreUsuario = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_USSER_NAME);
+  		JTextField nombreReal = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_REAL_NAME);
+  		JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_PASSWORD);
+  		JTextField confirmarPassword = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_CONFIRM_PASSWORD);
+  		JButton botonRegistrar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.REG_BUTTON_REGISTRAR);
+  		
+  		int cantidadClientes = escenario.empresa.getClientes().size();
+  	
+  		TestUtils.clickComponent(nombreUsuario, robot);
+  		TestUtils.tipeaTexto("admin", robot);
+  	
+  		TestUtils.clickComponent(password, robot);
+  		TestUtils.tipeaTexto("a", robot);
+  		
+  		TestUtils.clickComponent(confirmarPassword, robot);
+  		TestUtils.tipeaTexto("a", robot);
+  		
+  		TestUtils.clickComponent(nombreReal, robot);
+  		TestUtils.tipeaTexto("a", robot);
+  		
+  		TestUtils.clickComponent(botonRegistrar, robot);
+  		
+  		robot.delay(TestUtils.getDelay());
+  		Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.USUARIO_REPETIDO.getValor(), Mensajes.USUARIO_REPETIDO.getValor(),op.getMensaje());
+  		Assert.assertEquals("La cantidad de clientes NO deberia haber aumentado, se registro un segundo Adm", cantidadClientes, escenario.empresa.getClientes().size());
+  	}
+  	
+  	@Test
 	public void testPanelRegistro_MovimientoPaneles()
 	{
 		robot.delay(TestUtils.getDelay());

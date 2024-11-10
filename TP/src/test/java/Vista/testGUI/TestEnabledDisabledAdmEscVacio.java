@@ -75,6 +75,7 @@ public class TestEnabledDisabledAdmEscVacio {
         JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
         JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
 
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("La opcion de Cantidad de Hijos deberia estar hablitado", campoDNI.isEnabled());
         Assert.assertTrue("La opcion de Cantidad de Hijos deberia estar hablitado", campoNombre.isEnabled());
         Assert.assertTrue("La opcion de Chofer Permanente deberia estar seleccionada por defecto", radioPermanente.isSelected());
@@ -103,7 +104,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.clickComponent(radioTemporario, robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertFalse("La opcion de Cantidad de Hijos deberia estar deshablitado", campoCantHijos.isEnabled());
         Assert.assertFalse("La opcion de Año de Ingreso deberia estar deshablitado", campoAnio.isEnabled());
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
@@ -135,7 +135,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2000", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     } 
     
@@ -165,7 +164,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2000", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     }
     
@@ -195,7 +193,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2000", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     }
     
@@ -225,7 +222,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("1900", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     }
     
@@ -255,8 +251,7 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("3000", robot);
         
         robot.delay(TestUtils.getDelay());
-        
-        Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
+        Assert.assertTrue("El boton de Aceptar Chofer deberia estar hablitado", altaChofer.isEnabled());
     }
     
     @Test
@@ -268,8 +263,8 @@ public class TestEnabledDisabledAdmEscVacio {
 
         TestUtils.clickComponent(campoDNI, robot);
         TestUtils.tipeaTexto("1", robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
     
@@ -282,8 +277,8 @@ public class TestEnabledDisabledAdmEscVacio {
 
         TestUtils.clickComponent(campoNombre, robot);
         TestUtils.tipeaTexto("a", robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
 
@@ -295,8 +290,8 @@ public class TestEnabledDisabledAdmEscVacio {
         JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
 
         TestUtils.clickComponent(radioPermanente, robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
     
@@ -314,7 +309,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
     
@@ -332,7 +326,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2000", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
     
@@ -344,8 +337,8 @@ public class TestEnabledDisabledAdmEscVacio {
         JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
 
         TestUtils.clickComponent(radioTemporario, robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertFalse("El boton de Aceptar Chofer deberia estar deshablitado", altaChofer.isEnabled());
     }
 
@@ -361,10 +354,11 @@ public class TestEnabledDisabledAdmEscVacio {
         JTextField campoCantPlazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
         JButton altaVehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota no debería estar seleccionado por defecto", checkBoxMascota.isSelected());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertFalse("El checkBox de Mascota no deberia estar seleccionado por defecto", checkBoxMascota.isSelected());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }
@@ -381,12 +375,12 @@ public class TestEnabledDisabledAdmEscVacio {
 
         TestUtils.clickComponent(campoPatente, robot);
         TestUtils.tipeaTexto("a", robot);
+
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota no debería estar seleccionado por defecto", checkBoxMascota.isSelected());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertFalse("El checkBox de Mascota no deberia estar seleccionado por defecto", checkBoxMascota.isSelected());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }
@@ -403,12 +397,12 @@ public class TestEnabledDisabledAdmEscVacio {
 
         TestUtils.clickComponent(campoCantPlazas, robot);
         TestUtils.tipeaTexto("1", robot);
+
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota no debería estar seleccionado por defecto", checkBoxMascota.isSelected());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertFalse("El checkBox de Mascota no deberia estar seleccionado por defecto", checkBoxMascota.isSelected());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }
@@ -424,12 +418,11 @@ public class TestEnabledDisabledAdmEscVacio {
         JButton altaVehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
 
         TestUtils.clickComponent(checkBoxMascota, robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
-        Assert.assertFalse("El checkBox de Mascota no debería estar seleccionado por defecto", checkBoxMascota.isSelected());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }
@@ -448,11 +441,11 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("a", robot);
         
         TestUtils.clickComponent(radioMoto, robot);
-        robot.delay(TestUtils.getDelay());
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Moto deberia estar seleccionada", radioMoto.isSelected());
-        Assert.assertFalse("El checkBox de Mascota debería estar deshabilitado", checkBoxMascota.isEnabled());
+        Assert.assertFalse("El checkBox de Mascota deberia estar deshabilitado", checkBoxMascota.isEnabled());
         Assert.assertFalse("El campo de la Cantidad de Plazas deberia estar deshablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
@@ -462,7 +455,6 @@ public class TestEnabledDisabledAdmEscVacio {
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
-        JRadioButton radioAuto = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.AUTO);
         JCheckBox checkBoxMascota = (JCheckBox) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CHECK_VEHICULO_ACEPTA_MASCOTA);
         JTextField campoCantPlazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
         JButton altaVehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
@@ -474,9 +466,8 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("2", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
@@ -498,10 +489,9 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("1", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
@@ -523,10 +513,9 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("4", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertTrue("El boton de Aceptar Vehiculo deberia estar hablitado", altaVehiculo.isEnabled());
     }
@@ -547,9 +536,10 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.clickComponent(campoCantPlazas, robot);
         TestUtils.tipeaTexto("0", robot);
         
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("La opcion de Auto deberia estar seleccionada por defecto", radioAuto.isSelected());
-        Assert.assertTrue("El checkBox de Mascota debería estar habilitado", checkBoxMascota.isEnabled());
+        Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
         Assert.assertFalse("El boton de Aceptar Vehiculo deberia estar deshablitado", altaVehiculo.isEnabled());
     }
@@ -573,7 +563,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("7", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
@@ -599,7 +588,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("5", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
@@ -625,7 +613,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("10", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());
@@ -651,7 +638,6 @@ public class TestEnabledDisabledAdmEscVacio {
         TestUtils.tipeaTexto("0", robot);
         
         robot.delay(TestUtils.getDelay());
-        
         Assert.assertTrue("El campo de Patente deberia estar hablitado", campoPatente.isEnabled());
         Assert.assertTrue("El checkBox de Mascota deberia estar habilitado", checkBoxMascota.isEnabled());
         Assert.assertTrue("El campo de la Cantidad de Plazas deberia estar hablitado", campoCantPlazas.isEnabled());

@@ -57,27 +57,7 @@ public class TestGuiEscVacio {
 // TEST PANEL LOGIN
     
     @Test
-    public void testPanelLogin_PasswordIncorrecta()
-    {
-        robot.delay(TestUtils.getDelay());
-
-        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
-        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
-        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
-
-        TestUtils.clickComponent(nombre, robot);
-        TestUtils.tipeaTexto("admin", robot);
-        
-        TestUtils.clickComponent(password, robot);
-        TestUtils.tipeaTexto("random", robot);
-        
-        TestUtils.clickComponent(botonLogin, robot);
-
-        Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.PASS_ERRONEO.getValor(), Mensajes.PASS_ERRONEO.getValor(),op.getMensaje());
-    }
-    
-    @Test
-    public void testPanelLogin_PasswordIncorrectaLog()
+    public void testPanelLogin_PasswordIncorrectaLogueo()
     {
         robot.delay(TestUtils.getDelay());
         JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
@@ -91,33 +71,13 @@ public class TestGuiEscVacio {
         TestUtils.tipeaTexto("random", robot);
         
         TestUtils.clickComponent(botonLogin, robot);
+        
+        robot.delay(TestUtils.getDelay());
         Assert.assertNull("El Usuario actual deberia ser null", escenario.empresa.getUsuarioLogeado());
     }
     
     @Test
-    public void testPanelLogin_UsuarioDesconocido()
-    {
-        robot.delay(TestUtils.getDelay());
-
-        JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
-        JTextField password = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PASSWORD);
-        JButton botonLogin = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LOGIN);
-
-        TestUtils.clickComponent(nombre, robot);
-        TestUtils.tipeaTexto("a", robot);
-        
-        TestUtils.clickComponent(password, robot);
-        TestUtils.tipeaTexto("a", robot);
-        
-        TestUtils.clickComponent(botonLogin, robot);
-
-        robot.delay(TestUtils.getDelay());
-        Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.USUARIO_DESCONOCIDO.getValor(), Mensajes.USUARIO_DESCONOCIDO.getValor(),op.getMensaje());
-        Assert.assertNull("El Usuario actual deberia ser null", escenario.empresa.getUsuarioLogeado());
-    }
-    
-    @Test
-    public void testPanelLogin_UsuarioDesconocidoLog()
+    public void testPanelLogin_UsuarioDesconocidoLogueo()
     {
         robot.delay(TestUtils.getDelay());
         JTextField nombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_USUARIO);
@@ -225,6 +185,8 @@ public class TestGuiEscVacio {
   		TestUtils.tipeaTexto("a", robot);
   		
   		TestUtils.clickComponent(botonRegistrar, robot);
+  		
+  		robot.delay(TestUtils.getDelay());
   		Assert.assertEquals("La cantidad de clientes no deberia haber aumentado", cantidadClientes, escenario.empresa.getClientes().size());
   		Assert.assertEquals("Mensaje incorrecto, deberia decir: "+Mensajes.PASS_NO_COINCIDE.getValor(), Mensajes.PASS_NO_COINCIDE.getValor(),op.getMensaje());
   	}

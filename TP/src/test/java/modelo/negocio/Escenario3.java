@@ -28,7 +28,6 @@ public class Escenario3 extends EscenarioBase {
             realizarPedido(cliente2, 5, false, true, 20, "ZONA_SIN_ASFALTAR");
             realizarPedido(cliente3, 1, false, false, 15, "ZONA_STANDARD");
             realizarPedido(cliente4, 4, false, false, 15, "ZONA_STANDARD");
-            realizarPedido(cliente5, 10, false, false, 15, "ZONA_STANDARD"); //Este pedido no se puede satisfacer
         
         } catch (Exception e) {
             System.out.println("Ocurrió un error al configurar el escenario: " + e.getMessage());

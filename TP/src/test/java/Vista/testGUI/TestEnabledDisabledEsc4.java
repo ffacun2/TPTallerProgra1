@@ -84,7 +84,6 @@ public class TestEnabledDisabledEsc4 {
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
-        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
         
         TestUtils.clickComponent(campoCalificacion, robot);
@@ -92,6 +91,38 @@ public class TestEnabledDisabledEsc4 {
         robot.delay(TestUtils.getDelay());
         
         Assert.assertTrue("El boton de Pagar deberia estar hablitado", botonCalificarPagar.isEnabled());
+    }
+    
+    @Test
+    public void testPanelCliente_PagarViaje_TextFieldCalificacion()  
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("3", robot);
+        TestUtils.clickComponent(botonCalificarPagar, robot);
+
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El campo Calificacion deberia estar deshabilitado", campoValor.isEnabled());
+    }
+	
+	@Test
+    public void testPanelCliente_PagarViaje_TextFieldValor()  
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("3", robot);
+        TestUtils.clickComponent(botonCalificarPagar, robot);
+
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El campo Valor deberia estar deshabilitado", campoValor.isEnabled());
     }
     
     @Test

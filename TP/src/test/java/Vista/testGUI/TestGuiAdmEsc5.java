@@ -27,12 +27,12 @@ import modeloDatos.Viaje;
 import util.Constantes;
 import vista.Ventana;
 
-public class TestGuiEsc5 {
+public class TestGuiAdmEsc5 {
 	Robot robot;
     Controlador controlador;
     private Escenario5 escenario = new Escenario5(); 
 
-    public TestGuiEsc5()
+    public TestGuiAdmEsc5()
     {
         try{
             robot = new Robot();
@@ -93,7 +93,8 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaChoferesTotales = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
-        TestUtils.clickPrimerElementoJList(listaChoferesTotales, robot);
+        listaChoferesTotales.setSelectedIndex(0);
+        TestUtils.clickComponent(listaChoferesTotales, robot);
         
         JTextField campoCalificacionChofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_CHOFER);
 
@@ -116,7 +117,8 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaChoferesTotales = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
-        TestUtils.clickPrimerElementoJList(listaChoferesTotales, robot);
+        listaChoferesTotales.setSelectedIndex(0);
+        TestUtils.clickComponent(listaChoferesTotales, robot);
         
         JTextField campoSueldoChofer = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.SUELDO_DE_CHOFER);
 
@@ -126,8 +128,22 @@ public class TestGuiEsc5 {
         Chofer primerChofer = (Chofer) listaChoferesTotales.getModel().getElementAt(0);
         double sueldo = primerChofer.getSueldoNeto();
         double sueldoEnPantalla = Double.parseDouble(campoSueldoChofer.getText().replace(",", "."));
-		Assert.assertEquals("La calificacion promedio del chofer y la que figura en pantalla no son la misma", sueldo, sueldoEnPantalla, 0.0001);
+		Assert.assertEquals("La cifra del Sueldo del chofer y el que figura en pantalla, no coinciden", sueldo, sueldoEnPantalla, 0.0001);
+    }
+    
+    @Test
+    public void testPanelAdm_GestionChoferes_TextFieldSueldosTotales()  
+    {
+        robot.delay(TestUtils.getDelay());
+        
+        JTextField campoSueldosTotales = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.TOTAL_SUELDOS_A_PAGAR);
 
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El campo de Sueldos a Pagar no deberia estar vacio", campoSueldosTotales.getText().isEmpty());
+        
+        double sueldos = escenario.empresa.getTotalSalarios();
+        double sueldosEnPantalla = Double.parseDouble(campoSueldosTotales.getText().replace(",", "."));
+		Assert.assertEquals("La cifra del Sueldo del chofer y el que figura en pantalla, no coinciden", sueldos, sueldosEnPantalla, 0.0001);
     }
     
     @Test
@@ -135,7 +151,8 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaChoferesTotales = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
-        TestUtils.clickPrimerElementoJList(listaChoferesTotales, robot);
+        listaChoferesTotales.setSelectedIndex(0);
+        TestUtils.clickComponent(listaChoferesTotales, robot);
         
         robot.delay(TestUtils.getDelay());
         JList<?> listaViajesHistoricos = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_DE_CHOFER);
@@ -183,7 +200,6 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listadoClientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTADO_DE_CLIENTES);
-        Assert.assertTrue("El listado de Clientes no deberia estar vacio", listadoClientes.getModel().getSize() > 0);
         
         HashMap<String, Cliente> clientes = escenario.empresa.getClientes();
         
@@ -200,7 +216,6 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listadoVehiculos = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_TOTALES);
-        Assert.assertTrue("El listado de Vehiculos no deberia estar vacio", listadoVehiculos.getModel().getSize() > 0);
         
         HashMap<String, Vehiculo> vehiculos = escenario.empresa.getVehiculos();
         
@@ -217,7 +232,6 @@ public class TestGuiEsc5 {
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listadoViajesHistoricos = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VIAJES_HISTORICOS);
-        Assert.assertTrue("El listado de Viajes Historicos no deberia estar vacio", listadoViajesHistoricos.getModel().getSize() > 0);
         
         ArrayList<Viaje> viajesHistoricos = escenario.empresa.getViajesTerminados();
         

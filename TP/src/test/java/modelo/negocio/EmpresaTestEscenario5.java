@@ -133,14 +133,13 @@ public class EmpresaTestEscenario5 {
         	// Este chofer NO ha realizado ningun viaje
             Chofer chofer = escenario.empresa.getChoferes().get("77777777");
 
-            // Llamamos al método para obtener la calificación promedio
             escenario.empresa.calificacionDeChofer(chofer);
 
-            // Si llegamos aquí, el test debe fallar, ya que se esperaba una excepción
+            // Si llegamos aqui, el test debe fallar, ya que se esperaba una excepcion
             fail("Se esperaba una SinViajesException al intentar obtener la calificación de un chofer sin viajes");
 
         } catch (SinViajesException e) {
-            // Éxito: Se lanzó SinViajesException como se esperaba
+            // Éxito: Se lanzo SinViajesException como se esperaba
             assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CHOFER_SIN_VIAJES.getValor(), e.getMessage());
 
         } catch (Exception e) {

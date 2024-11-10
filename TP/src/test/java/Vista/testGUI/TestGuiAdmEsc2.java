@@ -12,7 +12,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 
 import org.junit.After;
 import org.junit.Before;
@@ -24,7 +23,9 @@ import controlador.Controlador;
 import junit.framework.Assert;
 import modelo.negocio.Escenario2;
 import modeloDatos.Chofer;
+import modeloDatos.Cliente;
 import modeloDatos.Vehiculo;
+import modeloDatos.Viaje;
 import util.Constantes;
 import util.Mensajes;
 import vista.Ventana;
@@ -252,8 +253,5 @@ public class TestGuiAdmEsc2 {
         Assert.assertEquals("La Lista de Vehiculos Totales en el JList y en el sistema no son iguales", new ArrayList<>(listaVehiculos.values()), listaVehiculosJList);
         Assert.assertEquals("La Lista de Vehiculos Totales en el JList ha aumentado, se ha registrado un Vehiculo REPETIDO", cantidadInicialJlist, cantidadFinalJlist);
     }
-    
-  
-//TEST PANEL ADMINISTRADOR: Gestion de Pedidos
-   
+
 }

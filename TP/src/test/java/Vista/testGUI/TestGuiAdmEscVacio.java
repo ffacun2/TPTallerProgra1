@@ -93,13 +93,13 @@ public class TestGuiAdmEscVacio {
     	
     	JPanel panelLogin = (JPanel) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PANEL_LOGIN);
         Assert.assertTrue("El panel de Login deberia estar visible despues de cerrar sesion", panelLogin.isVisible());
-        Assert.assertEquals("Nodeberia haber ningun usuario logueado", null, escenario.empresa.getUsuarioLogeado().getNombreUsuario()) ;
+        Assert.assertEquals("No deberia haber ningun usuario logueado", null, escenario.empresa.getUsuarioLogeado()) ;
     }
     
 //TEST PANEL ADMINISTRADOR: Alta Chofer
 
     @Test
-    public void testPanelAdm_AltaChofer_TexFields()
+    public void testPanelAdm_AltaChofer_TexFieldDNI()
     {
   		robot.delay(TestUtils.getDelay());
         JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
@@ -127,8 +127,98 @@ public class TestGuiAdmEscVacio {
         
         robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo DNI del Chofer deberia vaciarse", campoDNI.getText().isEmpty());
+    }
+    
+    @Test
+    public void testPanelAdm_AltaChofer_TexFieldNombreChofer()
+    {
+  		robot.delay(TestUtils.getDelay());
+        JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
+        JTextField campoNombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_CHOFER);
+        JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
+        JTextField campoCantHijos = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_CANT_HIJOS);
+        JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
+        JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
+        
+        TestUtils.clickComponent(campoDNI, robot);
+        TestUtils.tipeaTexto("123456789", robot);
+        
+        TestUtils.clickComponent(campoNombre, robot);
+        TestUtils.tipeaTexto("ChoferP", robot);
+        
+        TestUtils.clickComponent(radioPermanente, robot);
+        
+        TestUtils.clickComponent(campoCantHijos, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoAnio, robot);
+        TestUtils.tipeaTexto("2000", robot);
+        
+        TestUtils.clickComponent(altaChofer, robot);
+        
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo del Nombre del Chofer deberia vaciarse", campoNombre.getText().isEmpty());
+    }
+    
+    @Test
+    public void testPanelAdm_AltaChofer_TexFieldCantHijos()
+    {
+  		robot.delay(TestUtils.getDelay());
+        JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
+        JTextField campoNombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_CHOFER);
+        JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
+        JTextField campoCantHijos = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_CANT_HIJOS);
+        JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
+        JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
+        
+        TestUtils.clickComponent(campoDNI, robot);
+        TestUtils.tipeaTexto("123456789", robot);
+        
+        TestUtils.clickComponent(campoNombre, robot);
+        TestUtils.tipeaTexto("ChoferP", robot);
+        
+        TestUtils.clickComponent(radioPermanente, robot);
+        
+        TestUtils.clickComponent(campoCantHijos, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoAnio, robot);
+        TestUtils.tipeaTexto("2000", robot);
+        
+        TestUtils.clickComponent(altaChofer, robot);
+        
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo Cantidad de Hijos del Chofer deberia vaciarse", campoNombre.getText().isEmpty());
+    }
+    
+    @Test
+    public void testPanelAdm_AltaChofer_TexFieldAnioDeIngreso()
+    {
+  		robot.delay(TestUtils.getDelay());
+        JTextField campoDNI = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.DNI_CHOFER);
+        JTextField campoNombre = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NOMBRE_CHOFER);
+        JRadioButton radioPermanente = (JRadioButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PERMANENTE);
+        JTextField campoCantHijos = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_CANT_HIJOS);
+        JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
+        JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
+        
+        TestUtils.clickComponent(campoDNI, robot);
+        TestUtils.tipeaTexto("123456789", robot);
+        
+        TestUtils.clickComponent(campoNombre, robot);
+        TestUtils.tipeaTexto("ChoferP", robot);
+        
+        TestUtils.clickComponent(radioPermanente, robot);
+        
+        TestUtils.clickComponent(campoCantHijos, robot);
+        TestUtils.tipeaTexto("3", robot);
+        
+        TestUtils.clickComponent(campoAnio, robot);
+        TestUtils.tipeaTexto("2000", robot);
+        
+        TestUtils.clickComponent(altaChofer, robot);
+        
+        robot.delay(TestUtils.getDelay());
         Assert.assertTrue("El campo del Año de Ingreso del Chofer deberia vaciarse", campoNombre.getText().isEmpty());
     }
     
@@ -142,8 +232,6 @@ public class TestGuiAdmEscVacio {
         JTextField campoCantHijos = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_CANT_HIJOS);
         JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
         JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
-        JList<?> listaChoferesTotales = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
-        JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
         
         JList<?> choferesTotalesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
         Assert.assertTrue("El Listado de Choferes Totales deberia estar vacio", choferesTotalesJList.getModel().getSize() == 0);
@@ -185,8 +273,6 @@ public class TestGuiAdmEscVacio {
         JTextField campoCantHijos = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_CANT_HIJOS);
         JTextField campoAnio = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CH_ANIO);
         JButton altaChofer = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_CHOFER);
-        JList<?> listaChoferesTotales = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_TOTALES);
-        JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
         
         JList<?> choferesLibresJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
         Assert.assertTrue("El Listado de Choferes Libres deberia estar vacio", choferesLibresJList.getModel().getSize() == 0);
@@ -221,7 +307,7 @@ public class TestGuiAdmEscVacio {
 //TEST PANEL ADMINISTRADOR: Alta Vehiculo
     
     @Test
-    public void testPanelAdm_AltaVehiculo_TextFields()
+    public void testPanelAdm_AltaVehiculo_TextFieldPatente()
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
@@ -235,10 +321,29 @@ public class TestGuiAdmEscVacio {
         TestUtils.tipeaTexto("2", robot);
         
         TestUtils.clickComponent(altaVehiculo, robot);
-        robot.delay(TestUtils.getDelay());
         
-        Assert.assertFalse("El campo Patente deberia estar vacio", campoPatente.getText().isEmpty());
-        Assert.assertFalse("El campo Cantidad de Plazas deberia estar vacio", campoCantPlazas.getText().isEmpty());
+        robot.delay(10000);
+        Assert.assertTrue("El campo Patente deberia estar vacio", campoPatente.getText().isEmpty());
+    }
+    
+    @Test
+    public void testPanelAdm_AltaVehiculo_TextFieldCantPlazas()
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoPatente = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PATENTE);
+        JTextField campoCantPlazas = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CANTIDAD_PLAZAS);
+        JButton altaVehiculo = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VEHICULO);
+        
+        TestUtils.clickComponent(campoPatente, robot);
+        TestUtils.tipeaTexto("a", robot);
+        
+        TestUtils.clickComponent(campoCantPlazas, robot);
+        TestUtils.tipeaTexto("2", robot);
+        
+        TestUtils.clickComponent(altaVehiculo, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertTrue("El campo Cantidad de Plazas deberia estar vacio", campoCantPlazas.getText().isEmpty());
     }
     
     @Test
@@ -270,8 +375,5 @@ public class TestGuiAdmEscVacio {
         robot.delay(TestUtils.getDelay());
         Assert.assertEquals("La Lista de Vehiculos Totales en el JList y en el sistema no son iguales", new ArrayList<>(listaVehiculos.values()), listaVehiculosJList);
     }
-    
-//TEST PANEL ADMINISTRADOR: Gestion de Pedidos
-    
-    
+
 }

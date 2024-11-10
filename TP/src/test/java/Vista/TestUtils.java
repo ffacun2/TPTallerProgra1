@@ -135,36 +135,5 @@ public class TestUtils
             }
         }
     }
-    
-    public static void clickPrimerElementoJList(JList<?> list, Robot robot) {
-    	
-    	if (list.getModel().getSize() > 0) {
-            
-            // Asegurarse de que el primer elemento sea visible
-            list.ensureIndexIsVisible(0);
-
-            // Obtener el área de la celda del primer elemento visible
-            Rectangle bounds = list.getCellBounds(0, 0);
-            
-            // Verificar si el primer elemento está visible
-            if (bounds != null) {
-                // Obtener la posición en pantalla de la lista
-                Point listLocation = list.getLocationOnScreen();
-                
-                int xCentro = listLocation.x + bounds.x + (bounds.width / 2);
-                int yCentro = listLocation.y + bounds.y + (bounds.height / 2);
-
-                robot.mouseMove(xCentro, yCentro);
-
-                // Hacer clic en el primer elemento
-                robot.mousePress(InputEvent.BUTTON1_DOWN_MASK);
-                robot.mouseRelease(InputEvent.BUTTON1_DOWN_MASK);
-            } else {
-                System.out.println("El primer elemento no es visible en la lista.");
-            }
-        } else {
-            System.out.println("La lista está vacía. No se puede hacer clic en el primer elemento.");
-        }
-    }
 
 }

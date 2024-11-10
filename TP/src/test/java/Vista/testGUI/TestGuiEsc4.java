@@ -75,7 +75,6 @@ public class TestGuiEsc4 {
         JTextArea textAreaPedidosViajes = (JTextArea) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.PEDIDO_O_VIAJE_ACTUAL);
         
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
-        JTextField campoValor = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.VALOR_VIAJE);
         JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
         
         TestUtils.clickComponent(campoCalificacion, robot);
@@ -106,7 +105,22 @@ public class TestGuiEsc4 {
     }
 	
 	@Test
-    public void testPanelCliente_PagarViaje_BorradoCalificacion()  
+    public void testPanelCliente_PagarViaje_TextFieldCalificacion()  
+    {
+        robot.delay(TestUtils.getDelay());
+        JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
+        JButton botonCalificarPagar = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICAR_PAGAR);
+        
+        TestUtils.clickComponent(campoCalificacion, robot);
+        TestUtils.tipeaTexto("3", robot);
+        TestUtils.clickComponent(botonCalificarPagar, robot);
+
+        robot.delay(TestUtils.getDelay());
+        Assert.assertTrue("El campo Calificacion deberia estar vacio", campoCalificacion.getText().isEmpty());
+    }
+	
+	@Test
+    public void testPanelCliente_PagarViaje_TextFieldValor()  
     {
         robot.delay(TestUtils.getDelay());
         JTextField campoCalificacion = (JTextField) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.CALIFICACION_DE_VIAJE);
@@ -118,6 +132,6 @@ public class TestGuiEsc4 {
         TestUtils.clickComponent(botonCalificarPagar, robot);
 
         robot.delay(TestUtils.getDelay());
-        Assert.assertTrue("El campo Calificacion deberia estar vacio", campoCalificacion.getText().isEmpty());
+        Assert.assertTrue("El campo Valor deberia estar vacio", campoValor.getText().isEmpty());
     }
 }

@@ -77,10 +77,9 @@ public class TestGuiAdmEsc3 {
     @Test
     public void testPanelAdm_GestionPedidos_ListaPedidosPendientes()
     {
-    	
+    	robot.delay(TestUtils.getDelay());
         JList<?> pedidosPendientesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
         Assert.assertTrue("El Listado de Pedidos Pendientes no deberia estar vacio", pedidosPendientesJList.getModel().getSize() > 0);
-        
         
         HashMap<Cliente, Pedido>  listaPedidos = escenario.empresa.getPedidos();
         List<Pedido> listaPedidosJList = new ArrayList<>();
@@ -95,10 +94,9 @@ public class TestGuiAdmEsc3 {
     @Test
     public void testPanelAdm_GestionPedidos_ListaChoferesLibres()
     {
-    	
+    	robot.delay(TestUtils.getDelay());
         JList<?> listaChoferesLibresJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
         Assert.assertTrue("El Listado de Choferes Libres no deberia estar vacio", listaChoferesLibresJList.getModel().getSize() > 0);
-        
         
         ArrayList<Chofer> choferesLibres = escenario.empresa.getChoferesDesocupados();
         List<Chofer> choferesLibresJList = new ArrayList<>();
@@ -107,32 +105,117 @@ public class TestGuiAdmEsc3 {
         }
         
         robot.delay(TestUtils.getDelay());
-        Assert.assertEquals("La Lista de Pedidos Pendientes en el JList y en el sistema no son iguales", choferesLibres, choferesLibresJList);
+        Assert.assertEquals("La Lista de Choferes Libres en el JList y en el sistema no son iguales", choferesLibres, choferesLibresJList);
     }
 
-    //SIN TERMINAR!!!
+    //APARECEN VEHICULOS QUE NO SATISFACEN EL PEDIDO
     @Test
     public void testPanelAdm_GestionPedidos_VehiculosDisponibles()
     {
     	robot.delay(TestUtils.getDelay());
     	JList<?> pedidosPendientesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
         JList<?> vehiculosDisponiblesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
-        int cantidadInicialVehiculosJlist = vehiculosDisponiblesJList.getModel().getSize();
         Assert.assertTrue("El Listado de Vehiculos Disponibles deberia estar vacio", vehiculosDisponiblesJList.getModel().getSize() == 0);
         
-        TestUtils.clickPrimerElementoJList(pedidosPendientesJList, robot);
-        
+        pedidosPendientesJList.setSelectedIndex(0);
+        TestUtils.clickComponent(pedidosPendientesJList, robot);
         
         robot.delay(TestUtils.getDelay());
-        int cantidadFinalJlist = vehiculosDisponiblesJList.getModel().getSize();
-        ArrayList<Vehiculo>  listaVehiculos = escenario.empresa.getVehiculosDesocupados();
+        ArrayList<Vehiculo>  listaVehiculosDesocupados = escenario.empresa.vehiculosOrdenadosPorPedido((Pedido) pedidosPendientesJList.getModel().getElementAt(0));
+        
         List<Vehiculo> listaVehiculosJList = new ArrayList<>();
         for (int i = 0; i < vehiculosDisponiblesJList.getModel().getSize(); i++) {
         	listaVehiculosJList.add((Vehiculo) vehiculosDisponiblesJList.getModel().getElementAt(i));
         }
         
         robot.delay(TestUtils.getDelay());
-        Assert.assertEquals("La Lista de Vehiculos Disponibles en el JList y en el sistema no son iguales", listaVehiculos, listaVehiculosJList);
-        Assert.assertEquals("La Lista de Vehiculos Disponibles en el JList ha aumentado, se ha registrado un Vehiculo REPETIDO", cantidadInicialJlist, cantidadFinalJlist);
+        Assert.assertEquals("La Lista de Vehiculos Disponibles en el JList y en el sistema no son iguales", listaVehiculosDesocupados, listaVehiculosJList);
     }
+    
+    @Test
+    public void testPanelAdm_GestionPedidos_ListaPedidosPendientes_After()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> pedidosPendientesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
+        JList<?> choferesLibresJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
+        JList<?> vehiculosDisponiblesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
+
+        pedidosPendientesJList.setSelectedIndex(0);
+        choferesLibresJList.setSelectedIndex(0);
+        vehiculosDisponiblesJList.setSelectedIndex(0);
+        
+        Pedido pedido = (Pedido) pedidosPendientesJList.getModel().getElementAt(0);
+        
+        TestUtils.clickComponent(pedidosPendientesJList, robot);
+        TestUtils.clickComponent(choferesLibresJList, robot);
+        TestUtils.clickComponent(vehiculosDisponiblesJList, robot);
+        TestUtils.clickComponent(nuevoViaje, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        HashMap<Cliente, Pedido>  listaPedidos = escenario.empresa.getPedidos();
+        List<Pedido> listaPedidosJList = new ArrayList<>();
+        for (int i = 0; i < pedidosPendientesJList.getModel().getSize(); i++) {
+        	listaPedidosJList.add((Pedido) pedidosPendientesJList.getModel().getElementAt(i));
+        }
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertEquals("Despues de crear el Nuevo Viaje, la Lista de Pedidos Pendientes en el JList y en el sistema no son iguales", new ArrayList<>(listaPedidos.values()), listaPedidosJList);
+        Assert.assertFalse("El Pedido no deberia seguir figurando en el JList",listaPedidosJList.contains(pedido));
+    }
+    
+    @Test
+    public void testPanelAdm_GestionPedidos_ListaChoferesLibres_After()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> pedidosPendientesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
+        JList<?> choferesLibresJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
+        JList<?> vehiculosDisponiblesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
+
+        pedidosPendientesJList.setSelectedIndex(0);
+        choferesLibresJList.setSelectedIndex(0);
+        vehiculosDisponiblesJList.setSelectedIndex(0);
+        
+        Chofer chofer = (Chofer) choferesLibresJList.getModel().getElementAt(0);
+        
+        TestUtils.clickComponent(pedidosPendientesJList, robot);
+        TestUtils.clickComponent(choferesLibresJList, robot);
+        TestUtils.clickComponent(vehiculosDisponiblesJList, robot);
+        TestUtils.clickComponent(nuevoViaje, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        ArrayList<Chofer> choferesLibres = escenario.empresa.getChoferesDesocupados();
+        List<Chofer> listaChoferesLibresJList = new ArrayList<>();
+        for (int i = 0; i < choferesLibresJList.getModel().getSize(); i++) {
+        	listaChoferesLibresJList.add((Chofer) choferesLibresJList.getModel().getElementAt(i));
+        }
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertEquals("Despues de crear el Nuevo Viaje, la Lista de Choferes Libres en el JList y en el sistema no son iguales", choferesLibres, listaChoferesLibresJList);
+        Assert.assertFalse("El Chofer no deberia seguir figurando en el JList",listaChoferesLibresJList.contains(chofer));
+    }
+    
+    @Test
+    public void testPanelAdm_GestionPedidos_VehiculosDisponibles_After()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> pedidosPendientesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
+        JList<?> choferesLibresJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
+        JList<?> vehiculosDisponiblesJList = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
+
+        pedidosPendientesJList.setSelectedIndex(0);
+        choferesLibresJList.setSelectedIndex(0);
+        vehiculosDisponiblesJList.setSelectedIndex(0);
+        
+        TestUtils.clickComponent(pedidosPendientesJList, robot);
+        TestUtils.clickComponent(choferesLibresJList, robot);
+        TestUtils.clickComponent(vehiculosDisponiblesJList, robot);
+        TestUtils.clickComponent(nuevoViaje, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertEquals("La lista de vehiculos disponibles deberia estar vacia", 0, vehiculosDisponiblesJList.getModel().getSize());
+    }
+    
 }

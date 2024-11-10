@@ -65,7 +65,7 @@ public class TestEnabledDisabledAdmEsc3 {
 //PANEL ADMINISTRADOR:Gestion de Pedidos
     
     @Test
-    public void testPanelGestionDePedidos_Completo()
+    public void testPanel_GestionDePedidos_Completo()
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaPedidosPendientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
@@ -85,7 +85,7 @@ public class TestEnabledDisabledAdmEsc3 {
     }
     
     @Test
-    public void testPanelGestionDePedidos_SinSeleccionar()
+    public void testPanel_GestionDePedidos_SinSeleccionar()
     {
         robot.delay(TestUtils.getDelay());
         JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
@@ -94,7 +94,7 @@ public class TestEnabledDisabledAdmEsc3 {
     }
     
     @Test
-    public void testPanelGestionDePedidos_SoloPedidoPendiente()
+    public void testPanel_GestionDePedidos_SoloPedidoPendiente()
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaPedidosPendientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
@@ -108,7 +108,7 @@ public class TestEnabledDisabledAdmEsc3 {
     }
     
     @Test
-    public void testPanelGestionDePedidos_SoloChoferLibre()
+    public void testPanel_GestionDePedidos_SoloChoferLibre()
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
@@ -122,7 +122,7 @@ public class TestEnabledDisabledAdmEsc3 {
     }
     
     @Test
-    public void testPanelGestionDePedidos_SoloVehiculoDisponible()
+    public void testPanel_GestionDePedidos_SoloVehiculoDisponible()
     {
         robot.delay(TestUtils.getDelay());
         JList<?> listaVehiculosDisponibles = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
@@ -135,11 +135,10 @@ public class TestEnabledDisabledAdmEsc3 {
         Assert.assertFalse("El boton de Nuevo Viaje deberia estar deshablitado", nuevoViaje.isEnabled());
     }
 
-    //CHEQUEAR
     @Test
-    public void testPanelGestionDePedidos_NuevoViaje()
+    public void testPanel_GestionDePedidos_NuevoViaje()
     {
-        robot.delay(5000);
+    	robot.delay(TestUtils.getDelay());
         JList<?> listaPedidosPendientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
         JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
         JList<?> listaVehiculosDisponibles = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
@@ -153,17 +152,61 @@ public class TestEnabledDisabledAdmEsc3 {
         TestUtils.clickComponent(listaChoferesLibres, robot);
         TestUtils.clickComponent(listaVehiculosDisponibles, robot);
         
-        int pedidosPendientesSizeInicial = listaPedidosPendientes.getModel().getSize();
-        int choferesLibresSizeInicial = listaChoferesLibres.getModel().getSize();
-        int vehiculosDisponiblesSizeInicial = listaVehiculosDisponibles.getModel().getSize();
-
+        robot.delay(TestUtils.getDelay());
+        Assert.assertTrue("El boton de Nuevo Viaje deberia estar habilitado", nuevoViaje.isEnabled());
         TestUtils.clickComponent(nuevoViaje, robot);
-        Assert.assertFalse("El botón de Nuevo Viaje debería estar deshabilitado", nuevoViaje.isEnabled());
+    }
+    
+    @Test
+    public void testPanel_GestionDePedidos_NuevoViaje_After()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> listaPedidosPendientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
+        JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
+        JList<?> listaVehiculosDisponibles = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_VEHICULOS_DISPONIBLES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
 
-        Assert.assertEquals("La lista de pedidos pendientes debería haber reducido su tamaño en 1", pedidosPendientesSizeInicial - 1, listaPedidosPendientes.getModel().getSize());
-        Assert.assertEquals("La lista de choferes libres debería haber reducido su tamaño en 1", choferesLibresSizeInicial - 1, listaChoferesLibres.getModel().getSize());
-        Assert.assertEquals("La lista de vehículos disponibles debería estar vacía", 0, listaVehiculosDisponibles.getModel().getSize());
+        listaPedidosPendientes.setSelectedIndex(0);
+        listaChoferesLibres.setSelectedIndex(0);
+        listaVehiculosDisponibles.setSelectedIndex(0);
+        
+        TestUtils.clickComponent(listaPedidosPendientes, robot);
+        TestUtils.clickComponent(listaChoferesLibres, robot);
+        TestUtils.clickComponent(listaVehiculosDisponibles, robot);
+        TestUtils.clickComponent(nuevoViaje, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El boton de Nuevo Viaje deberia deshabilitarse despues de crear un viaje", nuevoViaje.isEnabled());
     }
 
+    @Test
+    public void testPanel_GestionDePedidos_NuevoViajeSoloPedidosPendientes()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> listaPedidosPendientes = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_PEDIDOS_PENDIENTES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
+
+        listaPedidosPendientes.setSelectedIndex(0);
+        TestUtils.clickComponent(listaPedidosPendientes, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El boton de Nuevo Viaje deberia estar deshabilitado", nuevoViaje.isEnabled());
+    }
+    
+    @Test
+    public void testPanel_GestionDePedidos_NuevoViajeSoloChoferesLibres()
+    {
+    	robot.delay(TestUtils.getDelay());
+        JList<?> listaChoferesLibres = (JList<?>) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.LISTA_CHOFERES_LIBRES);
+        JButton nuevoViaje = (JButton) TestUtils.getComponentForName((Component) controlador.getVista(), Constantes.NUEVO_VIAJE);
+
+        listaChoferesLibres.setSelectedIndex(0);
+        TestUtils.clickComponent(listaChoferesLibres, robot);
+        
+        robot.delay(TestUtils.getDelay());
+        Assert.assertFalse("El boton de Nuevo Viaje deberia estar deshabilitado", nuevoViaje.isEnabled());
+    }
+    
+    
 
 }

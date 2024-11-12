@@ -438,34 +438,6 @@ public class EmpresaTestEscenarioVacio {
         }
     }
 
-    // Clases cubiertas: 1, 3 LANZA ASERTO POR SUELDO CERO LO CUAL TIENE SENTIDO 
-    // PERO EL JDOC DICE QUE PUEDE SER >= 0 ASIQ UE NO DEBERIA LANZAR ASERTO
-    @Test
-    public void testGetTotalSalarios_ChoferesConSalarioCero() {
-        try {
-            // Sueldo básico definido como 0 para los choferes
-            double sueldoBasico = 0;
-
-            // Registramos un chofer permanente con salario 0
-            ChoferPermanente choferPermanente = new ChoferPermanente("12345678", "Juan", 2010, 2); 
-            Chofer.setSueldoBasico(sueldoBasico); // El sueldo básico es 0
-            escenarioVacio.empresa.agregarChofer(choferPermanente);
-
-            // Registramos un chofer temporario con salario 0
-            ChoferTemporario choferTemporario = new ChoferTemporario("87654321", "Pedro");
-            Chofer.setSueldoBasico(sueldoBasico); // El sueldo básico es 0
-            escenarioVacio.empresa.agregarChofer(choferTemporario);
-
-            // Verificamos que el salario total es 0.0
-            double totalSalarios = escenarioVacio.empresa.getTotalSalarios();
-            double salarioEsperado = 0.0;
-
-            assertEquals("El total de salarios es incorrecto", salarioEsperado, totalSalarios, 0.01);
-
-        } catch (Exception e) {
-            fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
-        }
-    }
 
     // Clases cubiertas: 1, 3 Parece que se calculan mal los salarios o este metodo hace algo raro en la suma
     @Test

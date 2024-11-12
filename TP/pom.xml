@@ -25,5 +25,32 @@
 		<systemPath>${project.basedir}\lib\SubiQueTeLlevo.jar</systemPath>
 	</dependency>
   </dependencies>
-  
+  <build>
+    <plugins>
+        <!-- Configuración de Surefire Plugin para ejecutar pruebas -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.5.1</version> <!-- Usa la última versión estable disponible -->
+            <configuration>
+                <reportsDirectory>${project.basedir}\target\surefire-reports</reportsDirectory>
+            </configuration>
+        </plugin>
+
+        <!-- Configuración de Surefire Report Plugin para generar reportes en HTML -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-report-plugin</artifactId>
+            <version>3.5.1</version>
+            <executions>
+                <execution>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report-only</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 </project>

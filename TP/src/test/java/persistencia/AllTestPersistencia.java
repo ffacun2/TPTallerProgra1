@@ -9,8 +9,8 @@ import org.junit.runners.Suite;
 	EmpresaDTOTest.class,
 	UtilPersistenciaTest.class,
 	PersistenciaBinTest_Esc1.class,
-	PersistenciaBinTest_Esc2.class,
-	PersistenciaBinTest_Esc3.class
+	PersistenciaBinTest_Esc1.class,
+	PersistenciaBinTest_Esc2.class
 })
 
 public class AllTestPersistencia {

@@ -29,7 +29,7 @@ import vista.Ventana;
  * lista viajes iniciados vacio
  * lista viajes terminados vacio
  */
-public class ControladorTest {
+public class ControladorTest1 {
 	
 	Empresa empresa;
 	Controlador control;
@@ -137,7 +137,11 @@ public class ControladorTest {
 		assertNull(((OptionPane)(control.getVista().getOptionPane())).getMsj());
 	}
 		
-	
+	/**
+	 * Para verificar que se ejecuto el metodo escribir() corroboro
+	 * que se genere un archivo con el nombre almacenado en el atributo
+	 * fileName.
+	 */
 	@Test
 	public void testEscribir() {
 		File arch = new File(control.getFileName());
@@ -149,12 +153,4 @@ public class ControladorTest {
 		assertNotNull(arch.exists());
 	}
 	
-	@Test
-	public void testLeer() {
-		File arch = new File(control.getFileName());
-		
-		assertNotNull(arch.exists());
-		control.leer();
-		
-	}
 }

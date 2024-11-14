@@ -31,6 +31,7 @@ import modeloDatos.Cliente;
 import modeloDatos.Moto;
 import modeloDatos.Pedido;
 import modeloDatos.Vehiculo;
+import util.Mensajes;
 
 public class EmpresaTestEscenarioVacio {
 
@@ -97,7 +98,7 @@ public class EmpresaTestEscenarioVacio {
             
         } catch (ChoferRepetidoException e) {
             // Éxito: Se lanzó ChoferRepetidoException como se esperaba
-            assertTrue("Se lanzó correctamente ChoferRepetidoException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CHOFER_YA_REGISTRADO.getValor(), e.getMessage());
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
         }
@@ -144,7 +145,7 @@ public class EmpresaTestEscenarioVacio {
 
         } catch (UsuarioYaExisteException e) {
             // Éxito: Se lanzó UsuarioYaExisteException como se esperaba
-            assertTrue("Se lanzó correctamente UsuarioYaExisteException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.USUARIO_REPETIDO.getValor(), e.getMessage());
 
         } catch (Exception e) {
             fail("Se lanzó una excepción inesperada: " + e.getClass().getName() + " - " + e.getMessage());
@@ -173,7 +174,7 @@ public class EmpresaTestEscenarioVacio {
 
         } catch (ClienteNoExisteException e) {
             // Éxito: Se lanzó ClienteNoExisteException como se esperaba
-            assertTrue("Se lanzó correctamente ClienteNoExisteException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.CLIENTE_NO_EXISTE.getValor(), e.getMessage());
 
         } catch (SinVehiculoParaPedidoException e) {
             // Fallamos si se lanza SinVehiculoParaPedidoException
@@ -247,7 +248,7 @@ public class EmpresaTestEscenarioVacio {
 
         } catch (VehiculoRepetidoException e) {
             // Éxito: Se lanzó VehiculoRepetidoException como se esperaba
-            assertTrue("Se lanzó correctamente VehiculoRepetidoException", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.VEHICULO_YA_REGISTRADO.getValor(), e.getMessage());
 
         } catch (Exception e) {
             // Capturamos cualquier otra excepción inesperada
@@ -391,7 +392,7 @@ public class EmpresaTestEscenarioVacio {
 
         } catch (UsuarioNoExisteException e) {
             // Éxito: Se lanzó UsuarioNoExisteException como se esperaba
-            assertTrue("Se lanzó correctamente UsuarioNoExisteException por usuario no registrado", true);
+        	assertEquals("El mensaje no corresponde con la excepcion adecuada.", Mensajes.USUARIO_DESCONOCIDO.getValor(), e.getMessage());
 
         } catch (PasswordErroneaException e) {
             fail("Se lanzó PasswordErroneaException en lugar de UsuarioNoExisteException: " + e.getMessage());

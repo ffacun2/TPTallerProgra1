@@ -1,6 +1,7 @@
 package modelo.dato;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 import org.junit.After;
 import org.junit.Before;
@@ -23,6 +24,7 @@ import util.Constantes;
  * 						sin baul
  * 						2 pasajeros
  * 						en moto
+ * 						10km
  * (caracteristicas que modifican el valor del viaje)
  */
 public class ViajeTest_Esc1 {
@@ -63,6 +65,16 @@ public class ViajeTest_Esc1 {
 		@Test
 		public void testConstructorVehiculo() {
 			assertEquals("Error al asignar el vehiculo.",vehiculo,viaje.getVehiculo());
+		}
+		
+		@Test
+		public void testConstructorCalificacion() {
+			assertEquals(0,viaje.getCalificacion());
+		}
+		
+		@Test
+		public void testConstructorFinalizado() {
+			assertFalse(viaje.isFinalizado());
 		}
 
 		

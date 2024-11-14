@@ -45,9 +45,12 @@ public class CombiTest_ConMascota {
 	@Test
 	public void testGetPuntajePedido1() {
 		Pedido pedido1 = new Pedido(new Cliente("usuario1","password","mi nombre"),4,true,true,10,Constantes.ZONA_PELIGROSA);
-		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),4,false,false,10,Constantes.ZONA_PELIGROSA);
-		
 		assertEquals("Error en el calculo de puntaje pedido con baul.",Integer.valueOf(140),combi.getPuntajePedido(pedido1));
+	}
+	
+	@Test
+	public void testGetPuntajePedido2() {
+		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),4,false,false,10,Constantes.ZONA_PELIGROSA);
 		assertEquals("Error en el calculo de puntajet pedido sin baul.",Integer.valueOf(40),combi.getPuntajePedido(pedido2));
 	}
 }

@@ -23,6 +23,7 @@ import util.Constantes;
  * 						sin baul
  * 						6 pasajeros
  * 						en combi
+ * 						10km
  * (caracteristicas que modifican el valor del viaje)
  */
 public class ViajeTest_Esc2 {
@@ -62,7 +63,8 @@ public class ViajeTest_Esc2 {
 			//por zona
 			valor += base*(cant_pasajeros*0.1 + cant_km*0.2);
 			//por mascota
-			valor += (base*(cant_pasajeros*0.1 + cant_km*0.2));
+			valor += (base*(cant_pasajeros*0.1 + cant_km*0.15));
+			System.out.println(valor);
 			assertEquals(valor,viaje.getValor(),1.0);
 		}
 		

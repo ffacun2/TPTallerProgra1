@@ -59,4 +59,15 @@ public class UtilPersistenciaTest {
 		assertEquals("LOS VIAJES TERMINADOS NO COINCIDEN",Empresa.getInstance().getViajesTerminados(),empresaDTO.getViajesTerminados());
 	}
 
+	@Test
+	public void testEmpresafromEmpresaDTO2() {
+		try {
+			UtilPersistencia.empresaFromEmpresaDTO(null);
+			fail("deberia lanzar excepcion. empresaDTO es null");
+		}
+		catch(Exception e) {
+			
+		}
+	}
+	
 }

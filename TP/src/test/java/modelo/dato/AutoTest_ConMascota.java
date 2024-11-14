@@ -43,18 +43,36 @@ public class AutoTest_ConMascota {
 	 * El valor del puntaje depende solo de si se usa baul o no.
 	 * 
 	 * Pedido1 = pedido valido, con baul, retorna 80pts
-	 * Pedido2 = pedido valido, sin baul, retorna 60pts
-	 * Pedido3 = pedido invalido, retorna null
 	 */
 	@Test
 	public void testGetPuntajePedido1() {
 		Pedido pedido1 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,true,true,10,Constantes.ZONA_PELIGROSA);
-		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,false,false,10,Constantes.ZONA_PELIGROSA);
-		Pedido pedido3 = new Pedido(new Cliente("usuario1","password","mi nombre"),5,true,true,10,Constantes.ZONA_PELIGROSA);
-		
-		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO CON BAUL",auto.getPuntajePedido(pedido1),Integer.valueOf(80));
-		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO SIN BAUL.",auto.getPuntajePedido(pedido2),Integer.valueOf(60));
-		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO.",auto.getPuntajePedido(pedido3),null);
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO CON BAUL",auto.getPuntajePedido(pedido1),Integer.valueOf(80));		
 	}
 	
+	/**
+	 * Verifico que el metodo getPuntajePedido calcule correctamente el puntaje de acuerdo las 
+	 * caracteristicas del pedido valido.
+	 * El valor del puntaje depende solo de si se usa baul o no.
+	 * 
+	 * Pedido2 = pedido valido, sin baul, retorna 60pts
+	 */
+	@Test
+	public void testGetPuntajePedido2() {
+		Pedido pedido2 = new Pedido(new Cliente("usuario1","password","mi nombre"),2,false,false,10,Constantes.ZONA_PELIGROSA);
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO SIN BAUL.",auto.getPuntajePedido(pedido2),Integer.valueOf(60));
+	}
+
+	/**
+	 * Verifico que el metodo getPuntajePedido calcule correctamente el puntaje de acuerdo las 
+	 * caracteristicas del pedido valido.
+	 * El valor del puntaje depende solo de si se usa baul o no.
+	 * 
+	 * Pedido3 = pedido invalido, retorna null
+	 */
+	@Test
+	public void testGetPuntajePedido3() {
+		Pedido pedido3 = new Pedido(new Cliente("usuario1","password","mi nombre"),4,true,true,10,Constantes.ZONA_PELIGROSA);
+		assertEquals("ERROR EN EL CALCULO DE PUNTAJE PEDIDO.",auto.getPuntajePedido(pedido3),null);
+	}
 }

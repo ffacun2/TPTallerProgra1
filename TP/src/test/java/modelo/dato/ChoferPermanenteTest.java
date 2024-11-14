@@ -14,10 +14,12 @@ import modeloDatos.ChoferPermanente;
 public class ChoferPermanenteTest {
 
 	Chofer chofer;
+	Chofer chofer2;
 	
 	@Before
 	public void setUp() throws Exception {
 		chofer = new ChoferPermanente("123","mi nombre",2000,2);
+		chofer2 = new ChoferPermanente("456","otro nombre",2015,1);
 	}
 
 	/**
@@ -68,7 +70,26 @@ public class ChoferPermanenteTest {
 			sueldo += Chofer.getSueldoBasico()*antiguedad*0.05;
 		
 		sueldo += Chofer.getSueldoBasico()*cant_hijos*0.07;
+		System.out.println(sueldo);
 		assertEquals(sueldo,chofer.getSueldoBruto(),1.0);
+	}
+	
+	@Test
+	public void testSueldoBruto2() {
+		Chofer.setSueldoBasico(700.0);
+		double sueldo = Chofer.getSueldoBasico();
+		int antiguedad = ((ChoferPermanente)chofer2).getAntiguedad();
+		int cant_hijos = ((ChoferPermanente)chofer2).getCantidadHijos();
+		
+		if ( antiguedad > 20)
+			sueldo += Chofer.getSueldoBasico();
+		else
+			sueldo += Chofer.getSueldoBasico()*antiguedad*0.05;
+		
+		sueldo += Chofer.getSueldoBasico()*cant_hijos*0.07;
+		System.out.println(sueldo);
+		assertEquals(sueldo,chofer2.getSueldoBruto(),1.0);
+		
 	}
 
 }

@@ -1,4 +1,4 @@
-### Testing con JUnit
+# Testing con JUnit
 Este proyecto consiste en evaluar un sistema de gestion de viajes mediante pruebas de testeo para determinar los escenarios y casos de usos de cada metodo.
 Se han implementado diferentes tipos de prueba, incluyendo unitarias, de integracion, mocks y prueba de vista, para garantizar la calidad y fiabilidad del sistema.
 

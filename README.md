@@ -38,6 +38,10 @@ El sistema tendra dos tipos de usuario:
    Verificacion del funcionamiento correcto entre modulos, como la interaccion entre Clientes, Choferes y Vehiculos en la asignacion de viajes.<br>
 - <b>Pruebas Mocks</b><br>
    Simulacion de dependencias, utilizando la herramienta como Mockito, para aislar componentes durante las pruebas.<br>
+- <b>Prueba de Persistencia</b><br>
+    Validacion de que los datos se almacenen y recuperen correctamente, garantizando la integridad de la informacion.
+- <b>Prueba de Excepciones</b><br>
+    Validacion de que el sistema maneja correctamente los errores y lanza las excepciones esperadas en escenarios adversos.
 - <b>Pruebas de Vista</b><br>
    Automatizacion de interacciones con la interfaz grafica del sistema, utilizando la libreria Robots de Java.
 
